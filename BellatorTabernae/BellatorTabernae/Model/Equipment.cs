@@ -9,9 +9,9 @@ namespace BellatorTabernae.Model
         [Range(1, 32767, ErrorMessage = "Utrustningens stats ID måste vara inom den positiva smallint skalan!")]
         public int EquipStatsID { get; set; }
 
-        [Required(ErrorMessage = "Utrustningen måste ha ett typ ID!")]
-        [Range(1, 255, ErrorMessage = "Utrustningens typID måste vara mellan 1 och 255")]
-        public int EquipTypeID { get; set; }
+        [Required(ErrorMessage = "Utrustningen måste ha en typ!")]
+        [StringLength(10, MinimumLength = 1, ErrorMessage = "Utrustningens typ får högst bestå av 10 tecken.")]
+        public string EquipType { get; set; }
 
         [Required(ErrorMessage = "Utrustningen måste ha ett namn!")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Utrustningens namn får högst bestå av 50 tecken.")]
