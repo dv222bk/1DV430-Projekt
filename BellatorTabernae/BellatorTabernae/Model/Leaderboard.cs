@@ -4,6 +4,9 @@ namespace BellatorTabernae.Model
 {
     public class Leaderboard
     {
+        [Required(ErrorMessage = "Karaktären måste ha ett radnummer i leaderboarden")]
+        public int RowNumber { get; set; }
+
         [Required(ErrorMessage = "Karaktären måste ha en leaderboard ranking!")]
         public int Rank { get; set; }
 

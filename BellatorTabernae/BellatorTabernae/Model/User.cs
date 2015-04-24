@@ -8,6 +8,6 @@ namespace BellatorTabernae.Model
 
         [Required(ErrorMessage = "Användaren måste ha ett namn!")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Användarens namn får inte vara längre än 50 tecken!")]
-        public string UserName { get; set; }
+        public string Username { get; set; }
     }
 }
