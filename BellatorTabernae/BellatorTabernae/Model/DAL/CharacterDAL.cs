@@ -323,5 +323,182 @@ namespace BellatorTabernae.Model.DAL
                 }
             }
         }
+
+        public void UpdateCharacterStats(int? userID = null, int? charID = null, int? level = null, int? experience = null,
+                                         int? health = null, int? maxHealth = null, int? stanima = null, int? maxStanima = null,
+                                         int? strength = null, int? speed = null, int? dexterity = null, int? agility = null)
+        {
+            if(userID != null || charID != null)
+            {
+                using (var conn = CreateConnection())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("dbo.usp_UpdateCharacterStats", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        if (userID != null)
+                        {
+                            cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = userID;
+                        }
+                        if (charID != null)
+                        {
+                            cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
+                        }
+                        cmd.Parameters.Add("@Level", SqlDbType.TinyInt, 1).Value = level;
+                        cmd.Parameters.Add("@Experience", SqlDbType.Int, 4).Value = experience;
+                        cmd.Parameters.Add("@Health", SqlDbType.SmallInt, 2).Value = health;
+                        cmd.Parameters.Add("@MaxHealth", SqlDbType.SmallInt, 2).Value = maxHealth;
+                        cmd.Parameters.Add("@Stanima", SqlDbType.SmallInt, 2).Value = stanima;
+                        cmd.Parameters.Add("@MaxStanima", SqlDbType.SmallInt, 2).Value = maxStanima;
+                        cmd.Parameters.Add("@Strength", SqlDbType.TinyInt, 1).Value = strength;
+                        cmd.Parameters.Add("@Speed", SqlDbType.TinyInt, 1).Value = speed;
+                        cmd.Parameters.Add("@Dexterity", SqlDbType.TinyInt, 1).Value = dexterity;
+                        cmd.Parameters.Add("@Agility", SqlDbType.TinyInt, 1).Value = agility;
+
+                        conn.Open();
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch
+                    {
+                        throw new ApplicationException("Ett fel inträffade när en karaktärs stats skulle uppdateras.");
+                    }
+                }
+            }
+            throw new ArgumentException("Ett argument fel inträffade när en karaktärs stats skulle uppdateras.");
+        }
+
+        public void UpdateCharacterStats(int? userID = null, int? charID = null, string? biografy = null)
+        {
+            if (userID != null || charID != null)
+            {
+                using (var conn = CreateConnection())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("dbo.usp_UpdateCharacterBiografy", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        if (userID != null)
+                        {
+                            cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = userID;
+                        }
+                        if (charID != null)
+                        {
+                            cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
+                        }
+                        cmd.Parameters.Add("@Biografy", SqlDbType.NVarChar, 2000).Value = biografy;
+
+                        conn.Open();
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch
+                    {
+                        throw new ApplicationException("Ett fel inträffade när en karaktärs biografi skulle uppdateras.");
+                    }
+                }
+            }
+            throw new ArgumentException("Ett argument fel inträffade när en karaktärs biografi skulle uppdateras.");
+        }
+
+        public IEnumerable<Race> GetRaces()
+        {
+            using (var conn = CreateConnection())
+            {
+                try
+                {
+                    var races = new List<Race>(20);
+
+                    SqlCommand cmd = new SqlCommand("dbo.usp_GetRace", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var raceIDIndex = reader.GetOrdinal("RaceID");
+                            var raceNameIndex = reader.GetOrdinal("RaceNameID");
+                            var raceDescIndex = reader.GetOrdinal("RaceDesc");
+
+                            while (reader.Read())
+                            {
+                                races.Add(new Race
+                                {
+                                    RaceID = reader.GetByte(raceIDIndex),
+                                    RaceName = reader.GetString(raceNameIndex),
+                                    RaceDesc = reader.GetString(raceDescIndex)
+                                });
+                            }
+                            races.TrimExcess();
+
+                            return races;
+                        }
+                    }
+                    return null;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när en raser skulle hämtas från databasen.");
+                }
+            }
+        }
+
+        public Race GetRace(int raceID)
+        {
+            using (var conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.usp_GetRace", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@RaceID", raceID);
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var raceIDIndex = reader.GetOrdinal("RaceID");
+                            var raceNameIndex = reader.GetOrdinal("RaceNameID");
+                            var raceDescIndex = reader.GetOrdinal("RaceDesc");
+
+                            return new Race
+                            {
+                                RaceID = reader.GetByte(raceIDIndex),
+                                RaceName = reader.GetString(raceNameIndex),
+                                RaceDesc = reader.GetString(raceDescIndex)
+                            };
+                        }
+                    }
+                    return null;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när en ras skulle hämtas från databasen.");
+                }
+            }
+        }
     }
 }
