@@ -359,5 +359,26 @@ namespace BellatorTabernae.Model
         }
 
         /* UserDAL */
+
+        public User GetUser(int userID)
+        {
+            return UserDAL.GetUser(userID);
+        }
+
+        public User GetUser(Character character)
+        {
+            Validate(character);
+            return UserDAL.GetUser(character.UserID);
+        }
+
+        public void CreateUser(string username, string password, string email)
+        {
+            UserDAL.CreateUser(username, password, email);
+        }
+
+        public bool CheckLogin(string username, string password)
+        {
+            return UserDAL.CheckLogin(username, password);
+        }
     }
 }
