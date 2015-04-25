@@ -159,7 +159,7 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
-        public EquipmentStats GetEquipmentStats()
+        public IEnumerable<EquipmentStats> GetEquipmentStats()
         {
             using (SqlConnection conn = CreateConnection())
             {
@@ -201,6 +201,9 @@ namespace BellatorTabernae.Model.DAL
                                     Defense = reader.GetByte(defenseIndex),
                                 });
                             }
+                            equipmentStats.TrimExcess();
+
+                            return equipmentStats;
                         }
                     }
                     return null;

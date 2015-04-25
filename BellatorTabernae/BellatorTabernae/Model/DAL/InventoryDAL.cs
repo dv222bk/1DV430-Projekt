@@ -232,7 +232,7 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
-        public void EquipWeapon(int? inventoryID, int? charID = null, int? userID = null)
+        public void EquipWeapon(int inventoryID, int? charID = null, int? userID = null)
         {
             if (charID != null || userID != null)
             {
@@ -308,7 +308,7 @@ namespace BellatorTabernae.Model.DAL
             throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med sköld.");
         }
 
-        public void EquipWeapon(int? inventoryID, int? charID = null, int? userID = null)
+        public void EquipArmor(int? inventoryID, int? charID = null, int? userID = null)
         {
             if (charID != null || userID != null)
             {

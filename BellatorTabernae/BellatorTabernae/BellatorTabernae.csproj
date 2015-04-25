@@ -85,8 +85,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\Chat.cs" />
+    <Compile Include="Model\DAL\CharacterDAL.cs" />
+    <Compile Include="Model\DAL\ChatDAL.cs" />
     <Compile Include="Model\DAL\DALBase.cs" />
+    <Compile Include="Model\DAL\EquipmentDAL.cs" />
+    <Compile Include="Model\DAL\InventoryDAL.cs" />
+    <Compile Include="Model\DAL\LeaderboardDAL.cs" />
+    <Compile Include="Model\DAL\UserDAL.cs" />
+    <Compile Include="Model\Equipment.cs" />
+    <Compile Include="Model\EquipmentStats.cs" />
+    <Compile Include="Model\Inventory.cs" />
+    <Compile Include="Model\Leaderboard.cs" />
+    <Compile Include="Model\Race.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -103,12 +117,14 @@
     </Compile>
     <Compile Include="Pages\Shared\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Shared\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\_MainNavigation.ascx.cs">
       <DependentUpon>_MainNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Shared\_MainNavigation.ascx.designer.cs">
       <DependentUpon>_MainNavigation.ascx</DependentUpon>

@@ -373,7 +373,7 @@ namespace BellatorTabernae.Model.DAL
             throw new ArgumentException("Ett argument fel inträffade när en karaktärs stats skulle uppdateras.");
         }
 
-        public void UpdateCharacterStats(int? userID = null, int? charID = null, string? biografy = null)
+        public void UpdateCharacterBiografy(int? userID = null, int? charID = null, string? biografy = null)
         {
             if (userID != null || charID != null)
             {
