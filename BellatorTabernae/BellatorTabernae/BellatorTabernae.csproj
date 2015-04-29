@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,6 +70,7 @@
   <ItemGroup>
     <Content Include="Content\CSS\site.css" />
     <Content Include="Global.asax" />
+    <Content Include="LICENSE.txt" />
     <Content Include="packages.config" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Shared\Error.aspx" />

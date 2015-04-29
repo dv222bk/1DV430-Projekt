@@ -3,7 +3,7 @@ using System;
 
 namespace BellatorTabernae.Model
 {
-    public class Character
+    public class Combatant
     {
         public int CharID { get; set; }
 
@@ -67,11 +67,19 @@ namespace BellatorTabernae.Model
         [Range(0, int.MaxValue, ErrorMessage = "Karaktärens rustning har ett felaktigt ID!")]
         public int? ArmorID { get; set; }
 
-        [StringLength(2000, MinimumLength = 0, ErrorMessage = "Karaktärens biografi får högst innehålla 2000 tecken!")]
-        public string? Biografy { get; set; }
+        [Required(ErrorMessage = "Karaktären måste ge upp vid en viss procent!")]
+        [Range(0, 1, ErrorMessage = "Felaktigt ge upp procent värde!")]
+        public double GiveUpPercent { get; set; }
 
-        [Required(ErrorMessage = "Det är viktigt att veta när karaktären skapades!")]
-        [DataType(DataType.Date)]
-        public DateTime CreatedOn { get; set; }
+        [Required(ErrorMessage = "Karaktären måste tillhöra ett lag!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Karaktären befinner sig i ett felaktigt lag!")]
+        public int TeamNumber { get; set; }
+
+        public int CombatantID { get; set; }
+
+        public Combatant()
+        {
+            GiveUpPercent = 0.20;
+        }
     }
 }

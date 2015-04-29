@@ -175,9 +175,9 @@ namespace BellatorTabernae.Model
             return EquipmentDAL.GetEquipments();
         }
 
-        public EquipmentStats GetEquipmentStats(int equipStatsID)
+        public EquipmentStats GetEquipmentStats(int? equipStatsID, int? equipID)
         {
-            return EquipmentDAL.GetEquipmentStats(equipStatsID);
+            return EquipmentDAL.GetEquipmentStats(equipStatsID, equipID);
         }
 
         public IEnumerable<EquipmentStats> GetEquipmentStats()
