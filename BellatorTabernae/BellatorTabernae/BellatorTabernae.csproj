@@ -89,8 +89,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Combatant.cs" />
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\Chat.cs" />
+    <Compile Include="Model\Battle.cs" />
+    <Compile Include="Model\CombatLog.cs" />
     <Compile Include="Model\DAL\CharacterDAL.cs" />
     <Compile Include="Model\DAL\ChatDAL.cs" />
     <Compile Include="Model\DAL\DALBase.cs" />

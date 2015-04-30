@@ -209,6 +209,11 @@ namespace BellatorTabernae.Model
             return InventoryDAL.GetInventoryH(charID);
         }
 
+        public void AddGoldToInventory(int charID, int number)
+        {
+            InventoryDAL.AddGoldToInventory(charID, number);
+        }
+
         public void AddEquipmentToInventory(Character character, Equipment equipment, int? number = null)
         {
             Validate(character);

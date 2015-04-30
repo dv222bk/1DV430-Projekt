@@ -110,6 +110,36 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
+        public void AddGoldToInventory(int charID, int number)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.usp_AddGoldToInventory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
+                    if (number != null)
+                    {
+                        cmd.Parameters.Add("@Number", SqlDbType.Int, 4).Value = number;
+                    }
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när guld skulle läggas i en ägodelsplats.");
+                }
+            }
+        }
+
         public void AddEquipmentToInventory(int charID, int equipID, int? number = null)
         {
             using (SqlConnection conn = CreateConnection())

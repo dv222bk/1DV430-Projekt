@@ -8,7 +8,7 @@ namespace BellatorTabernae.Model
         public int CharID { get; set; }
 
         [Required(ErrorMessage = "Karaktären måste tillhöra en användare!")]
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
 
         [Required(ErrorMessage = "Karaktären måste tillhöra en ras!")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Karaktärens ras får max innehålla 50 tecken.")]
