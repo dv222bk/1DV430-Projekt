@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AttackCounter1" xml:space="preserve">
+    <value>&lt;span class="attacker"&gt;{0}&lt;/span&gt; är dock inte färdig utan riktar ännu en attack mot &lt;span class="defender"&gt;{1}&lt;/span&gt; som träffar! &lt;span class="defender"&gt;{1}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="AttackCounter2" xml:space="preserve">
+    <value>Men &lt;span class="attacker"&gt;{0}&lt;/span&gt; ger sig inte så lätt utan attackerar &lt;span class="defender"&gt;{1}&lt;/span&gt; på nytt och träffar! &lt;span class="defender"&gt;{1}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="AttackCounter3" xml:space="preserve">
+    <value>Men det verkar som om &lt;span class="attacker"&gt;{0}&lt;/span&gt; planerade det här från början när en ny attack direkt kommer mot &lt;span class="defender"&gt;{1}&lt;/span&gt;s håll och träffar! &lt;span class="defender"&gt;{1}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="AttackCounter4" xml:space="preserve">
+    <value>&lt;span class="defender"&gt;{1}&lt;/span&gt; tappar tillfälligt tankeförmågan efter attacken och är inte alls med när &lt;span class="attacker"&gt;{0}&lt;/span&gt; attackerar på nytt och träffar! &lt;span class="defender"&gt;{1}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="AttackHit" xml:space="preserve">
+    <value>och träffar! &lt;span class="defender"&gt;{0}&lt;/span&gt; skadas {1}!&lt;/div&gt;</value>
+  </data>
+  <data name="AttackMiss1" xml:space="preserve">
+    <value>men &lt;span class="attacker"&gt;{0}&lt;/span&gt; är otroligt klumpig och missar attacken! </value>
+  </data>
+  <data name="AttackMiss2" xml:space="preserve">
+    <value>men &lt;span class="attacker"&gt;{0}&lt;/span&gt; missar! </value>
+  </data>
+  <data name="AttackMiss3" xml:space="preserve">
+    <value>men &lt;span class="attacker"&gt;{0}&lt;/span&gt; trampar snett och missar! </value>
+  </data>
+  <data name="AttackMiss4" xml:space="preserve">
+    <value>men &lt;span class="attacker"&gt;{0}&lt;/span&gt; blir distraherad och missar attacken! </value>
+  </data>
+  <data name="BlockAttack1" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas blockera attacken! </value>
+  </data>
+  <data name="BlockAttack2" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; blockerar attacken! </value>
+  </data>
+  <data name="BlockAttack3" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; är beredd på attacken och lyckas med enkelhet blockera den! </value>
+  </data>
+  <data name="BlockAttack4" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; hade tur och lyckas precis blockera attacken! </value>
+  </data>
+  <data name="DefenderCounter1" xml:space="preserve">
+    <value>&lt;span class="defender"&gt;{1}&lt;/span&gt; tar tillfället i akt och riktar en motattack mot &lt;span class="attacker"&gt;{0}&lt;/span&gt; och träffar! &lt;span class="attacker"&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="DefenderCounter2" xml:space="preserve">
+    <value>&lt;span class="defender"&gt;{1}&lt;/span&gt; ser sin chans och attackerar den oförberedde &lt;span class="attacker"&gt;{0}&lt;/span&gt;. Attacken träffar! &lt;span class="attacker"&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="DefenderCounter3" xml:space="preserve">
+    <value>&lt;span class="defender"&gt;{1}&lt;/span&gt; hittar snabbt balansen och gör en motattack mot &lt;span class="attacker"&gt;{0}&lt;/span&gt; innan denne hinner reagera, och träffar! &lt;span class="attacker"&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="DefenderCounter4" xml:space="preserve">
+    <value>Innan &lt;span class="attacker"&gt;{0}&lt;/span&gt; hinner förstå vad det är som händer har &lt;span class="defender"&gt;{1}&lt;/span&gt; tagit tillfället i akt och gjort en motattack, som träffar! &lt;span class="attacker"&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
+  </data>
+  <data name="EvadeAttack1" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas undvika attacken! </value>
+  </data>
+  <data name="EvadeAttack2" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; är tillräckligt snabb på foten för att komma utom räckhåll för attacken! </value>
+  </data>
+  <data name="EvadeAttack3" xml:space="preserve">
+    <value>men för &lt;span class="defender"&gt;{0}&lt;/span&gt; är det ingen konst att akta sig för attacken! </value>
+  </data>
+  <data name="EvadeAttack4" xml:space="preserve">
+    <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas precis på håret undvika attacken! </value>
+  </data>
+  <data name="HeavyAttack1" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; riktar ett hårt slag i &lt;span class="defender"&gt;{1}&lt;/span&gt;s riktning, </value>
+  </data>
+  <data name="HeavyAttack2" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; tar i från tåna och försöker träffa &lt;span class="defender"&gt;{1}&lt;/span&gt;, </value>
+  </data>
+  <data name="HeavyAttack3" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; samlar all sin kraft och slår mot &lt;span class="defender"&gt;{1}&lt;/span&gt;, </value>
+  </data>
+  <data name="HeavyAttack4" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; ger i från sig ett vrål och attackerar &lt;span class="defender"&gt;{1}&lt;/span&gt;, </value>
+  </data>
+  <data name="HitSeverity1" xml:space="preserve">
+    <value>väldigt lätt</value>
+  </data>
+  <data name="HitSeverity2" xml:space="preserve">
+    <value>lätt</value>
+  </data>
+  <data name="HitSeverity3" xml:space="preserve">
+    <value>hårt</value>
+  </data>
+  <data name="HitSeverity4" xml:space="preserve">
+    <value>väldigt hårt</value>
+  </data>
+  <data name="HitSeverity5" xml:space="preserve">
+    <value>dödligt hårt</value>
+  </data>
+  <data name="LightAttack1" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;Med lätta steg riktar &lt;span class="attacker"&gt;{0}&lt;/span&gt; en kvick attack mot &lt;span class="defender"&gt;{1}&lt;/span&gt;, </value>
+  </data>
+  <data name="LightAttack2" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; riktar ett snabbt slag mot &lt;span class="defender"&gt;{1}&lt;/span&gt;, </value>
+  </data>
+  <data name="LightAttack3" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="defender"&gt;{1}&lt;/span&gt; blir förvånad när &lt;span class="attacker"&gt;{0}&lt;/span&gt;s attack dyker upp från ingenstans, </value>
+  </data>
+  <data name="LightAttack4" xml:space="preserve">
+    <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; attackerar &lt;span class="defender"&gt;{1}&lt;/span&gt; så snabbt att det knappt syns, </value>
+  </data>
+  <data name="NewTurn" xml:space="preserve">
+    <value>&lt;span class="turn"&gt;Runda {0}&lt;/span&gt;</value>
+  </data>
+  <data name="WinString" xml:space="preserve">
+    <value>&lt;span class="teamwin"&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Laget får vardera dela på {1} guldmynt som belöning!&lt;/span&gt;</value>
+  </data>
+</root>

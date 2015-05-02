@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using BellatorTabernae.Model;
+using System.Resources;
+using BellatorTabernae.Properties;
 
 namespace BellatorTabernae.Model
 {
@@ -17,6 +18,12 @@ namespace BellatorTabernae.Model
 
         // The randomgenerator used to get random numbers
         private Random randomGenerator = new Random();
+
+        // Combat related strings from resource file
+        private ResourceManager strings = CombatStrings.ResourceManager;
+
+        // Holder of the combatlogID.
+        private int combatLogID = 0;
 
         // Holder for the combatlog which will be filled by this class and returned.
         private List<CombatLog> combatLog = new List<CombatLog>();
@@ -33,8 +40,15 @@ namespace BellatorTabernae.Model
             {
                 AssignCombatantIDs(ref combatants);
                 originalCombatants = combatants;
+
+                // Turn holder
+                int turn = 0;
+
                 while (ContinueBattle(combatants))
                 {
+                    turn++;
+                    combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("NewTurn"), turn)));
+                    combatLogID++;
                     Turn(ref combatants);
                 }
                 CombatCleanUp(combatants);
@@ -64,7 +78,7 @@ namespace BellatorTabernae.Model
                 foreach(Combatant combatant in combatants) 
                 {
                     ICollection<ValidationResult> validationResults;
-                    if (!combatant.Validate(out validationResults))
+                    if (!combatant.Validate(out validationResults) || ((double)combatant.Health / combatant.MaxHealth) < combatant.GiveUpPercent)
                     {
                         return false;
                     }
@@ -91,7 +105,7 @@ namespace BellatorTabernae.Model
             var turnOrder = new Dictionary<int, Combatant>();
 
             /*
-             * This line might need some explanation.
+             * This line of code might need some explanation.
              * Basically, this puts each combatant in a random order in the list. (as random as it gets anyway)
              * This is done to make the attack order more fair.
              * The first combatant to get a specific speed value always has an advantage and if the list wasn't random
@@ -155,6 +169,9 @@ namespace BellatorTabernae.Model
             var turnOrder = CreateTurnOrder(combatants);
             foreach (KeyValuePair<int, Combatant> pair in turnOrder)
             {
+                string combatLogEntry = "";
+                string combatString = "";
+
                 Combatant attacker = pair.Value; // For easier more logical use in the code to come
 
                 // If the attackers stanima is 0 or less, or if the attackers health is below the giveuppercent of it's max health, the attacker won't attack.
@@ -194,10 +211,12 @@ namespace BellatorTabernae.Model
                 if (heavyAttack)
                 {
                     // Evade
+                    combatString = String.Concat("HeavyAttack", randomGenerator.Next(1, 5));
                     defenseChance = EvadeChance(defender);
                 }
                 else
                 {
+                    combatString = String.Concat("LightAttack", randomGenerator.Next(1, 5));
                     if (defender.WeaponID != null || defender.ShieldID != null || attacker.WeaponID == null)
                     {
                         // Block
@@ -210,10 +229,14 @@ namespace BellatorTabernae.Model
                     }
                 }
 
+                combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name));
+
                 if (attackChance * 1.5 <= defenseChance)
                 {
                     // Miss
-                    // message miss
+
+                    combatString = String.Concat("AttackMiss", randomGenerator.Next(1, 5));
+                    combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name));
 
                     // Counterattack chance for the defender
                     attackChance = BlockAndCounterAttackChance(defender);
@@ -233,6 +256,13 @@ namespace BellatorTabernae.Model
 
                         // Update the attacker
                         attacker.Health -= damage;
+
+                        combatString = String.Concat("DefenderCounter", randomGenerator.Next(1, 5));
+                        combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, strings.GetString(getHitSeverityString(damage, attacker.MaxHealth))));
+
+                        // Save combatLog
+                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker, defender, damage, 0));
+                        combatLogID++;
                     }
                 }
                 else if (attackChance <= defenseChance)
@@ -240,19 +270,21 @@ namespace BellatorTabernae.Model
                     // Evade or block
                     if (heavyAttack)
                     {
-                        // message evading
+                        combatString = String.Concat("EvadeAttack", randomGenerator.Next(1, 5));
                     }
                     else
                     {
                         if (defender.WeaponID != null || defender.ShieldID != null || attacker.WeaponID == null)
                         {
-                            // message blocking
+                            combatString = String.Concat("BlockAttack", randomGenerator.Next(1, 5));
                         }
                         else
                         {
-                            // message evading
+                            combatString = String.Concat("EvadeAttack", randomGenerator.Next(1, 5));
                         }
                     }
+
+                    combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), defender.Name));
 
                     // Counterattack chance for the attacker
                     attackChance = BlockAndCounterAttackChance(attacker);
@@ -272,6 +304,13 @@ namespace BellatorTabernae.Model
 
                         // Update the defender
                         defender.Health -= damage;
+
+                        combatString = String.Concat("AttackerCounter", randomGenerator.Next(1, 5));
+                        combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, strings.GetString(getHitSeverityString(damage, defender.MaxHealth))));
+
+                        // Save combatLog
+                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker, defender, 0, damage));
+                        combatLogID++;
                     }
                 }
                 else
@@ -288,6 +327,12 @@ namespace BellatorTabernae.Model
 
                     // Update the defender
                     defender.Health -= damage;
+
+                    combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString("AttackHit"), defender.Name, getHitSeverityString(damage, defender.MaxHealth)));
+
+                    // Save combatLog
+                    combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker, defender, 0, damage));
+                    combatLogID++;
                 }
 
                 // Cleanup step
@@ -312,6 +357,8 @@ namespace BellatorTabernae.Model
                 int goldReward = GetGoldRewards(losers);
                 int survivingWinners = winningTeam.FindAll(x => x.Health != 0).Count();
 
+                string combatLogEntry = String.Format(strings.GetString("WinString"), winningTeam[0].TeamNumber, goldReward / survivingWinners);
+
                 foreach (Combatant winner in winningTeam)
                 {
                     if(winner.Health > 0)
@@ -335,14 +382,30 @@ namespace BellatorTabernae.Model
                     }
                 }
 
-                // Update each character in the battle
+                // Add a message to the combatlog for each character that died in the battle.
+                List<Combatant> deadChars = finalResults.FindAll(x => x.Health == 0);
+                if (deadChars.Count() >= 1)
+                {
+                    string chars = "";
+                    foreach (Combatant deadChar in deadChars) 
+                    {
+                        chars = String.Concat(chars, String.Format("<span class=\"deadChar\">{0}</span>", deadChar.Name));
+                    }
+                    combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString("DeadString"), chars));
+                }
+                
+
+                // Update each character that participated in the battle
                 foreach (Combatant combatant in finalResults)
                 {
+                    // Don't update non-user characters
                     if(combatant.UserID != null)
                     {
-                        Service.UpdateCharacterStats(combatant.CharID, combatant.Level, combatant.Experience, combatant.Health, combatant.MaxHealth);
+                        Service.UpdateCharacterAfterCombat(combatant.CharID, combatant.Level, combatant.Experience, combatant.Health, combatant.Stanima);
                     }
                 }
+
+                combatLog.Add(new CombatLog(combatLogID, combatLogEntry, null, null, null, null));
             }
             else
             {
@@ -356,7 +419,7 @@ namespace BellatorTabernae.Model
 
             foreach (Combatant loser in losers)
             {
-                goldRewards += 3 + (loser.Level * randomGenerator.Next(1, 10));
+                goldRewards += 3 + (loser.Level * randomGenerator.Next(1, 11));
             }
 
             return goldRewards;
@@ -393,7 +456,7 @@ namespace BellatorTabernae.Model
                     speed = (int)(agility * 1.5);
                 }
 
-                return randomGenerator.Next(agility / 2, agility + speed);
+                return randomGenerator.Next(agility / 2, agility + speed + 1);
             }
             else
             {
@@ -402,7 +465,7 @@ namespace BellatorTabernae.Model
                     agility = (int)(speed * 1.5);
                 }
 
-                return randomGenerator.Next(speed / 2, agility + speed);
+                return randomGenerator.Next(speed / 2, agility + speed + 1);
             }
         }
 
@@ -418,7 +481,7 @@ namespace BellatorTabernae.Model
                     dexterity = (int)(speed * 1.5);
                 }
 
-                return randomGenerator.Next(speed / 2, speed + dexterity);
+                return randomGenerator.Next(speed / 2, speed + dexterity + 1);
             }
             else
             {
@@ -427,7 +490,7 @@ namespace BellatorTabernae.Model
                     speed = (int)(dexterity * 1.5);
                 }
 
-                return randomGenerator.Next(dexterity / 2, speed + dexterity);
+                return randomGenerator.Next(dexterity / 2, speed + dexterity + 1);
             }
         }
 
@@ -443,7 +506,7 @@ namespace BellatorTabernae.Model
                     dexterity = (int)(agility * 1.5);
                 }
 
-                return randomGenerator.Next(agility / 2, agility + dexterity);
+                return randomGenerator.Next(agility / 2, agility + dexterity + 1);
             }
             else
             {
@@ -452,7 +515,7 @@ namespace BellatorTabernae.Model
                     agility = (int)(dexterity * 1.5);
                 }
 
-                return randomGenerator.Next(dexterity / 2, agility + dexterity);
+                return randomGenerator.Next(dexterity / 2, agility + dexterity + 1);
             }
         }
 
@@ -466,16 +529,16 @@ namespace BellatorTabernae.Model
 
                 if (weaponDamage < strength) 
                 {
-                    return randomGenerator.Next(weaponDamage, weaponDamage + (strength / 2));
+                    return randomGenerator.Next(weaponDamage, weaponDamage + (strength / 2) + 1);
                 }
                 else
                 {
-                    return randomGenerator.Next(strength, strength + (weaponDamage / 2));
+                    return randomGenerator.Next(strength, strength + (weaponDamage / 2) + 1);
                 }
             }
             else
             {
-                return randomGenerator.Next(0, strength / 2);
+                return randomGenerator.Next(0, (strength / 2) + 1);
             }
         }
 
@@ -489,16 +552,40 @@ namespace BellatorTabernae.Model
 
                 if (armorDefense < strength)
                 {
-                    return randomGenerator.Next(armorDefense, armorDefense + (strength / 4));
+                    return randomGenerator.Next(armorDefense, armorDefense + (strength / 4) + 1);
                 }
                 else
                 {
-                    return randomGenerator.Next(strength, strength + (armorDefense / 4));
+                    return randomGenerator.Next(strength, strength + (armorDefense / 4) + 1);
                 }
             }
             else
             {
-                return randomGenerator.Next(0, strength / 4);
+                return randomGenerator.Next(0, (strength / 4) + 1);
+            }
+        }
+
+        public string getHitSeverityString(int damage, int maxHealth)
+        {
+            if (damage / maxHealth >= 1)
+            {
+                return strings.GetString("HitSeverity5");
+            } 
+            else if (damage / maxHealth >= 0.75)
+            {
+                return strings.GetString("HitSeverity4");
+            } 
+            else if (damage / maxHealth >= 0.50) 
+            {
+                return strings.GetString("HitSeverity3");
+            }
+            else if (damage / maxHealth >= 0.25)
+            {
+                return strings.GetString("HitSeverity2");
+            }
+            else
+            {
+                return strings.GetString("HitSeverity1");
             }
         }
     }

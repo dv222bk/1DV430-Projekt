@@ -125,6 +125,10 @@ namespace BellatorTabernae.Model
             CharacterDAL.UpdateCharacterStats(character.UserID, character.CharID, level, experience, health, maxHealth, stanima, maxStanima, strength, speed, dexterity, agility);
         }
 
+        public void UpdateCharacterAfterCombat(int charID, int level, int experience, int health, int stanima) {
+            CharacterDAL.UpdateCharacterStats(null, charID, level, experience, health, null, stanima);
+        }
+
         public void UpdateCharacterBiografy(Character character, string? biografy = null)
         {
             Validate(character);
@@ -373,7 +377,7 @@ namespace BellatorTabernae.Model
         public User GetUser(Character character)
         {
             Validate(character);
-            return UserDAL.GetUser(character.UserID);
+            return UserDAL.GetUser((int)character.UserID);
         }
 
         public void CreateUser(string username, string password, string email)
