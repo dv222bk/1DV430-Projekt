@@ -129,13 +129,13 @@ namespace BellatorTabernae.Model
             CharacterDAL.UpdateCharacterStats(null, charID, level, experience, health, null, stanima);
         }
 
-        public void UpdateCharacterBiografy(Character character, string? biografy = null)
+        public void UpdateCharacterBiografy(Character character, string biografy = null)
         {
             Validate(character);
             CharacterDAL.UpdateCharacterBiografy(character.UserID, character.CharID, biografy);
         }
 
-        public void UpdateCharacterBiografy(int? userID = null, int? charID = null, string? biografy = null)
+        public void UpdateCharacterBiografy(int? userID = null, int? charID = null, string biografy = null)
         {
             CharacterDAL.UpdateCharacterBiografy(userID, charID, biografy);
         }
@@ -351,13 +351,6 @@ namespace BellatorTabernae.Model
         {
             Validate(character);
             InventoryDAL.EquipArmor(inventoryID, character.CharID, character.UserID);
-        }
-
-        public void EquipArmor(Inventory inventory, Character character)
-        {
-            Validate(inventory);
-            Validate(character);
-            InventoryDAL.EquipArmor(inventory.InventoryID, character.CharID, character.UserID);
         }
 
         /* LeaderboardDAL */

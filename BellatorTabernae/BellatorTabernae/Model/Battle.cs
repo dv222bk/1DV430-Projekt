@@ -261,7 +261,7 @@ namespace BellatorTabernae.Model
                         combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, strings.GetString(getHitSeverityString(damage, attacker.MaxHealth))));
 
                         // Save combatLog
-                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker, defender, damage, 0));
+                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, damage, 0));
                         combatLogID++;
                     }
                 }
@@ -309,7 +309,7 @@ namespace BellatorTabernae.Model
                         combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, strings.GetString(getHitSeverityString(damage, defender.MaxHealth))));
 
                         // Save combatLog
-                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker, defender, 0, damage));
+                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, 0, damage));
                         combatLogID++;
                     }
                 }
@@ -331,7 +331,7 @@ namespace BellatorTabernae.Model
                     combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString("AttackHit"), defender.Name, getHitSeverityString(damage, defender.MaxHealth)));
 
                     // Save combatLog
-                    combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker, defender, 0, damage));
+                    combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, 0, damage));
                     combatLogID++;
                 }
 

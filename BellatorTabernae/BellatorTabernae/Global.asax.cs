@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.UI;
@@ -21,6 +22,7 @@ namespace BellatorTabernae
                 CdnDebugPath = "http://ajax.microsoft.com/ajax/jQuery/jquery.2.1.3.js"
             };
             ScriptManager.ScriptResourceMapping.AddDefinition("jquery", null, jQuery);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
         protected void Session_Start(object sender, EventArgs e)

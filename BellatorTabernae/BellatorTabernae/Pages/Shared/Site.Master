@@ -1,20 +1,33 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BellatorTabernae.Pages.Shared.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BellatorTabernae.Pages.Shared.Site"  ViewStateMode="Disabled"%>
+
+<%@ Register Src="_MainNavigation.ascx" TagName="_MainNavigation" TagPrefix="uc1" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
-    </form>
-</body>
+    <head runat="server">
+        <title>
+            <asp:ContentPlaceHolder ID="TitlePlaceHolder" runat="server">
+                Bellator Tabernae
+            </asp:ContentPlaceHolder>
+        </title>
+        <link type="text/css" rel="stylesheet" href="../../Content/site.css" />
+        <asp:ContentPlaceHolder ID="head" runat="server" />
+    </head>
+    <body>
+        <form id="form1" runat="server">
+            <div id="SiteContainer">
+                <header>
+                    <h1>Bellator Tabernae</h1>
+                    <nav>
+                        <uc1:_MainNavigation runat="server" />
+                    </nav>
+                </header>
+                <main>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+                    <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server" />
+                </main>
+            </div>
+        </form>
+    </body>
 </html>

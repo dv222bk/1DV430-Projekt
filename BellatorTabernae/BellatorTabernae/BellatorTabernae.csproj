@@ -72,7 +72,13 @@
     <Content Include="Global.asax" />
     <Content Include="LICENSE.txt" />
     <Content Include="packages.config" />
+    <Content Include="Pages\Battle.aspx" />
+    <Content Include="Pages\BattleResult.aspx" />
+    <Content Include="Pages\Character.aspx" />
+    <Content Include="Pages\Chat.aspx" />
     <Content Include="Pages\Default.aspx" />
+    <Content Include="Pages\Leaderboard.aspx" />
+    <Content Include="Pages\Market.aspx" />
     <Content Include="Pages\Shared\Error.aspx" />
     <Content Include="Pages\Shared\Site.Master" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -108,12 +114,54 @@
     <Compile Include="Model\Race.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Pages\Battle.aspx.cs">
+      <DependentUpon>Battle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Battle.aspx.designer.cs">
+      <DependentUpon>Battle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BattleResult.aspx.cs">
+      <DependentUpon>BattleResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BattleResult.aspx.designer.cs">
+      <DependentUpon>BattleResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Character.aspx.cs">
+      <DependentUpon>Character.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Character.aspx.designer.cs">
+      <DependentUpon>Character.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Leaderboard.aspx.cs">
+      <DependentUpon>Leaderboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Leaderboard.aspx.designer.cs">
+      <DependentUpon>Leaderboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Market.aspx.cs">
+      <DependentUpon>Market.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Market.aspx.designer.cs">
+      <DependentUpon>Market.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

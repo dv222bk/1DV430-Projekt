@@ -68,10 +68,15 @@ namespace BellatorTabernae.Model
         public int? ArmorID { get; set; }
 
         [StringLength(2000, MinimumLength = 0, ErrorMessage = "Karaktärens biografi får högst innehålla 2000 tecken!")]
-        public string? Biografy { get; set; }
+        public string Biografy { get; set; }
 
         [Required(ErrorMessage = "Det är viktigt att veta när karaktären skapades!")]
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
+
+        public Character()
+        {
+            Biografy = null;
+        }
     }
 }

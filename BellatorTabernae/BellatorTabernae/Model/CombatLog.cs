@@ -11,15 +11,15 @@ namespace BellatorTabernae.Model
 
         public string Text { get; set; }
 
-        public Character? Attacker { get; set; }
+        public string Attacker { get; set; }
 
-        public Character? Defender { get; set; }
+        public string Defender { get; set; }
 
         public int? AttackerDamage { get; set; }
 
         public int? DefenderDamage { get; set; }
 
-        public CombatLog(int combatLogID, string text, Character? attacker = null, Character? defender = null, int? attackerDamage = null, int? defenderDamage = null)
+        public CombatLog(int combatLogID, string text, string attacker = null, string defender = null, int? attackerDamage = null, int? defenderDamage = null)
         {
             CombatLogID = combatLogID;
             Text = text;

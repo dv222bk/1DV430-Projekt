@@ -120,10 +120,7 @@ namespace BellatorTabernae.Model.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
-                    if (number != null)
-                    {
-                        cmd.Parameters.Add("@Number", SqlDbType.Int, 4).Value = number;
-                    }
+                    cmd.Parameters.Add("@Number", SqlDbType.Int, 4).Value = number;
 
                     conn.Open();
 
