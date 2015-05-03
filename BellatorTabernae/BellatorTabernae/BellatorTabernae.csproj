@@ -76,6 +76,7 @@
     <Content Include="Pages\BattleResult.aspx" />
     <Content Include="Pages\Character.aspx" />
     <Content Include="Pages\Chat.aspx" />
+    <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Leaderboard.aspx" />
     <Content Include="Pages\Market.aspx" />
@@ -141,6 +142,13 @@
     </Compile>
     <Compile Include="Pages\Chat.aspx.designer.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

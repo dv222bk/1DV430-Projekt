@@ -6,6 +6,7 @@ namespace BellatorTabernae
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapPageRoute("CreateUser", "nyanvändare", "~/Pages/CreateUser.aspx");
             routes.MapPageRoute("Leaderboard", "topplista", "~/Pages/Leaderboard.aspx");
             routes.MapPageRoute("BattleResult", "stridsrapport", "~/Pages/BattleResult.aspx");
             routes.MapPageRoute("Battle", "strid", "~/Pages/Battle.aspx");

@@ -29,7 +29,7 @@
             <asp:TextBox ID="Password" runat="server" 
                 TextMode="Password" />
             <asp:Button ID="Login" runat="server" 
-                Text="Logga in" />
+                Text="Logga in" OnClick="Login_Click" />
         </asp:Panel>
     </asp:Panel>
     <h2>Lorem ipsum</h2>

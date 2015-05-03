@@ -77,7 +77,7 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
-        public bool CheckLogin(string username, string password)
+        public int CheckLogin(string username, string password)
         {
             using (SqlConnection conn = CreateConnection())
             {
@@ -95,12 +95,17 @@ namespace BellatorTabernae.Model.DAL
                         if (reader.Read())
                         {
                             var dbPasswordIndex = reader.GetOrdinal("Password");
+                            var userID = reader.GetOrdinal("UserID");
                             string dbPassword = reader.GetString(dbPasswordIndex);
 
-                            return BCrypt.Net.BCrypt.Verify(password + "J~O?L?L3@P034~E5", dbPassword);
+                            if (BCrypt.Net.BCrypt.Verify(password + "J~O?L?L3@P034~E5", dbPassword))
+                            {
+                                return reader.GetInt32(userID);
+                            }
+                            throw new ArgumentException("Det finns ingen användare med det lösenordet i databasen!");
                         }
                     }
-                    return false;
+                    throw new ArgumentException("Det finns ingen användare med det lösenordet i databasen!");
                 }
                 catch (SqlException ex)
                 {
