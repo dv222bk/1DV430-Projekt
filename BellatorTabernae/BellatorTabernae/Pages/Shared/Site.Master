@@ -18,6 +18,11 @@
         <form id="form1" runat="server">
             <div id="SiteContainer">
                 <header>
+                    <asp:Panel ID="LoggedIn" runat="server" Visible="False">
+                        <asp:Label ID="LoggedInAs" runat="server" />
+                        <asp:Button ID="LogOut" runat="server" 
+                            Text="Logga ut" OnClick="LogOut_Click" />
+                    </asp:Panel>
                     <h1>Bellator Tabernae</h1>
                     <nav>
                         <uc1:_MainNavigation runat="server" />

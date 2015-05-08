@@ -383,36 +383,5 @@ namespace BellatorTabernae.Model
         {
             return UserDAL.CheckLogin(username, password);
         }
-
-        /* Other */
-
-        public string CreateFingerPrint(int userID, HttpRequest Request, bool hash)
-        {
-            string userAgent = Request.UserAgent;
-            string userBrowserName = Request.Browser.Browser;
-            int userBrowserMajorVersion = Request.Browser.MajorVersion;
-            double userBrowserMinorVersion = Request.Browser.MinorVersion;
-            string userBrowserType = Request.Browser.Type;
-            string salt = "J~O?L?L3@P034~E5";
-            string username = GetUser(userID).Username;
-
-            string fingerPrint = userAgent + salt + userBrowserType + salt + salt + userAgent +
-                                userBrowserName + userID + username + salt + userBrowserMinorVersion +
-                                salt + userBrowserMajorVersion;
-            if(hash) 
-            {
-                return BCrypt.Net.BCrypt.HashPassword(fingerPrint, 22);
-            } 
-            else 
-            {
-                return fingerPrint;
-            }
-        }
-
-        public bool CheckFingerPrint(string fingerPrint, int userID, HttpRequest Request)
-        {
-            string correctFingerPrint = CreateFingerPrint(userID, Request, false);
-            return BCrypt.Net.BCrypt.Verify(correctFingerPrint, fingerPrint);
-        }
     }
 }

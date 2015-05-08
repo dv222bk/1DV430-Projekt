@@ -1,13 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Default.aspx.cs" Inherits="BellatorTabernae.Pages.Default" EnableViewState="False" %>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
+    <asp:Panel ID="MsgPanel" runat="server" 
+        Visible="False">
+        <asp:Label ID="SiteMsg" runat="server" />
+    </asp:Panel>
     <asp:Panel ID="FrontPageMainPanel" runat="server">
         <asp:Panel ID="NewUserPanel" runat="server">
             <asp:Label ID="NewUserLabel" runat="server" 
                 Text="Ny användare?" 
                 AssociatedControlID="NewUser" />
             <asp:Button ID="NewUser" runat="server" 
-                Text="Börja spela!" />
+                Text="Börja spela!" 
+                OnClick="NewUser_Click"
+                CausesValidation="False" />
         </asp:Panel>
         <asp:Panel ID="LoginPanel" runat="server">
             <asp:RequiredFieldValidator ID="UsernameRequired" runat="server" 
@@ -29,7 +35,8 @@
             <asp:TextBox ID="Password" runat="server" 
                 TextMode="Password" />
             <asp:Button ID="Login" runat="server" 
-                Text="Logga in" OnClick="Login_Click" />
+                Text="Logga in" 
+                OnClick="Login_Click" />
         </asp:Panel>
     </asp:Panel>
     <h2>Lorem ipsum</h2>

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Web.Routing;
 
 namespace BellatorTabernae.Pages
 {
@@ -20,7 +22,25 @@ namespace BellatorTabernae.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Registrated"] != null)
+            {
+                MsgPanel.Visible = true;
+                SiteMsg.Text = String.Concat("Du är nu registrerad som ", Session["Registrated"], " och kan nu logga in!");
+                Session["Registrated"] = null;
+            }
 
+            if (Session["LogOut"] != null)
+            {
+                MsgPanel.Visible = true;
+                SiteMsg.Text = String.Concat("Du är inte längre inloggad som ", Session["LogOut"], "!");
+                Session["LogOut"] = null;
+            }
+
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                NewUserPanel.Visible = false;
+                LoginPanel.Visible = false;
+            }
         }
 
         protected void Login_Click(object sender, EventArgs e)
@@ -30,8 +50,8 @@ namespace BellatorTabernae.Pages
                 try
                 {
                     int userID = Service.CheckLogin(Username.Text, Password.Text);
-                    Session["User"] = userID;
-                    Session["FingerPrint"] = Service.CreateFingerPrint(userID, Request, true);
+                    FormsAuthentication.SetAuthCookie(userID.ToString(), true);
+                    Response.RedirectToRoute("Default");
                 }
                 catch (SqlException ex)
                 {
@@ -50,6 +70,11 @@ namespace BellatorTabernae.Pages
                     Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
                 }
             }
+        }
+
+        protected void NewUser_Click(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("CreateUser");
         }
     }
 }

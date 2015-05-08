@@ -53,7 +53,7 @@ namespace BellatorTabernae.Model.DAL
             {
                 try
                 {
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password + "J~O?L?L3@P034~E5", 22);
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password + "J~O?L?L3@P034~E5");
 
                     SqlCommand cmd = new SqlCommand("dbo.usp_CreateUser", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
