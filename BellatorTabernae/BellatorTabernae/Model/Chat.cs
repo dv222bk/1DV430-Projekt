@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BellatorTabernae.Model
 {
+    [Serializable]
     public class Chat
     {
         public int MsgID { get; set; }

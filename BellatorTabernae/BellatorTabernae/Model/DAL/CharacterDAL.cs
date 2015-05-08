@@ -93,6 +93,35 @@ namespace BellatorTabernae.Model.DAL
             throw new ArgumentException("Ett argument fel inträffade när en karaktär skull hämtas från databasen.");
         }
 
+        public bool UserHasCharacter(int userID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.usp_UserHasCharacter", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = userID;
+                    cmd.Parameters.Add("@HasCharacter", SqlDbType.Bit, 1).Direction = ParameterDirection.Output;
+
+                    conn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    return (bool) cmd.Parameters["@HasCharacter"].Value;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när en koll skulle göras om användaren hade en karaktär");
+                }
+            }
+        }
+
         public Character GetCharacterH(int charID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -429,8 +458,14 @@ namespace BellatorTabernae.Model.DAL
                         if (reader.Read())
                         {
                             var raceIDIndex = reader.GetOrdinal("RaceID");
-                            var raceNameIndex = reader.GetOrdinal("RaceNameID");
+                            var raceNameIndex = reader.GetOrdinal("RaceName");
                             var raceDescIndex = reader.GetOrdinal("RaceDesc");
+                            var raceHealthIndex = reader.GetOrdinal("Health");
+                            var raceStanimaIndex = reader.GetOrdinal("Stanima");
+                            var raceStrengthIndex = reader.GetOrdinal("Strength");
+                            var raceSpeedIndex = reader.GetOrdinal("Speed");
+                            var raceAgilityIndex = reader.GetOrdinal("Agility");
+                            var raceDexterityIndex = reader.GetOrdinal("Dexterity");
 
                             while (reader.Read())
                             {
@@ -438,7 +473,13 @@ namespace BellatorTabernae.Model.DAL
                                 {
                                     RaceID = reader.GetByte(raceIDIndex),
                                     RaceName = reader.GetString(raceNameIndex),
-                                    RaceDesc = reader.GetString(raceDescIndex)
+                                    RaceDesc = reader.GetString(raceDescIndex),
+                                    Health = reader.GetInt16(raceHealthIndex),
+                                    Stanima = reader.GetInt16(raceStanimaIndex),
+                                    Strength = reader.GetByte(raceStrengthIndex),
+                                    Speed = reader.GetByte(raceSpeedIndex),
+                                    Agility = reader.GetByte(raceAgilityIndex),
+                                    Dexterity = reader.GetByte(raceDexterityIndex)
                                 });
                             }
                             races.TrimExcess();
@@ -454,7 +495,7 @@ namespace BellatorTabernae.Model.DAL
                 }
                 catch
                 {
-                    throw new ApplicationException("Ett fel inträffade när en raser skulle hämtas från databasen.");
+                    throw new ApplicationException("Ett fel inträffade när raser skulle hämtas från databasen.");
                 }
             }
         }
@@ -477,14 +518,26 @@ namespace BellatorTabernae.Model.DAL
                         if (reader.Read())
                         {
                             var raceIDIndex = reader.GetOrdinal("RaceID");
-                            var raceNameIndex = reader.GetOrdinal("RaceNameID");
+                            var raceNameIndex = reader.GetOrdinal("RaceName");
                             var raceDescIndex = reader.GetOrdinal("RaceDesc");
+                            var raceHealthIndex = reader.GetOrdinal("Health");
+                            var raceStanimaIndex = reader.GetOrdinal("Stanima");
+                            var raceStrengthIndex = reader.GetOrdinal("Strength");
+                            var raceSpeedIndex = reader.GetOrdinal("Speed");
+                            var raceAgilityIndex = reader.GetOrdinal("Agility");
+                            var raceDexterityIndex = reader.GetOrdinal("Dexterity");
 
                             return new Race
                             {
                                 RaceID = reader.GetByte(raceIDIndex),
                                 RaceName = reader.GetString(raceNameIndex),
-                                RaceDesc = reader.GetString(raceDescIndex)
+                                RaceDesc = reader.GetString(raceDescIndex),
+                                Health = reader.GetInt16(raceHealthIndex),
+                                Stanima = reader.GetInt16(raceStanimaIndex),
+                                Strength = reader.GetByte(raceStrengthIndex),
+                                Speed = reader.GetByte(raceSpeedIndex),
+                                Agility = reader.GetByte(raceAgilityIndex),
+                                Dexterity = reader.GetByte(raceDexterityIndex)
                             };
                         }
                     }

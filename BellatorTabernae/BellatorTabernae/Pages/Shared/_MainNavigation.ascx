@@ -16,7 +16,7 @@
     <li>
         <asp:HyperLink runat="server" ID="CharacterHyperLink" 
             NavigateUrl='<%$ RouteUrl:routename=Character %>'>
-            Character
+            Karaktär
         </asp:HyperLink>
     </li>
     <li>

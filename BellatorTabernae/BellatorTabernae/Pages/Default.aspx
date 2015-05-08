@@ -5,7 +5,7 @@
         Visible="False">
         <asp:Label ID="SiteMsg" runat="server" />
     </asp:Panel>
-    <asp:Panel ID="FrontPageMainPanel" runat="server">
+    <asp:Panel ID="FrontPageMainPanel" runat="server" DefaultButton="NewUser">
         <asp:Panel ID="NewUserPanel" runat="server">
             <asp:Label ID="NewUserLabel" runat="server" 
                 Text="Ny användare?" 
@@ -15,7 +15,7 @@
                 OnClick="NewUser_Click"
                 CausesValidation="False" />
         </asp:Panel>
-        <asp:Panel ID="LoginPanel" runat="server">
+        <asp:Panel ID="LoginPanel" runat="server" DefaultButton="Login">
             <asp:RequiredFieldValidator ID="UsernameRequired" runat="server" 
                 ErrorMessage="Du har glömt ange användarnamn!"
                 ControlToValidate="Username"

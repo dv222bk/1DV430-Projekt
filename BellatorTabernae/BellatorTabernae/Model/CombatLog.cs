@@ -5,6 +5,7 @@ using System.Web;
 
 namespace BellatorTabernae.Model
 {
+    [Serializable]
     public class CombatLog
     {
         public int CombatLogID { get; set; }

@@ -22,7 +22,7 @@ namespace BellatorTabernae.Pages.Shared
             if (Context.User.Identity.IsAuthenticated)
             {
                 LoggedIn.Visible = true;
-                LoggedInAs.Text = String.Concat("Inloggad som: ", GetUsername(), " Logga ut?");
+                LoggedInAs.Text = String.Concat("Inloggad som: ", GetUsername());
             }
         }
 

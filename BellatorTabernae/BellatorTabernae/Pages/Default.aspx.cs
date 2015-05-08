@@ -36,6 +36,13 @@ namespace BellatorTabernae.Pages
                 Session["LogOut"] = null;
             }
 
+            if (Session["SiteMsg"] != null)
+            {
+                MsgPanel.Visible = true;
+                SiteMsg.Text = Session["SiteMsg"].ToString();
+                Session["SiteMsg"] = null;
+            }
+
             if (Context.User.Identity.IsAuthenticated)
             {
                 NewUserPanel.Visible = false;
@@ -51,7 +58,7 @@ namespace BellatorTabernae.Pages
                 {
                     int userID = Service.CheckLogin(Username.Text, Password.Text);
                     FormsAuthentication.SetAuthCookie(userID.ToString(), true);
-                    Response.RedirectToRoute("Default");
+                    Response.RedirectToRoute("Character");
                 }
                 catch (SqlException ex)
                 {

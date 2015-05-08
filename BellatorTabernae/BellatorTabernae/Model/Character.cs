@@ -3,6 +3,7 @@ using System;
 
 namespace BellatorTabernae.Model
 {
+    [Serializable]
     public class Character
     {
         public int CharID { get; set; }

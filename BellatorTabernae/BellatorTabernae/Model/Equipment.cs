@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BellatorTabernae.Model
 {
+    [Serializable]
     public class Equipment
     {
         public int EquipID { get; set; }

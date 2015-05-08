@@ -84,6 +84,11 @@ namespace BellatorTabernae.Model
             return CharacterDAL.GetCharacter(charID, userID);
         }
 
+        public bool UserHasCharacter(int userID)
+        {
+            return CharacterDAL.UserHasCharacter(userID);
+        }
+
         public Character GetCharacterH(int charID)
         {
             return CharacterDAL.GetCharacterH(charID);
