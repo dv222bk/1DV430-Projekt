@@ -23,7 +23,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var msgIDIndex = reader.GetOrdinal("MsgID");
                             var usernameIndex = reader.GetOrdinal("Username");

@@ -25,7 +25,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var inventoryIDIndex = reader.GetOrdinal("InventoryID");
                             var equipIDIndex = reader.GetOrdinal("EquipID");
@@ -76,7 +76,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var inventoryIDIndex = reader.GetOrdinal("InventoryID");
                             var equipIDIndex = reader.GetOrdinal("EquipID");
@@ -294,7 +294,10 @@ namespace BellatorTabernae.Model.DAL
                     }
                 }
             }
-            throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med vapen.");
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med vapen.");
+            }
         }
 
         public void EquipShield(int? inventoryID, int? charID = null, int? userID = null)
@@ -332,7 +335,10 @@ namespace BellatorTabernae.Model.DAL
                     }
                 }
             }
-            throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med sköld.");
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med sköld.");
+            }
         }
 
         public void EquipArmor(int? inventoryID, int? charID = null, int? userID = null)
@@ -370,7 +376,10 @@ namespace BellatorTabernae.Model.DAL
                     }
                 }
             }
-            throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med rustning.");
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle utrusta sig med rustning.");
+            }
         }
     }
 }

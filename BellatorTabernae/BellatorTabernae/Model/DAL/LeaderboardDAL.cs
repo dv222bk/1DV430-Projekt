@@ -29,44 +29,49 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        var rowNumberIndex = reader.GetOrdinal("RowNumber");
-                        var rankIndex = reader.GetOrdinal("Rank");
-                        var charIDIndex = reader.GetOrdinal("CharID");
-                        var raceIndex = reader.GetOrdinal("RaceName");
-                        var nameIndex = reader.GetOrdinal("Name");
-                        var levelIndex = reader.GetOrdinal("Level");
-                        var maxHealthIndex = reader.GetOrdinal("MaxHealth");
-                        var maxStanimaIndex = reader.GetOrdinal("MaxStanima");
-                        var strengthIndex = reader.GetOrdinal("Strength");
-                        var speedIndex = reader.GetOrdinal("Speed");
-                        var dexterityIndex = reader.GetOrdinal("Dexterity");
-                        var agilityIndex = reader.GetOrdinal("Agility");
-
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            leaderboard.Add(new Leaderboard
+                            var rowNumberIndex = reader.GetOrdinal("RowNumber");
+                            var rankIndex = reader.GetOrdinal("Rank");
+                            var charIDIndex = reader.GetOrdinal("CharID");
+                            var raceIndex = reader.GetOrdinal("RaceName");
+                            var nameIndex = reader.GetOrdinal("Name");
+                            var levelIndex = reader.GetOrdinal("Level");
+                            var maxHealthIndex = reader.GetOrdinal("MaxHealth");
+                            var maxStanimaIndex = reader.GetOrdinal("MaxStanima");
+                            var strengthIndex = reader.GetOrdinal("Strength");
+                            var speedIndex = reader.GetOrdinal("Speed");
+                            var dexterityIndex = reader.GetOrdinal("Dexterity");
+                            var agilityIndex = reader.GetOrdinal("Agility");
+
+                            while (reader.Read())
                             {
-                                RowNumber = reader.GetInt32(rowNumberIndex),
-                                Rank = reader.GetInt32(rankIndex),
-                                CharID = reader.GetInt32(charIDIndex),
-                                Race = reader.GetString(raceIndex),
-                                Name = reader.GetString(nameIndex),
-                                Level = reader.GetByte(levelIndex),
-                                MaxHealth = reader.GetInt16(maxHealthIndex),
-                                MaxStanima = reader.GetInt16(maxStanimaIndex),
-                                Strength = reader.GetByte(strengthIndex),
-                                Speed = reader.GetByte(speedIndex),
-                                Dexterity = reader.GetByte(dexterityIndex),
-                                Agility = reader.GetByte(agilityIndex)
-                            });
+                                leaderboard.Add(new Leaderboard
+                                {
+                                    RowNumber = reader.GetInt32(rowNumberIndex),
+                                    Rank = reader.GetInt32(rankIndex),
+                                    CharID = reader.GetInt32(charIDIndex),
+                                    Race = reader.GetString(raceIndex),
+                                    Name = reader.GetString(nameIndex),
+                                    Level = reader.GetByte(levelIndex),
+                                    MaxHealth = reader.GetInt16(maxHealthIndex),
+                                    MaxStanima = reader.GetInt16(maxStanimaIndex),
+                                    Strength = reader.GetByte(strengthIndex),
+                                    Speed = reader.GetByte(speedIndex),
+                                    Dexterity = reader.GetByte(dexterityIndex),
+                                    Agility = reader.GetByte(agilityIndex)
+                                });
+                            }
+                            totalRowCount = (int)cmd.Parameters["@TotalEntries"].Value;
+
+                            leaderboard.TrimExcess();
+
+                            return leaderboard;
                         }
+                        totalRowCount = 0;
+
+                        return null;
                     }
-
-                    totalRowCount = (int)cmd.Parameters["@TotalEntries"].Value;
-
-                    leaderboard.TrimExcess();
-
-                    return leaderboard;
                 }
                 catch (SqlException ex)
                 {

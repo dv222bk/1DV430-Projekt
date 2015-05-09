@@ -68,7 +68,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var equipIDIndex = reader.GetOrdinal("EquipID");
                             var equipStatsIDIndex = reader.GetOrdinal("EquipStatsID");
@@ -182,7 +182,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var equipStatsIDIndex = reader.GetOrdinal("EquipStatsID");
                             var healthIndex = reader.GetOrdinal("Health");

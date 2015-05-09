@@ -202,15 +202,6 @@ namespace BellatorTabernae.Pages {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator NameRequired;
         
         /// <summary>
-        /// NameRange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator NameRange;
-        
-        /// <summary>
         /// NameLabel control.
         /// </summary>
         /// <remarks>
@@ -227,6 +218,15 @@ namespace BellatorTabernae.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Name;
+        
+        /// <summary>
+        /// RaceRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RaceRequired;
         
         /// <summary>
         /// RaceLabel control.
@@ -274,6 +274,15 @@ namespace BellatorTabernae.Pages {
         protected global::System.Web.UI.WebControls.Label PointsLeft;
         
         /// <summary>
+        /// HealthRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator HealthRequired;
+        
+        /// <summary>
         /// HealthLabel control.
         /// </summary>
         /// <remarks>
@@ -308,6 +317,15 @@ namespace BellatorTabernae.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button HealthPlus;
+        
+        /// <summary>
+        /// StanimaRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StanimaRequired;
         
         /// <summary>
         /// StanimaLabel control.
@@ -346,6 +364,15 @@ namespace BellatorTabernae.Pages {
         protected global::System.Web.UI.WebControls.Button StanimaPlus;
         
         /// <summary>
+        /// StrengthRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StrengthRequired;
+        
+        /// <summary>
         /// StrengthLabel control.
         /// </summary>
         /// <remarks>
@@ -380,6 +407,15 @@ namespace BellatorTabernae.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button StrengthPlus;
+        
+        /// <summary>
+        /// SpeedRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SpeedRequired;
         
         /// <summary>
         /// SpeedLabel control.
@@ -418,6 +454,15 @@ namespace BellatorTabernae.Pages {
         protected global::System.Web.UI.WebControls.Button SpeedPlus;
         
         /// <summary>
+        /// AgilityRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator AgilityRequired;
+        
+        /// <summary>
         /// AgilityLabel control.
         /// </summary>
         /// <remarks>
@@ -452,6 +497,15 @@ namespace BellatorTabernae.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AgilityPlus;
+        
+        /// <summary>
+        /// DexterityRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DexterityRequired;
         
         /// <summary>
         /// DexterityLabel control.

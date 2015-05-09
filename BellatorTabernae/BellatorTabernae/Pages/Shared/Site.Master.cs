@@ -31,7 +31,6 @@ namespace BellatorTabernae.Pages.Shared
             Session["LogOut"] = GetUsername();
             FormsAuthentication.SignOut();
             Response.RedirectToRoute("Default");
-            
         }
 
         protected string GetUsername()

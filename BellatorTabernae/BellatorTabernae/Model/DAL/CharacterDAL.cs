@@ -54,6 +54,45 @@ namespace BellatorTabernae.Model.DAL
                                 var biografyIndex = reader.GetOrdinal("Biografy");
                                 var createdOnIndex = reader.GetOrdinal("CreatedOn");
 
+                                int? weaponID, shieldID, armorID;
+                                string biografy;
+
+                                if (!reader.IsDBNull(weaponIDIndex))
+                                {
+                                    weaponID = reader.GetInt32(weaponIDIndex);
+                                }
+                                else
+                                {
+                                    weaponID = null;
+                                }
+
+                                if (!reader.IsDBNull(shieldIDIndex))
+                                {
+                                    shieldID = reader.GetInt32(shieldIDIndex);
+                                }
+                                else
+                                {
+                                    shieldID = null;
+                                }
+
+                                if (!reader.IsDBNull(armorIDIndex))
+                                {
+                                    armorID = reader.GetInt32(armorIDIndex);
+                                }
+                                else
+                                {
+                                    armorID = null;
+                                }
+
+                                if (!reader.IsDBNull(biografyIndex))
+                                {
+                                    biografy = reader.GetString(biografyIndex);
+                                }
+                                else
+                                {
+                                    biografy = null;
+                                }
+
                                 return new Character
                                 {
                                     CharID = reader.GetInt32(charIDIndex),
@@ -70,10 +109,10 @@ namespace BellatorTabernae.Model.DAL
                                     Speed = reader.GetByte(speedIndex),
                                     Dexterity = reader.GetByte(dexterityIndex),
                                     Agility = reader.GetByte(agilityIndex),
-                                    WeaponID = reader.GetInt32(weaponIDIndex),
-                                    ShieldID = reader.GetInt32(shieldIDIndex),
-                                    ArmorID = reader.GetInt32(armorIDIndex),
-                                    Biografy = reader.GetString(biografyIndex),
+                                    WeaponID = weaponID,
+                                    ShieldID = shieldID,
+                                    ArmorID = armorID,
+                                    Biografy = biografy,
                                     CreatedOn = reader.GetDateTime(createdOnIndex)
                                 };
                             }
@@ -213,7 +252,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var charIDIndex = reader.GetOrdinal("CharID");
                             var userIDIndex = reader.GetOrdinal("UserID");
@@ -264,8 +303,8 @@ namespace BellatorTabernae.Model.DAL
 
                             return characters;
                         }
+                        return null;
                     }
-                    return null;
                 }
                 catch (SqlException ex)
                 {
@@ -312,7 +351,10 @@ namespace BellatorTabernae.Model.DAL
                     }
                 }
             }
-            throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle raderas från databasen.");
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när en karaktär skulle raderas från databasen.");
+            }
         }
 
         public void CreateCharacter(Character character, int raceID)
@@ -399,7 +441,10 @@ namespace BellatorTabernae.Model.DAL
                     }
                 }
             }
-            throw new ArgumentException("Ett argument fel inträffade när en karaktärs stats skulle uppdateras.");
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när en karaktärs stats skulle uppdateras.");
+            }
         }
 
         public void UpdateCharacterBiografy(int? userID = null, int? charID = null, string biografy = null)
@@ -437,7 +482,10 @@ namespace BellatorTabernae.Model.DAL
                     }
                 }
             }
-            throw new ArgumentException("Ett argument fel inträffade när en karaktärs biografi skulle uppdateras.");
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när en karaktärs biografi skulle uppdateras.");
+            }
         }
 
         public IEnumerable<Race> GetRaces()
@@ -455,7 +503,7 @@ namespace BellatorTabernae.Model.DAL
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
                             var raceIDIndex = reader.GetOrdinal("RaceID");
                             var raceNameIndex = reader.GetOrdinal("RaceName");

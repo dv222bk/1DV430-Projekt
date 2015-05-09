@@ -6,10 +6,6 @@
         ErrorMessage="Du har glömt ange användarnamn!"
         ControlToValidate="Username"
         Display="None" />
-    <asp:RangeValidator ID="UserNameRangeValidator" runat="server"
-         ErrorMessage="Användarnamnet måste bestå av mellan 1 och 50 tecken!" 
-        MinimumValue="1" 
-        MaximumValue="50" />
     <asp:Label ID="UsernameLabel" runat="server" 
         Text="Användarnamn" 
         AssociatedControlID="Username" />
