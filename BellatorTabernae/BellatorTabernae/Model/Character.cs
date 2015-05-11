@@ -8,7 +8,6 @@ namespace BellatorTabernae.Model
     {
         public int CharID { get; set; }
 
-        [Required(ErrorMessage = "Karaktären måste tillhöra en användare!")]
         public int? UserID { get; set; }
 
         [Required(ErrorMessage = "Karaktären måste tillhöra en ras!")]

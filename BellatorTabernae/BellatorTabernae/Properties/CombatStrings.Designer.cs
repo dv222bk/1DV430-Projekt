@@ -214,6 +214,15 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oj! Samtliga kombattanter gav upp striden samtidigt! Det ser ut som om den här striden slutar oavgjort!.
+        /// </summary>
+        internal static string DrawString {
+            get {
+                return ResourceManager.GetString("DrawString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to men &lt;span class=&quot;defender&quot;&gt;{0}&lt;/span&gt; lyckas undvika attacken! .
         /// </summary>
         internal static string EvadeAttack1 {
@@ -246,6 +255,15 @@ namespace BellatorTabernae.Properties {
         internal static string EvadeAttack4 {
             get {
                 return ResourceManager.GetString("EvadeAttack4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} väljer att ge upp striden!.
+        /// </summary>
+        internal static string GiveUpString {
+            get {
+                return ResourceManager.GetString("GiveUpString", resourceCulture);
             }
         }
         
@@ -376,7 +394,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span class=&quot;teamwin&quot;&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Laget får vardera dela på {1} guldmynt som belöning!&lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;span class=&quot;teamwin&quot;&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera dela på {1} guldmynt som belöning!&lt;/span&gt;.
         /// </summary>
         internal static string WinString {
             get {

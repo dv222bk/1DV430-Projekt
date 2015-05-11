@@ -65,6 +65,13 @@ namespace BellatorTabernae.Model
             var teamsLeft = combatants.Select(s => s.TeamNumber).Distinct();
             if (teamsLeft.Count() > 1)
             {
+                foreach(int teamNumber in teamsLeft)
+                {
+                    if (teamNumber == 0)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                }
                 return true;
             }
             return false;
@@ -78,7 +85,7 @@ namespace BellatorTabernae.Model
                 foreach(Combatant combatant in combatants) 
                 {
                     ICollection<ValidationResult> validationResults;
-                    if (!combatant.Validate(out validationResults) || ((double)combatant.Health / combatant.MaxHealth) < combatant.GiveUpPercent)
+                    if (!combatant.Validate(out validationResults) || ((double)combatant.Health / combatant.MaxHealth) <= combatant.GiveUpPercent || combatant.Stanima <= 0)
                     {
                         return false;
                     }
@@ -93,11 +100,9 @@ namespace BellatorTabernae.Model
 
         public void AssignCombatantIDs(ref List<Combatant> combatants)
         {
-            int numberCombatants = combatants.Count();
-
-            for (int i = 0; i < combatants.Count(); i += 1)
+            for (int i = 1; i < combatants.Count() + 1; i += 1)
             {
-                combatants[i].CombatantID = i;
+                combatants[i - 1].CombatantID = i;
             }
         }
 
@@ -116,19 +121,7 @@ namespace BellatorTabernae.Model
             foreach (Combatant combatant in combatants)
             {
                 // Get the combatants speed and the speed from it's equipment
-                int totalSpeed = combatant.Speed;
-                if (combatant.ArmorID != null)
-                {
-                    totalSpeed += Service.GetEquipmentStats(null, combatant.ArmorID).Speed;
-                }
-                if (combatant.WeaponID != null)
-                {
-                    totalSpeed += Service.GetEquipmentStats(null, combatant.WeaponID).Speed;
-                }
-                if (combatant.ShieldID != null)
-                {
-                    totalSpeed += Service.GetEquipmentStats(null, combatant.ShieldID).Speed;
-                }
+                int totalSpeed = GetCombatantTotalSpeed(combatant);
 
                 // Check how many times the combatant attacks
                 int numberOfAttacks = totalSpeed / 30;
@@ -162,6 +155,24 @@ namespace BellatorTabernae.Model
                     select pair;
 
             return sortedTurnOrder;
+        }
+
+        public int GetCombatantTotalSpeed(Combatant combatant)
+        {
+            int totalSpeed = combatant.Speed;
+            if (combatant.ArmorID != null)
+            {
+                totalSpeed += Service.GetEquipmentStats(null, combatant.ArmorID).Speed;
+            }
+            if (combatant.WeaponID != null)
+            {
+                totalSpeed += Service.GetEquipmentStats(null, combatant.WeaponID).Speed;
+            }
+            if (combatant.ShieldID != null)
+            {
+                totalSpeed += Service.GetEquipmentStats(null, combatant.ShieldID).Speed;
+            }
+            return totalSpeed;
         }
 
         public void Turn(ref List<Combatant> combatants)
@@ -241,13 +252,14 @@ namespace BellatorTabernae.Model
                     // Counterattack chance for the defender
                     attackChance = BlockAndCounterAttackChance(defender);
                     defenseChance = BlockAndCounterAttackChance(attacker);
+                    int damage = 0;
 
                     if (attackChance > defenseChance)
                     {
                         // Hit
 
                         // Count the damage the attacker takes
-                        int damage = (AttackDamage(defender) - DefenseValue(attacker)) / 2;
+                        damage = (AttackDamage(defender) - DefenseValue(attacker)) / 2;
 
                         if (damage <= 0)
                         {
@@ -258,12 +270,12 @@ namespace BellatorTabernae.Model
                         attacker.Health -= damage;
 
                         combatString = String.Concat("DefenderCounter", randomGenerator.Next(1, 5));
-                        combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, strings.GetString(getHitSeverityString(damage, attacker.MaxHealth))));
-
-                        // Save combatLog
-                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, damage, 0));
-                        combatLogID++;
+                        combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, getHitSeverityString(damage, attacker.MaxHealth)));
                     }
+
+                    // Save combatLog
+                    combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, damage, 0));
+                    combatLogID++;
                 }
                 else if (attackChance <= defenseChance)
                 {
@@ -289,13 +301,14 @@ namespace BellatorTabernae.Model
                     // Counterattack chance for the attacker
                     attackChance = BlockAndCounterAttackChance(attacker);
                     defenseChance = EvadeChance(defender);
+                    int damage = 0;
 
                     if (attackChance > defenseChance)
                     {
                         // Hit
 
                         // Count the damage the defender takes
-                        int damage = (AttackDamage(attacker) - DefenseValue(defender)) / 2;
+                        damage = (AttackDamage(attacker) - DefenseValue(defender)) / 2;
 
                         if (damage <= 0)
                         {
@@ -305,13 +318,13 @@ namespace BellatorTabernae.Model
                         // Update the defender
                         defender.Health -= damage;
 
-                        combatString = String.Concat("AttackerCounter", randomGenerator.Next(1, 5));
-                        combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, strings.GetString(getHitSeverityString(damage, defender.MaxHealth))));
-
-                        // Save combatLog
-                        combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, 0, damage));
-                        combatLogID++;
+                        combatString = String.Concat("AttackCounter", randomGenerator.Next(1, 5));
+                        combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, getHitSeverityString(damage, defender.MaxHealth)));
                     }
+
+                    // Save combatLog
+                    combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, 0, damage));
+                    combatLogID++;
                 }
                 else
                 {
@@ -336,7 +349,7 @@ namespace BellatorTabernae.Model
                 }
 
                 // Cleanup step
-                AttackCleanUp(attacker, defender, ref combatants);
+                AttackCleanUp(ref attacker, ref defender, ref combatants);
             }
         }
 
@@ -345,41 +358,49 @@ namespace BellatorTabernae.Model
             // Check so there's only one team left alive
             if (!ContinueBattle(combatants))
             {
-                // Give XP and gold to all team members of the winning team
-                int winningTeamNumber = combatants.First().TeamNumber;
+                string combatLogEntry;
                 List<Combatant> finalResults = new List<Combatant>();
                 finalResults.AddRange(combatants);
                 finalResults.AddRange(combatantsGiveUp);
-
-                List<Combatant> winningTeam = finalResults.FindAll(x => x.TeamNumber == winningTeamNumber);
-                List<Combatant> losers = finalResults.FindAll(x => x.TeamNumber != winningTeamNumber);
-
-                int goldReward = GetGoldRewards(losers);
-                int survivingWinners = winningTeam.FindAll(x => x.Health != 0).Count();
-
-                string combatLogEntry = String.Format(strings.GetString("WinString"), winningTeam[0].TeamNumber, goldReward / survivingWinners);
-
-                foreach (Combatant winner in winningTeam)
+                if (combatants.Count > 0)
                 {
-                    if(winner.Health > 0)
+                    // Give XP and gold to all team members of the winning team
+                    int winningTeamNumber = combatants.FirstOrDefault().TeamNumber;
+
+                    List<Combatant> winningTeam = finalResults.FindAll(x => x.TeamNumber == winningTeamNumber);
+                    List<Combatant> losers = finalResults.FindAll(x => x.TeamNumber != winningTeamNumber);
+
+                    int goldReward = GetGoldRewards(losers);
+                    int survivingWinners = winningTeam.FindAll(x => x.Health != 0).Count();
+
+                    combatLogEntry = String.Format(strings.GetString("WinString"), winningTeam[0].TeamNumber, goldReward / survivingWinners);
+
+                    foreach (Combatant winner in winningTeam)
                     {
-                        int xpToNextLevel = (int)((winner.Level * 25) + (winner.Level * 25) * 1.1) - winner.Experience;
-                        int gainedXP = 0;
-
-                        foreach (Combatant loser in losers)
+                        if (winner.Health > 0 && winner.UserID != null)
                         {
-                            gainedXP += (int)(((20 + loser.Level * loser.Level * loser.Level) / 2) * (loser.Level / winner.Level));
+                            int xpToNextLevel = (int)((winner.Level * 25) + (winner.Level * 25) * 1.1) - winner.Experience;
+                            int gainedXP = 0;
 
-                            if (gainedXP > xpToNextLevel)
+                            foreach (Combatant loser in losers)
                             {
-                                gainedXP = xpToNextLevel;
-                                winner.Level++;
-                                break;
+                                gainedXP += (int)(((20 + loser.Level * loser.Level * loser.Level) / 2) * (loser.Level / winner.Level));
+
+                                if (gainedXP > xpToNextLevel)
+                                {
+                                    gainedXP = xpToNextLevel;
+                                    winner.Level++;
+                                    break;
+                                }
                             }
+                            winner.Experience += gainedXP;
+                            Service.AddGoldToInventory(winner.CharID, goldReward / survivingWinners);
                         }
-                        winner.Experience += gainedXP;
-                        Service.AddGoldToInventory(winner.CharID, goldReward / survivingWinners);
                     }
+                }
+                else
+                {
+                    combatLogEntry = String.Format(strings.GetString("DrawString"));
                 }
 
                 // Add a message to the combatlog for each character that died in the battle.
@@ -425,22 +446,28 @@ namespace BellatorTabernae.Model
             return goldRewards;
         }
 
-        public void AttackCleanUp(Combatant attacker, Combatant defender, ref List<Combatant> combatants)
+        public void AttackCleanUp(ref Combatant attacker, ref Combatant defender, ref List<Combatant> combatants)
         {
             // Both combatants lose stanima for their participation in the attack.
             attacker.Stanima -= 1;
             defender.Stanima -= 1;
 
-            if (defender.Stanima <= 0 || ((double)defender.Health / defender.MaxHealth) < defender.GiveUpPercent)
+            if (defender.Stanima <= 0 || ((double)defender.Health / defender.MaxHealth) <= defender.GiveUpPercent)
             {
                 combatantsGiveUp.Add(defender);
-                combatants.Remove(combatants.Find(x => x.CombatantID == defender.CombatantID));
+                combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpString"), defender.Name), null, null, null, null));
+                combatLogID++;
+                Combatant defenderToRemove = defender;
+                combatants.Remove(combatants.Find(x => x.CombatantID == defenderToRemove.CombatantID));
             }
 
-            if (attacker.Stanima <= 0 || ((double)attacker.Health / attacker.MaxHealth) < attacker.GiveUpPercent)
+            if (attacker.Stanima <= 0 || ((double)attacker.Health / attacker.MaxHealth) <= attacker.GiveUpPercent)
             {
                 combatantsGiveUp.Add(attacker);
-                combatants.Remove(combatants.Find(x => x.CombatantID == attacker.CombatantID));
+                combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpString"), attacker.Name), null, null, null, null));
+                combatLogID++;
+                Combatant attackerToRemove = attacker;
+                combatants.Remove(combatants.Find(x => x.CombatantID == attackerToRemove.CombatantID));
             }
         }
 
@@ -587,6 +614,11 @@ namespace BellatorTabernae.Model
             {
                 return strings.GetString("HitSeverity1");
             }
+        }
+
+        public List<CombatLog> GetCombatLog()
+        {
+            return combatLog;
         }
     }
 }

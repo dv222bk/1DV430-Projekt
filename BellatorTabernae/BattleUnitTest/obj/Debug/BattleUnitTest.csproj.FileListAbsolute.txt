@@ -1,0 +1,10 @@
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\obj\Debug\BattleUnitTest.csprojResolveAssemblyReference.cache
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BattleUnitTest.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BattleUnitTest.pdb
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BellatorTabernae.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BCrypt.Net.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BellatorTabernae.pdb
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BCrypt.Net.pdb
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\bin\Debug\BCrypt.Net.xml
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\obj\Debug\BattleUnitTest.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BattleUnitTest\obj\Debug\BattleUnitTest.pdb

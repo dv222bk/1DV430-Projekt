@@ -168,6 +168,9 @@
   <data name="DefenderCounter4" xml:space="preserve">
     <value>Innan &lt;span class="attacker"&gt;{0}&lt;/span&gt; hinner förstå vad det är som händer har &lt;span class="defender"&gt;{1}&lt;/span&gt; tagit tillfället i akt och gjort en motattack, som träffar! &lt;span class="attacker"&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
   </data>
+  <data name="DrawString" xml:space="preserve">
+    <value>Oj! Samtliga kombattanter gav upp striden samtidigt! Det ser ut som om den här striden slutar oavgjort!</value>
+  </data>
   <data name="EvadeAttack1" xml:space="preserve">
     <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas undvika attacken! </value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="EvadeAttack4" xml:space="preserve">
     <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas precis på håret undvika attacken! </value>
+  </data>
+  <data name="GiveUpString" xml:space="preserve">
+    <value>{0} väljer att ge upp striden!</value>
   </data>
   <data name="HeavyAttack1" xml:space="preserve">
     <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; riktar ett hårt slag i &lt;span class="defender"&gt;{1}&lt;/span&gt;s riktning, </value>
@@ -223,6 +229,6 @@
     <value>&lt;span class="turn"&gt;Runda {0}&lt;/span&gt;</value>
   </data>
   <data name="WinString" xml:space="preserve">
-    <value>&lt;span class="teamwin"&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Laget får vardera dela på {1} guldmynt som belöning!&lt;/span&gt;</value>
+    <value>&lt;span class="teamwin"&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera dela på {1} guldmynt som belöning!&lt;/span&gt;</value>
   </data>
 </root>
