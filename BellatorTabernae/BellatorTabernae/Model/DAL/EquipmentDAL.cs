@@ -140,12 +140,12 @@ namespace BellatorTabernae.Model.DAL
                                     EquipStatsID = reader.GetInt16(equipStatsIDIndex),
                                     Health = reader.GetInt16(healthIndex),
                                     Stanima = reader.GetInt16(stanimaIndex),
-                                    Strength = reader.GetByte(strengthIndex),
-                                    Speed = reader.GetByte(speedIndex),
-                                    Dexterity = reader.GetByte(dexterityIndex),
-                                    Agility = reader.GetByte(agilityIndex),
-                                    Damage = reader.GetByte(damageIndex),
-                                    Defense = reader.GetByte(defenseIndex),
+                                    Strength = reader.GetInt16(strengthIndex),
+                                    Speed = reader.GetInt16(speedIndex),
+                                    Dexterity = reader.GetInt16(dexterityIndex),
+                                    Agility = reader.GetInt16(agilityIndex),
+                                    Damage = reader.GetInt16(damageIndex),
+                                    Defense = reader.GetInt16(defenseIndex),
                                 };
                             }
                         }
@@ -201,12 +201,12 @@ namespace BellatorTabernae.Model.DAL
                                     EquipStatsID = reader.GetInt16(equipStatsIDIndex),
                                     Health = reader.GetInt16(healthIndex),
                                     Stanima = reader.GetInt16(stanimaIndex),
-                                    Strength = reader.GetByte(strengthIndex),
-                                    Speed = reader.GetByte(speedIndex),
-                                    Dexterity = reader.GetByte(dexterityIndex),
-                                    Agility = reader.GetByte(agilityIndex),
-                                    Damage = reader.GetByte(damageIndex),
-                                    Defense = reader.GetByte(defenseIndex),
+                                    Strength = reader.GetInt16(strengthIndex),
+                                    Speed = reader.GetInt16(speedIndex),
+                                    Dexterity = reader.GetInt16(dexterityIndex),
+                                    Agility = reader.GetInt16(agilityIndex),
+                                    Damage = reader.GetInt16(damageIndex),
+                                    Defense = reader.GetInt16(defenseIndex),
                                 });
                             }
                             equipmentStats.TrimExcess();

@@ -156,6 +156,16 @@ namespace BellatorTabernae.Model
             return CharacterDAL.GetRace(raceID);
         }
 
+        public Character GetMonster(int charID)
+        {
+            return CharacterDAL.GetMonster(charID);
+        }
+
+        public IEnumerable<Character> GetMonsters()
+        {
+            return CharacterDAL.GetMonsters();
+        }
+
         /* ChatDAL */
 
         public IEnumerable<Chat> GetChat()

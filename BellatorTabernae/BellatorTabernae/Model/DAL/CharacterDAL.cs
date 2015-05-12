@@ -132,6 +132,127 @@ namespace BellatorTabernae.Model.DAL
             throw new ArgumentException("Ett argument fel inträffade när en karaktär skull hämtas från databasen.");
         }
 
+        public Character GetMonster(int charID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.usp_GetMonster", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (charID != null)
+                    {
+                        cmd.Parameters.AddWithValue("@CharID", charID);
+                    }
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var charIDIndex = reader.GetOrdinal("CharID");
+                            var userIDIndex = reader.GetOrdinal("UserID");
+                            var raceIndex = reader.GetOrdinal("RaceName");
+                            var nameIndex = reader.GetOrdinal("Name");
+                            var levelIndex = reader.GetOrdinal("Level");
+                            var experienceIndex = reader.GetOrdinal("Experience");
+                            var healthIndex = reader.GetOrdinal("Health");
+                            var maxHealthIndex = reader.GetOrdinal("MaxHealth");
+                            var stanimaIndex = reader.GetOrdinal("Stanima");
+                            var maxStanimaIndex = reader.GetOrdinal("MaxStanima");
+                            var strengthIndex = reader.GetOrdinal("Strength");
+                            var speedIndex = reader.GetOrdinal("Speed");
+                            var dexterityIndex = reader.GetOrdinal("Dexterity");
+                            var agilityIndex = reader.GetOrdinal("Agility");
+                            var weaponIDIndex = reader.GetOrdinal("WeaponID");
+                            var shieldIDIndex = reader.GetOrdinal("ShieldID");
+                            var armorIDIndex = reader.GetOrdinal("ArmorID");
+                            var biografyIndex = reader.GetOrdinal("Biografy");
+                            var createdOnIndex = reader.GetOrdinal("CreatedOn");
+
+                            int? weaponID, shieldID, armorID;
+                            string biografy;
+
+                            if (!reader.IsDBNull(weaponIDIndex))
+                            {
+                                weaponID = reader.GetInt32(weaponIDIndex);
+                            }
+                            else
+                            {
+                                weaponID = null;
+                            }
+
+                            if (!reader.IsDBNull(shieldIDIndex))
+                            {
+                                shieldID = reader.GetInt32(shieldIDIndex);
+                            }
+                            else
+                            {
+                                shieldID = null;
+                            }
+
+                            if (!reader.IsDBNull(armorIDIndex))
+                            {
+                                armorID = reader.GetInt32(armorIDIndex);
+                            }
+                            else
+                            {
+                                armorID = null;
+                            }
+
+                            if (!reader.IsDBNull(biografyIndex))
+                            {
+                                biografy = reader.GetString(biografyIndex);
+                            }
+                            else
+                            {
+                                biografy = null;
+                            }
+
+                            if (!reader.IsDBNull(userIDIndex))
+                            {
+                                throw new ApplicationException("Monstret som hämtades från databasen var egentligen inget monster!");
+                            }
+
+                            return new Character
+                            {
+                                CharID = reader.GetInt32(charIDIndex),
+                                UserID = null,
+                                Race = reader.GetString(raceIndex),
+                                Name = reader.GetString(nameIndex),
+                                Level = reader.GetByte(levelIndex),
+                                Experience = reader.GetInt32(experienceIndex),
+                                Health = reader.GetInt16(healthIndex),
+                                MaxHealth = reader.GetInt16(maxHealthIndex),
+                                Stanima = reader.GetInt16(stanimaIndex),
+                                MaxStanima = reader.GetInt16(maxStanimaIndex),
+                                Strength = reader.GetByte(strengthIndex),
+                                Speed = reader.GetByte(speedIndex),
+                                Dexterity = reader.GetByte(dexterityIndex),
+                                Agility = reader.GetByte(agilityIndex),
+                                WeaponID = weaponID,
+                                ShieldID = shieldID,
+                                ArmorID = armorID,
+                                Biografy = biografy,
+                                CreatedOn = reader.GetDateTime(createdOnIndex)
+                            };
+                        }
+                    }
+                    return null;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när en karaktär skulle hämtas från databasen.");
+                }
+            }
+        }
+
         public bool UserHasCharacter(int userID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -276,6 +397,45 @@ namespace BellatorTabernae.Model.DAL
 
                             while (reader.Read())
                             {
+                                int? weaponID, shieldID, armorID;
+                                string biografy;
+
+                                if (!reader.IsDBNull(weaponIDIndex))
+                                {
+                                    weaponID = reader.GetInt32(weaponIDIndex);
+                                }
+                                else
+                                {
+                                    weaponID = null;
+                                }
+
+                                if (!reader.IsDBNull(shieldIDIndex))
+                                {
+                                    shieldID = reader.GetInt32(shieldIDIndex);
+                                }
+                                else
+                                {
+                                    shieldID = null;
+                                }
+
+                                if (!reader.IsDBNull(armorIDIndex))
+                                {
+                                    armorID = reader.GetInt32(armorIDIndex);
+                                }
+                                else
+                                {
+                                    armorID = null;
+                                }
+
+                                if (!reader.IsDBNull(biografyIndex))
+                                {
+                                    biografy = reader.GetString(biografyIndex);
+                                }
+                                else
+                                {
+                                    biografy = null;
+                                }
+
                                 characters.Add(new Character
                                 {
                                     CharID = reader.GetInt32(charIDIndex),
@@ -292,10 +452,134 @@ namespace BellatorTabernae.Model.DAL
                                     Speed = reader.GetByte(speedIndex),
                                     Dexterity = reader.GetByte(dexterityIndex),
                                     Agility = reader.GetByte(agilityIndex),
-                                    WeaponID = reader.GetInt32(weaponIDIndex),
-                                    ShieldID = reader.GetInt32(shieldIDIndex),
-                                    ArmorID = reader.GetInt32(armorIDIndex),
-                                    Biografy = reader.GetString(biografyIndex),
+                                    WeaponID = weaponID,
+                                    ShieldID = shieldID,
+                                    ArmorID = armorID,
+                                    Biografy = biografy,
+                                    CreatedOn = reader.GetDateTime(createdOnIndex)
+                                });
+                            }
+                            characters.TrimExcess();
+
+                            return characters;
+                        }
+                        return null;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när gammla karaktärer skulle hämtas från databasen.");
+                }
+            }
+        }
+
+        public IEnumerable<Character> GetMonsters()
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    var characters = new List<Character>(100);
+
+                    SqlCommand cmd = new SqlCommand("dbo.usp_GetMonster", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            var charIDIndex = reader.GetOrdinal("CharID");
+                            var userIDIndex = reader.GetOrdinal("UserID");
+                            var raceIndex = reader.GetOrdinal("RaceName");
+                            var nameIndex = reader.GetOrdinal("Name");
+                            var levelIndex = reader.GetOrdinal("Level");
+                            var experienceIndex = reader.GetOrdinal("Experience");
+                            var healthIndex = reader.GetOrdinal("Health");
+                            var maxHealthIndex = reader.GetOrdinal("MaxHealth");
+                            var stanimaIndex = reader.GetOrdinal("Stanima");
+                            var maxStanimaIndex = reader.GetOrdinal("MaxStanima");
+                            var strengthIndex = reader.GetOrdinal("Strength");
+                            var speedIndex = reader.GetOrdinal("Speed");
+                            var dexterityIndex = reader.GetOrdinal("Dexterity");
+                            var agilityIndex = reader.GetOrdinal("Agility");
+                            var weaponIDIndex = reader.GetOrdinal("WeaponID");
+                            var shieldIDIndex = reader.GetOrdinal("ShieldID");
+                            var armorIDIndex = reader.GetOrdinal("ArmorID");
+                            var biografyIndex = reader.GetOrdinal("Biografy");
+                            var createdOnIndex = reader.GetOrdinal("CreatedOn");
+
+                            int? weaponID, shieldID, armorID;
+                            string biografy;
+
+                            if (!reader.IsDBNull(weaponIDIndex))
+                            {
+                                weaponID = reader.GetInt32(weaponIDIndex);
+                            }
+                            else
+                            {
+                                weaponID = null;
+                            }
+
+                            if (!reader.IsDBNull(shieldIDIndex))
+                            {
+                                shieldID = reader.GetInt32(shieldIDIndex);
+                            }
+                            else
+                            {
+                                shieldID = null;
+                            }
+
+                            if (!reader.IsDBNull(armorIDIndex))
+                            {
+                                armorID = reader.GetInt32(armorIDIndex);
+                            }
+                            else
+                            {
+                                armorID = null;
+                            }
+
+                            if (!reader.IsDBNull(biografyIndex))
+                            {
+                                biografy = reader.GetString(biografyIndex);
+                            }
+                            else
+                            {
+                                biografy = null;
+                            }
+
+                            if (!reader.IsDBNull(userIDIndex))
+                            {
+                                throw new ApplicationException("Monstret som hämtades från databasen var egentligen inget monster!");
+                            }
+
+                            while (reader.Read())
+                            {
+                                characters.Add(new Character
+                                {
+                                    CharID = reader.GetInt32(charIDIndex),
+                                    UserID = null,
+                                    Race = reader.GetString(raceIndex),
+                                    Name = reader.GetString(nameIndex),
+                                    Level = reader.GetByte(levelIndex),
+                                    Experience = reader.GetInt32(experienceIndex),
+                                    Health = reader.GetInt16(healthIndex),
+                                    MaxHealth = reader.GetInt16(maxHealthIndex),
+                                    Stanima = reader.GetInt16(stanimaIndex),
+                                    MaxStanima = reader.GetInt16(maxStanimaIndex),
+                                    Strength = reader.GetByte(strengthIndex),
+                                    Speed = reader.GetByte(speedIndex),
+                                    Dexterity = reader.GetByte(dexterityIndex),
+                                    Agility = reader.GetByte(agilityIndex),
+                                    WeaponID = weaponID,
+                                    ShieldID = shieldID,
+                                    ArmorID = armorID,
+                                    Biografy = biografy,
                                     CreatedOn = reader.GetDateTime(createdOnIndex)
                                 });
                             }

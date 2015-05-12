@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Character.aspx.cs" Inherits="BellatorTabernae.Pages.Character" EnableViewState="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Character.aspx.cs" Inherits="BellatorTabernae.Pages.Character" EnableViewState="true" %>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <asp:Panel ID="CharacterPanel" runat="server" 
@@ -53,7 +53,10 @@
         <asp:UpdatePanel ID="RaceAndStatsUpdate" runat="server">
             <ContentTemplate>
                 <asp:DropDownList ID="RaceList" runat="server"
-                    AutoPostBack="True" />
+                    AutoPostBack="True"
+                    OnSelectedIndexChanged="ChangeRace" 
+                    ViewStateMode="Enabled" 
+                    EnableViewState="True" />
                 <asp:Label ID="RaceDesc" runat="server"
                     AssociatedControlID="RaceList" />
                 <asp:Label ID="PointsLeft" runat="server" />

@@ -91,20 +91,24 @@ namespace BellatorTabernae.Pages
                 {
                     IEnumerable<Race> Races = Service.GetRaces();
                     Session["Races"] = Races;
-                    Session["RaceListIndex"] = 0;
-                }
-
-                ListItem listItem;
-
-                foreach (Race race in (IEnumerable<Race>)Session["Races"])
-                {
-                    listItem = new ListItem(race.RaceName, race.RaceID.ToString());
-                    RaceList.Items.Add(listItem);
+                    Session["NewRace"] = true;
                 }
 
                 if (!IsPostBack)
                 {
+                    ListItem listItem;
+
+                    foreach (Race race in (IEnumerable<Race>)Session["Races"])
+                    {
+                        listItem = new ListItem(race.RaceName, race.RaceID.ToString());
+                        RaceList.Items.Add(listItem);
+                    }
+                }
+
+                if (bool.Parse(Session["NewRace"].ToString()) == true)
+                {
                     GetRaceEffect();
+                    Session["NewRace"] = false;
                 }
                 else
                 {
@@ -168,7 +172,7 @@ namespace BellatorTabernae.Pages
                             Session["Agility"] = Session["Dexterity"] = Session["RaceHealth"] =
                             Session["RaceStanima"] = Session["RaceStrength"] = Session["RaceSpeed"] =
                             Session["RaceAgility"] = Session["RaceDexterity"] = Session["Races"] =
-                            Session["RaceListIndex"] = Session["PointsLeft"] = null;
+                            Session["NewRace"] = Session["PointsLeft"] = null;
 
                         Response.RedirectToRoute("Character");
                     }
@@ -213,15 +217,6 @@ namespace BellatorTabernae.Pages
         protected void GetRaceEffect()
         {
             Race selectedRace = new Race();
-
-            if (int.Parse(Session["RaceListIndex"].ToString()) < 0 || int.Parse(Session["RaceListIndex"].ToString()) > ((IEnumerable<Race>)Session["Races"]).Count())
-            {
-                RaceList.SelectedIndex = 0;
-            }
-            else
-            {
-                RaceList.SelectedIndex = int.Parse(Session["RaceListIndex"].ToString());
-            }
 
             foreach (Race race in (IEnumerable<Race>)Session["Races"])
             {
@@ -457,6 +452,11 @@ namespace BellatorTabernae.Pages
             {
                 Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
             }
+        }
+
+        protected void ChangeRace(object sender, EventArgs e)
+        {
+            Session["NewRace"] = true;
         }
     }
 }

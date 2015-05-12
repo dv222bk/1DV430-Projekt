@@ -39,6 +39,7 @@ namespace BellatorTabernae.Model
             if (ValidateCombatants(combatants))
             {
                 AssignCombatantIDs(ref combatants);
+                GetCombatantsTotalStats(ref combatants);
                 originalCombatants = combatants;
 
                 // Turn holder
@@ -120,11 +121,8 @@ namespace BellatorTabernae.Model
 
             foreach (Combatant combatant in combatants)
             {
-                // Get the combatants speed and the speed from it's equipment
-                int totalSpeed = GetCombatantTotalSpeed(combatant);
-
                 // Check how many times the combatant attacks
-                int numberOfAttacks = totalSpeed / 30;
+                int numberOfAttacks = combatant.Speed / 30;
                 if (numberOfAttacks < 1)
                 {
                     numberOfAttacks = 1;
@@ -133,7 +131,7 @@ namespace BellatorTabernae.Model
                 // For each attack, asign the combatant a random number and put it in the speedList dictionary.
                 for (int attack = 0; attack < numberOfAttacks; attack += 1)
                 {
-                    int randomNumber = randomGenerator.Next(0, totalSpeed + 1);
+                    int randomNumber = randomGenerator.Next(0, combatant.Speed + 1);
                     while (true)
                     {
                         if (turnOrder.ContainsKey(randomNumber))
@@ -155,24 +153,6 @@ namespace BellatorTabernae.Model
                     select pair;
 
             return sortedTurnOrder;
-        }
-
-        public int GetCombatantTotalSpeed(Combatant combatant)
-        {
-            int totalSpeed = combatant.Speed;
-            if (combatant.ArmorID != null)
-            {
-                totalSpeed += Service.GetEquipmentStats(null, combatant.ArmorID).Speed;
-            }
-            if (combatant.WeaponID != null)
-            {
-                totalSpeed += Service.GetEquipmentStats(null, combatant.WeaponID).Speed;
-            }
-            if (combatant.ShieldID != null)
-            {
-                totalSpeed += Service.GetEquipmentStats(null, combatant.ShieldID).Speed;
-            }
-            return totalSpeed;
         }
 
         public void Turn(ref List<Combatant> combatants)
@@ -543,6 +523,57 @@ namespace BellatorTabernae.Model
                 }
 
                 return randomGenerator.Next(dexterity / 2, agility + dexterity + 1);
+            }
+        }
+
+        public void GetCombatantsTotalStats(ref List<Combatant> combatants)
+        {
+            foreach (Combatant combatant in combatants)
+            {
+                int statsHealth = 0;
+                int statsStanima = 0;
+                int totalStrength = combatant.Strength;
+                int totalSpeed = combatant.Speed;
+                int totalAgility = combatant.Agility;
+                int totalDexterity = combatant.Dexterity;
+                if (combatant.ArmorID != null)
+                {
+                    EquipmentStats ArmorStats = Service.GetEquipmentStats(null, combatant.ArmorID);
+                    statsHealth += ArmorStats.Health;
+                    statsStanima += ArmorStats.Stanima;
+                    totalStrength += ArmorStats.Strength;
+                    totalSpeed += ArmorStats.Speed;
+                    totalAgility += ArmorStats.Agility;
+                    totalDexterity += ArmorStats.Dexterity;
+                }
+                if (combatant.WeaponID != null)
+                {
+                    EquipmentStats WeaponStats = Service.GetEquipmentStats(null, combatant.WeaponID);
+                    statsHealth += WeaponStats.Health;
+                    statsStanima += WeaponStats.Stanima;
+                    totalStrength += WeaponStats.Strength;
+                    totalSpeed += WeaponStats.Speed;
+                    totalAgility += WeaponStats.Agility;
+                    totalDexterity += WeaponStats.Dexterity;
+                }
+                if (combatant.ShieldID != null)
+                {
+                    EquipmentStats ShieldStats = Service.GetEquipmentStats(null, combatant.ShieldID);
+                    statsHealth += ShieldStats.Health;
+                    statsStanima += ShieldStats.Stanima;
+                    totalStrength += ShieldStats.Strength;
+                    totalSpeed += ShieldStats.Speed;
+                    totalAgility += ShieldStats.Agility;
+                    totalDexterity += ShieldStats.Dexterity;
+                }
+                combatant.MaxHealth += statsHealth;
+                combatant.Health += statsHealth;
+                combatant.Stanima += statsStanima;
+                combatant.MaxStanima += statsStanima;
+                combatant.Strength = totalStrength;
+                combatant.Speed = totalSpeed;
+                combatant.Agility = totalAgility;
+                combatant.Dexterity = totalDexterity;
             }
         }
 
