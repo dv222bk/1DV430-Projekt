@@ -141,10 +141,7 @@ namespace BellatorTabernae.Model.DAL
                     SqlCommand cmd = new SqlCommand("dbo.usp_GetMonster", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    if (charID != null)
-                    {
-                        cmd.Parameters.AddWithValue("@CharID", charID);
-                    }
+                    cmd.Parameters.AddWithValue("@CharID", charID);
 
                     conn.Open();
 
@@ -248,7 +245,7 @@ namespace BellatorTabernae.Model.DAL
                 }
                 catch
                 {
-                    throw new ApplicationException("Ett fel inträffade när en karaktär skulle hämtas från databasen.");
+                    throw new ApplicationException("Ett fel inträffade när ett monster skulle hämtas från databasen.");
                 }
             }
         }
@@ -514,52 +511,52 @@ namespace BellatorTabernae.Model.DAL
                             var biografyIndex = reader.GetOrdinal("Biografy");
                             var createdOnIndex = reader.GetOrdinal("CreatedOn");
 
-                            int? weaponID, shieldID, armorID;
-                            string biografy;
-
-                            if (!reader.IsDBNull(weaponIDIndex))
-                            {
-                                weaponID = reader.GetInt32(weaponIDIndex);
-                            }
-                            else
-                            {
-                                weaponID = null;
-                            }
-
-                            if (!reader.IsDBNull(shieldIDIndex))
-                            {
-                                shieldID = reader.GetInt32(shieldIDIndex);
-                            }
-                            else
-                            {
-                                shieldID = null;
-                            }
-
-                            if (!reader.IsDBNull(armorIDIndex))
-                            {
-                                armorID = reader.GetInt32(armorIDIndex);
-                            }
-                            else
-                            {
-                                armorID = null;
-                            }
-
-                            if (!reader.IsDBNull(biografyIndex))
-                            {
-                                biografy = reader.GetString(biografyIndex);
-                            }
-                            else
-                            {
-                                biografy = null;
-                            }
-
-                            if (!reader.IsDBNull(userIDIndex))
-                            {
-                                throw new ApplicationException("Monstret som hämtades från databasen var egentligen inget monster!");
-                            }
-
                             while (reader.Read())
                             {
+                                int? weaponID, shieldID, armorID;
+                                string biografy;
+
+                                if (!reader.IsDBNull(weaponIDIndex))
+                                {
+                                    weaponID = reader.GetInt32(weaponIDIndex);
+                                }
+                                else
+                                {
+                                    weaponID = null;
+                                }
+
+                                if (!reader.IsDBNull(shieldIDIndex))
+                                {
+                                    shieldID = reader.GetInt32(shieldIDIndex);
+                                }
+                                else
+                                {
+                                    shieldID = null;
+                                }
+
+                                if (!reader.IsDBNull(armorIDIndex))
+                                {
+                                    armorID = reader.GetInt32(armorIDIndex);
+                                }
+                                else
+                                {
+                                    armorID = null;
+                                }
+
+                                if (!reader.IsDBNull(biografyIndex))
+                                {
+                                    biografy = reader.GetString(biografyIndex);
+                                }
+                                else
+                                {
+                                    biografy = null;
+                                }
+
+                                if (!reader.IsDBNull(userIDIndex))
+                                {
+                                    throw new ApplicationException("Monstret som hämtades från databasen var egentligen inget monster!");
+                                }
+
                                 characters.Add(new Character
                                 {
                                     CharID = reader.GetInt32(charIDIndex),
@@ -596,7 +593,7 @@ namespace BellatorTabernae.Model.DAL
                 }
                 catch
                 {
-                    throw new ApplicationException("Ett fel inträffade när gammla karaktärer skulle hämtas från databasen.");
+                    throw new ApplicationException("Ett fel inträffade när monster skulle hämtas från databasen.");
                 }
             }
         }

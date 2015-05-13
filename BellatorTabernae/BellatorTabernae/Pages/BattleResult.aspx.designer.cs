@@ -11,5 +11,41 @@ namespace BellatorTabernae.Pages {
     
     
     public partial class BattleResult {
+        
+        /// <summary>
+        /// CombatLogPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CombatLogPanel;
+        
+        /// <summary>
+        /// CombatLogListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView CombatLogListView;
+        
+        /// <summary>
+        /// NoCombatLogPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel NoCombatLogPanel;
+        
+        /// <summary>
+        /// BattleHyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink BattleHyperLink;
     }
 }

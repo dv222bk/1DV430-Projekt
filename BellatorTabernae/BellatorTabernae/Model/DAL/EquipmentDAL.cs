@@ -105,20 +105,30 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
-        public EquipmentStats GetEquipmentStats(int? equipStatsID, int? equipID)
+        public EquipmentStats GetEquipmentStats(int? equipStatsID, int? equipID, int? inventoryID)
         {
-            if(equipStatsID != null || equipID != null) 
+            if(equipStatsID != null || equipID != null || inventoryID != null) 
             {
                 using (SqlConnection conn = CreateConnection())
                 {
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("dbo.usp_GetEquipment", conn);
+                        SqlCommand cmd = new SqlCommand("dbo.usp_GetEquipmentStats", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@EquipStatsID", equipStatsID);
-                        cmd.Parameters.AddWithValue("@EquipID", equipID);
-
+                        if (equipStatsID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@EquipStatsID", equipStatsID);
+                        }
+                        if (equipID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@EquipID", equipID);
+                        }
+                        if (inventoryID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@InventoryID", inventoryID);
+                        }
+                       
                         conn.Open();
 
                         using (SqlDataReader reader = cmd.ExecuteReader())

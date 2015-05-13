@@ -167,7 +167,7 @@ namespace BellatorTabernae.Model
 
                 // If the attackers stanima is 0 or less, or if the attackers health is below the giveuppercent of it's max health, the attacker won't attack.
                 // This check is done since you can't remove elements from an IENumerable (turnOrder)
-                if (attacker.Stanima <= 0 || ((double)attacker.Health / attacker.MaxHealth) < attacker.GiveUpPercent)
+                if (attacker.Stanima <= 0 || ((double)attacker.Health / attacker.MaxHealth) <= attacker.GiveUpPercent)
                 {
                     continue;
                 }
@@ -364,7 +364,7 @@ namespace BellatorTabernae.Model
 
                             foreach (Combatant loser in losers)
                             {
-                                gainedXP += (int)(((20 + loser.Level * loser.Level * loser.Level) / 2) * (loser.Level / winner.Level));
+                                gainedXP += (int)(((20 + loser.Level * loser.Level * loser.Level) / 2) * ((double)loser.Level / winner.Level));
 
                                 if (gainedXP > xpToNextLevel)
                                 {
@@ -384,7 +384,7 @@ namespace BellatorTabernae.Model
                 }
 
                 // Add a message to the combatlog for each character that died in the battle.
-                List<Combatant> deadChars = finalResults.FindAll(x => x.Health == 0);
+                List<Combatant> deadChars = finalResults.FindAll(x => x.Health <= 0);
                 if (deadChars.Count() >= 1)
                 {
                     string chars = "";
@@ -435,7 +435,14 @@ namespace BellatorTabernae.Model
             if (defender.Stanima <= 0 || ((double)defender.Health / defender.MaxHealth) <= defender.GiveUpPercent)
             {
                 combatantsGiveUp.Add(defender);
-                combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpString"), defender.Name), null, null, null, null));
+                if(((double)defender.Health / defender.MaxHealth) <= defender.GiveUpPercent) 
+                {
+                    combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpString"), defender.Name), null, null, null, null));
+                }
+                else
+                {
+                    combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpStanimaString"), defender.Name), null, null, null, null));
+                }
                 combatLogID++;
                 Combatant defenderToRemove = defender;
                 combatants.Remove(combatants.Find(x => x.CombatantID == defenderToRemove.CombatantID));
@@ -444,7 +451,14 @@ namespace BellatorTabernae.Model
             if (attacker.Stanima <= 0 || ((double)attacker.Health / attacker.MaxHealth) <= attacker.GiveUpPercent)
             {
                 combatantsGiveUp.Add(attacker);
-                combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpString"), attacker.Name), null, null, null, null));
+                if (((double)attacker.Health / attacker.MaxHealth) <= attacker.GiveUpPercent)
+                {
+                    combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpString"), attacker.Name), null, null, null, null));
+                }
+                else
+                {
+                    combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("GiveUpStanimaString"), attacker.Name), null, null, null, null));
+                }
                 combatLogID++;
                 Combatant attackerToRemove = attacker;
                 combatants.Remove(combatants.Find(x => x.CombatantID == attackerToRemove.CombatantID));
@@ -539,7 +553,7 @@ namespace BellatorTabernae.Model
 
                 if (combatant.ArmorID != null)
                 {
-                    EquipmentStats ArmorStats = Service.GetEquipmentStats(null, combatant.ArmorID);
+                    EquipmentStats ArmorStats = Service.GetEquipmentStats(null, null, combatant.ArmorID);
                     statsHealth += ArmorStats.Health;
                     statsStanima += ArmorStats.Stanima;
                     totalStrength += ArmorStats.Strength;
@@ -550,7 +564,7 @@ namespace BellatorTabernae.Model
 
                 if (combatant.WeaponID != null)
                 {
-                    EquipmentStats WeaponStats = Service.GetEquipmentStats(null, combatant.WeaponID);
+                    EquipmentStats WeaponStats = Service.GetEquipmentStats(null, null, combatant.WeaponID);
                     statsHealth += WeaponStats.Health;
                     statsStanima += WeaponStats.Stanima;
                     totalStrength += WeaponStats.Strength;
@@ -561,7 +575,7 @@ namespace BellatorTabernae.Model
 
                 if (combatant.ShieldID != null)
                 {
-                    EquipmentStats ShieldStats = Service.GetEquipmentStats(null, combatant.ShieldID);
+                    EquipmentStats ShieldStats = Service.GetEquipmentStats(null, null, combatant.ShieldID);
                     statsHealth += ShieldStats.Health;
                     statsStanima += ShieldStats.Stanima;
                     totalStrength += ShieldStats.Strength;
@@ -587,17 +601,17 @@ namespace BellatorTabernae.Model
 
             if (combatant.ArmorID != null)
             {
-                armorDefense += Service.GetEquipmentStats(null, combatant.ArmorID).Defense;
+                armorDefense += Service.GetEquipmentStats(null, null, combatant.ArmorID).Defense;
             }
 
             if (combatant.WeaponID != null)
             {
-                armorDefense += Service.GetEquipmentStats(null, combatant.WeaponID).Defense;
+                armorDefense += Service.GetEquipmentStats(null, null, combatant.WeaponID).Defense;
             }
 
             if (combatant.ShieldID != null)
             {
-                armorDefense += Service.GetEquipmentStats(null, combatant.ShieldID).Defense;
+                armorDefense += Service.GetEquipmentStats(null, null, combatant.ShieldID).Defense;
             }
 
             return armorDefense;
@@ -609,17 +623,17 @@ namespace BellatorTabernae.Model
 
             if (combatant.ArmorID != null)
             {
-                armorAttack += Service.GetEquipmentStats(null, combatant.ArmorID).Damage;
+                armorAttack += Service.GetEquipmentStats(null, null, combatant.ArmorID).Damage;
             }
 
             if (combatant.WeaponID != null)
             {
-                armorAttack += Service.GetEquipmentStats(null, combatant.WeaponID).Damage;
+                armorAttack += Service.GetEquipmentStats(null, null, combatant.WeaponID).Damage;
             }
 
             if (combatant.ShieldID != null)
             {
-                armorAttack += Service.GetEquipmentStats(null, combatant.ShieldID).Damage;
+                armorAttack += Service.GetEquipmentStats(null, null, combatant.ShieldID).Damage;
             }
 
             return armorAttack;
@@ -659,19 +673,19 @@ namespace BellatorTabernae.Model
 
         public string getHitSeverityString(int damage, int maxHealth)
         {
-            if (damage / maxHealth >= 1)
+            if ((double)damage / maxHealth >= 1)
             {
                 return strings.GetString("HitSeverity5");
             } 
-            else if (damage / maxHealth >= 0.75)
+            else if ((double)damage / maxHealth >= 0.75)
             {
                 return strings.GetString("HitSeverity4");
             } 
-            else if (damage / maxHealth >= 0.50) 
+            else if ((double)damage / maxHealth >= 0.50) 
             {
                 return strings.GetString("HitSeverity3");
             }
-            else if (damage / maxHealth >= 0.25)
+            else if ((double)damage / maxHealth >= 0.25)
             {
                 return strings.GetString("HitSeverity2");
             }

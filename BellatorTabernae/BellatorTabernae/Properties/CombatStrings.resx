@@ -183,6 +183,9 @@
   <data name="EvadeAttack4" xml:space="preserve">
     <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas precis på håret undvika attacken! </value>
   </data>
+  <data name="GiveUpStanimaString" xml:space="preserve">
+    <value>&lt;div class="giveup"&gt;{0} faller ihop till marken av trötthet!&lt;/div&gt;</value>
+  </data>
   <data name="GiveUpString" xml:space="preserve">
     <value>&lt;div class="giveup"&gt;{0} väljer att ge upp striden!&lt;/div&gt;</value>
   </data>
@@ -229,6 +232,6 @@
     <value>&lt;div class="turn"&gt;Runda {0}&lt;/div&gt;</value>
   </data>
   <data name="WinString" xml:space="preserve">
-    <value>&lt;div class="endresult"&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera dela på {1} guldmynt som belöning!&lt;/div&gt;</value>
+    <value>&lt;div class="endresult"&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera {1} guldmynt som belöning!&lt;/div&gt;</value>
   </data>
 </root>

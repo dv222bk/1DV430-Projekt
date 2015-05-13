@@ -11,5 +11,41 @@ namespace BellatorTabernae.Pages {
     
     
     public partial class Battle {
+        
+        /// <summary>
+        /// MonsterPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MonsterPanel;
+        
+        /// <summary>
+        /// MonstersListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView MonstersListView;
+        
+        /// <summary>
+        /// NoCharacterPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel NoCharacterPanel;
+        
+        /// <summary>
+        /// CharacterHyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink CharacterHyperLink;
     }
 }

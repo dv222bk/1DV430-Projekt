@@ -14,6 +14,7 @@ namespace BellatorTabernae.Model
         private InventoryDAL _inventoryDAL;
         private LeaderboardDAL _leaderboardDAL;
         private UserDAL _userDAL;
+        private Battle _battle;
 
         public CharacterDAL CharacterDAL
         {
@@ -60,6 +61,14 @@ namespace BellatorTabernae.Model
             get
             {
                 return _userDAL ?? (_userDAL = new UserDAL());
+            }
+        }
+
+        public Battle Battle
+        {
+            get
+            {
+                return _battle ?? (_battle = new Battle());
             }
         }
 
@@ -195,9 +204,9 @@ namespace BellatorTabernae.Model
             return EquipmentDAL.GetEquipments();
         }
 
-        public EquipmentStats GetEquipmentStats(int? equipStatsID, int? equipID)
+        public EquipmentStats GetEquipmentStats(int? equipStatsID, int? equipID, int? inventoryID)
         {
-            return EquipmentDAL.GetEquipmentStats(equipStatsID, equipID);
+            return EquipmentDAL.GetEquipmentStats(equipStatsID, equipID, inventoryID);
         }
 
         public IEnumerable<EquipmentStats> GetEquipmentStats()
@@ -397,6 +406,50 @@ namespace BellatorTabernae.Model
         public int CheckLogin(string username, string password)
         {
             return UserDAL.CheckLogin(username, password);
+        }
+
+        /* Battle */
+
+        public List<CombatLog> InitiateMonsterBattle(int userID, int monsterID)
+        {
+            if (UserHasCharacter(userID))
+            {
+                List<Combatant> combatants = new List<Combatant>();
+                combatants.Add(CreateCombatantFromCharacter(GetCharacter(null, userID), 1));
+                combatants.Add(CreateCombatantFromCharacter(GetMonster(monsterID), 2));
+
+                return Battle.InitBattle(combatants);
+            }
+            else
+            {
+                throw new ApplicationException("Användaren hade ingen karaktär!");
+            }
+        }
+
+        public Combatant CreateCombatantFromCharacter(Character character, int teamNumber)
+        {
+            return new Combatant
+            {
+                CharID = character.CharID,
+                UserID = character.UserID,
+                Race = character.Race,
+                Name = character.Name,
+                Level = character.Level,
+                Experience = character.Experience,
+                Health = character.Health,
+                MaxHealth = character.MaxHealth,
+                Stanima = character.Stanima,
+                MaxStanima = character.MaxStanima,
+                Strength = character.Strength,
+                Speed = character.Speed,
+                Agility = character.Agility,
+                Dexterity = character.Dexterity,
+                WeaponID = character.WeaponID,
+                ShieldID = character.ShieldID,
+                ArmorID = character.ArmorID,
+                GiveUpPercent = 0.2,
+                TeamNumber = teamNumber
+            };
         }
     }
 }

@@ -259,6 +259,15 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;{0} faller ihop till marken av trötthet!&lt;/div&gt;.
+        /// </summary>
+        internal static string GiveUpStanimaString {
+            get {
+                return ResourceManager.GetString("GiveUpStanimaString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;{0} väljer att ge upp striden!&lt;/div&gt;.
         /// </summary>
         internal static string GiveUpString {
@@ -394,7 +403,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&quot;endresult&quot;&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera dela på {1} guldmynt som belöning!&lt;/div&gt;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;endresult&quot;&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera {1} guldmynt som belöning!&lt;/div&gt;.
         /// </summary>
         internal static string WinString {
             get {
