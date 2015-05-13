@@ -214,7 +214,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oj! Samtliga kombattanter gav upp striden samtidigt! Det ser ut som om den här striden slutar oavgjort!.
+        ///   Looks up a localized string similar to &lt;div class=&quot;endresult&quot;&gt;Oj! Samtliga kombattanter gav upp striden samtidigt! Det ser ut som om den här striden slutar oavgjort!&lt;/div&gt;.
         /// </summary>
         internal static string DrawString {
             get {
@@ -259,7 +259,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} väljer att ge upp striden!.
+        ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;{0} väljer att ge upp striden!&lt;/div&gt;.
         /// </summary>
         internal static string GiveUpString {
             get {
@@ -385,7 +385,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span class=&quot;turn&quot;&gt;Runda {0}&lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;turn&quot;&gt;Runda {0}&lt;/div&gt;.
         /// </summary>
         internal static string NewTurn {
             get {
@@ -394,7 +394,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span class=&quot;teamwin&quot;&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera dela på {1} guldmynt som belöning!&lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;endresult&quot;&gt;Som det enda lag där en kombattant inte gett upp, står lag {0} som vinnare! Kombattanterna i laget får vardera dela på {1} guldmynt som belöning!&lt;/div&gt;.
         /// </summary>
         internal static string WinString {
             get {

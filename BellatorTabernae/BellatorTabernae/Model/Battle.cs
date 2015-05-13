@@ -536,6 +536,7 @@ namespace BellatorTabernae.Model
                 int totalSpeed = combatant.Speed;
                 int totalAgility = combatant.Agility;
                 int totalDexterity = combatant.Dexterity;
+
                 if (combatant.ArmorID != null)
                 {
                     EquipmentStats ArmorStats = Service.GetEquipmentStats(null, combatant.ArmorID);
@@ -546,6 +547,7 @@ namespace BellatorTabernae.Model
                     totalAgility += ArmorStats.Agility;
                     totalDexterity += ArmorStats.Dexterity;
                 }
+
                 if (combatant.WeaponID != null)
                 {
                     EquipmentStats WeaponStats = Service.GetEquipmentStats(null, combatant.WeaponID);
@@ -556,6 +558,7 @@ namespace BellatorTabernae.Model
                     totalAgility += WeaponStats.Agility;
                     totalDexterity += WeaponStats.Dexterity;
                 }
+
                 if (combatant.ShieldID != null)
                 {
                     EquipmentStats ShieldStats = Service.GetEquipmentStats(null, combatant.ShieldID);
@@ -566,6 +569,7 @@ namespace BellatorTabernae.Model
                     totalAgility += ShieldStats.Agility;
                     totalDexterity += ShieldStats.Dexterity;
                 }
+
                 combatant.MaxHealth += statsHealth;
                 combatant.Health += statsHealth;
                 combatant.Stanima += statsStanima;
@@ -577,26 +581,63 @@ namespace BellatorTabernae.Model
             }
         }
 
+        public int GetCombatantTotalDefense(Combatant combatant)
+        {
+            int armorDefense = 0;
+
+            if (combatant.ArmorID != null)
+            {
+                armorDefense += Service.GetEquipmentStats(null, combatant.ArmorID).Defense;
+            }
+
+            if (combatant.WeaponID != null)
+            {
+                armorDefense += Service.GetEquipmentStats(null, combatant.WeaponID).Defense;
+            }
+
+            if (combatant.ShieldID != null)
+            {
+                armorDefense += Service.GetEquipmentStats(null, combatant.ShieldID).Defense;
+            }
+
+            return armorDefense;
+        }
+
+        public int GetCombatantTotalAttack(Combatant combatant)
+        {
+            int armorAttack = 0;
+
+            if (combatant.ArmorID != null)
+            {
+                armorAttack += Service.GetEquipmentStats(null, combatant.ArmorID).Damage;
+            }
+
+            if (combatant.WeaponID != null)
+            {
+                armorAttack += Service.GetEquipmentStats(null, combatant.WeaponID).Damage;
+            }
+
+            if (combatant.ShieldID != null)
+            {
+                armorAttack += Service.GetEquipmentStats(null, combatant.ShieldID).Damage;
+            }
+
+            return armorAttack;
+        }
+
         public int AttackDamage(Combatant combatant)
         {
             int strength = combatant.Strength;
 
-            if (combatant.WeaponID != null)
-            {
-                int weaponDamage = Service.GetEquipmentStats(null, combatant.WeaponID).Damage;
+            int equipmentDamage = GetCombatantTotalAttack(combatant);
 
-                if (weaponDamage < strength) 
-                {
-                    return randomGenerator.Next(weaponDamage, weaponDamage + (strength / 2) + 1);
-                }
-                else
-                {
-                    return randomGenerator.Next(strength, strength + (weaponDamage / 2) + 1);
-                }
+            if (equipmentDamage < strength) 
+            {
+                return randomGenerator.Next(equipmentDamage, equipmentDamage + (strength / 2) + 1);
             }
             else
             {
-                return randomGenerator.Next(0, (strength / 2) + 1);
+                return randomGenerator.Next(strength, strength + (equipmentDamage / 2) + 1);
             }
         }
 
@@ -604,22 +645,15 @@ namespace BellatorTabernae.Model
         {
             int strength = combatant.Strength;
 
-            if (combatant.ArmorID != null)
-            {
-                int armorDefense = Service.GetEquipmentStats(null, combatant.ArmorID).Defense;
+            int equipmentDefense = GetCombatantTotalDefense(combatant);
 
-                if (armorDefense < strength)
-                {
-                    return randomGenerator.Next(armorDefense, armorDefense + (strength / 4) + 1);
-                }
-                else
-                {
-                    return randomGenerator.Next(strength, strength + (armorDefense / 4) + 1);
-                }
+            if (equipmentDefense < strength)
+            {
+                return randomGenerator.Next(equipmentDefense, equipmentDefense + (strength / 4) + 1);
             }
             else
             {
-                return randomGenerator.Next(0, (strength / 4) + 1);
+                return randomGenerator.Next(strength, strength + (equipmentDefense / 4) + 1);
             }
         }
 
