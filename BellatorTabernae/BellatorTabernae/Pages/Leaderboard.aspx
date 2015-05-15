@@ -49,7 +49,7 @@
         <ItemTemplate>
             <li>
                 <span class="LeaderboardRank"><%# Item.Rank %></span>
-                <a href="<%#: GetRouteUrl("Character", new {ID = Item.CharID}) %>">
+                <a href="<%#: GetRouteUrl("OtherCharacter", new {charID = Item.CharID}) %>">
                     <span class="LeaderboardName"><%# Item.Name %></span>
                 </a>
                 <span class="LeaderboardRace"><%# Item.Race %></span>

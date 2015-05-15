@@ -279,6 +279,36 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
+        public bool IsCharacterUsers(int charID, int userID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.usp_IsCharacterUsers", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int, 4).Value = userID;
+                    cmd.Parameters.Add("@IsUsersCharacter", SqlDbType.Bit, 1).Direction = ParameterDirection.Output;
+
+                    conn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    return (bool)cmd.Parameters["@IsUsersCharacter"].Value;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när det skulle kontrolleras om användaren ägde en viss karaktär");
+                }
+            }
+        }
+
         public Character GetCharacterH(int charID)
         {
             using (SqlConnection conn = CreateConnection())

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -20,9 +21,28 @@ namespace BellatorTabernae.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            int charID;
+            try
+            {
+                if (int.TryParse(Page.RouteData.Values["charID"].ToString(), out charID))
+                {
+                    if (!Service.IsCharacterUsers(charID, int.Parse(Context.User.Identity.Name)))
+                    {
+                        EditCharacterBiografyButton.Visible = false;
+                        RemoveCharacter.Visible = false;
+                        GetCharacter(false);
+                        return; // If this path is choosen, nothing else should happen in this method.
+                    }
+                }
+            }
+            catch 
+            {
+                EditCharacterBiografyButton.Visible = true;
+                RemoveCharacter.Visible = true;
+            }
             if (Context.User.Identity.IsAuthenticated && Service.UserHasCharacter(int.Parse(Context.User.Identity.Name)))
             {
-                GetCharacter();
+                GetCharacter(true);
             }
             else if (Context.User.Identity.IsAuthenticated)
             {
@@ -35,11 +55,27 @@ namespace BellatorTabernae.Pages
             }
         }
 
-        protected void GetCharacter()
+        protected void GetCharacter(bool ownCharacter)
         {
             try
             {
-                Model.Character character = Service.GetCharacter(null, int.Parse(Context.User.Identity.Name));
+                Model.Character character = new Model.Character();
+                if (!ownCharacter)
+                {
+                    int charID;
+                    if (int.TryParse(Page.RouteData.Values["charID"].ToString(), out charID))
+                    {
+                        character = Service.GetCharacter(charID);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Felaktigt karaktärsID!");
+                    }
+                } 
+                else 
+                {
+                    character = Service.GetCharacter(null, int.Parse(Context.User.Identity.Name));
+                }
                 CharacterPanel.Visible = true;
                 CharacterName.Text = character.Name;
                 CharacterRace.Text = String.Format("Ras: {0}", character.Race);
@@ -53,11 +89,11 @@ namespace BellatorTabernae.Pages
                 CharacterDexterity.Text = String.Format("Träffsäkerhet: {0}", character.Dexterity);
                 if (character.Biografy != null)
                 {
-                    CharacterBiografy.Text = character.Biografy;
+                    CharacterBiografyLiteral.Text = character.Biografy;
                 }
                 else
                 {
-                    CharacterBiografy.Text = "Du har inte skrivt någon biografi till din karaktär ännu!";
+                    CharacterBiografyLiteral.Text = "Du har inte skrivt någon biografi till din karaktär ännu!";
                 }
             }
             catch (SqlException ex)
@@ -457,6 +493,44 @@ namespace BellatorTabernae.Pages
         protected void ChangeRace(object sender, EventArgs e)
         {
             Session["NewRace"] = true;
+        }
+
+        protected void EditCharacterBiografyButton_Click(object sender, EventArgs e)
+        {
+            EditCharacterBiografyButton.Visible = false;
+            CharacterBiografyLiteral.Visible = false;
+            EditCharacterBiografy.Visible = true;
+            SubmitBiografy.Visible = true;
+            EditCharacterBiografy.Text = CharacterBiografyLiteral.Text;
+        }
+
+        protected void SubmitBiografy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Service.UpdateCharacterBiografy(int.Parse(Context.User.Identity.Name), null, EditCharacterBiografy.Text);
+                EditCharacterBiografyButton.Visible = true;
+                CharacterBiografyLiteral.Visible = true;
+                EditCharacterBiografy.Visible = false;
+                SubmitBiografy.Visible = false;
+                CharacterBiografyLiteral.Text = EditCharacterBiografy.Text;
+            }
+            catch (SqlException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ApplicationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch
+            {
+                Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
+            }
         }
     }
 }

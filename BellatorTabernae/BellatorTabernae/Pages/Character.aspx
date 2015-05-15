@@ -1,22 +1,23 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Character.aspx.cs" Inherits="BellatorTabernae.Pages.Character" EnableViewState="true" %>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
+    <h2>Karaktärssida</h2>
     <asp:Panel ID="CharacterPanel" runat="server" 
         Visible="False">
         <asp:Image ID="CharacterImage" runat="server" />
-        <asp:Label ID="CharacterName" runat="server" />
+        <asp:Literal ID="CharacterName" runat="server" />
         <asp:Panel ID="CharacterInfo" runat="server">
-            <asp:Label ID="CharacterRace" runat="server" />
-            <asp:Label ID="CharacterLevel" runat="server" />
-            <asp:Label ID="CharacterExperience" runat="server" />
-            <asp:Label ID="CharacterHealth" runat="server" />
-            <asp:Label ID="CharacterStanima" runat="server" />
+            <asp:Literal ID="CharacterRace" runat="server" />
+            <asp:Literal ID="CharacterLevel" runat="server" />
+            <asp:Literal ID="CharacterExperience" runat="server" />
+            <asp:Literal ID="CharacterHealth" runat="server" />
+            <asp:Literal ID="CharacterStanima" runat="server" />
         </asp:Panel>
         <asp:Panel ID="CharacterStats" runat="server">
-            <asp:Label ID="CharacterStrength" runat="server" />
-            <asp:Label ID="CharacterSpeed" runat="server" />
-            <asp:Label ID="CharacterAgility" runat="server" />
-            <asp:Label ID="CharacterDexterity" runat="server" />
+            <asp:Literal ID="CharacterStrength" runat="server" />
+            <asp:Literal ID="CharacterSpeed" runat="server" />
+            <asp:Literal ID="CharacterAgility" runat="server" />
+            <asp:Literal ID="CharacterDexterity" runat="server" />
         </asp:Panel>
         <asp:Button ID="RemoveCharacter" runat="server"
             Text="Ta bort karaktär" 
@@ -24,9 +25,15 @@
         <!-- TO DO: Add Character Inventory -->
         <asp:Panel ID="CharacterBiografyPanel" runat="server">
             <h3>Biografi</h3>
-            <asp:Label ID="CharacterBiografy" runat="server" />
-            <asp:Button ID="EditCharacterBiografy" runat="server"
-                 Text="Ändra" />
+            <asp:Literal ID="CharacterBiografyLiteral" runat="server" />
+            <asp:Button ID="EditCharacterBiografyButton" runat="server"
+                 Text="Ändra" OnClick="EditCharacterBiografyButton_Click" />
+            <asp:TextBox ID="EditCharacterBiografy" runat="server"
+                TextMode="MultiLine"
+                Visible="false" />
+            <asp:Button ID="SubmitBiografy" runat="server"
+                Text="Skicka" OnClick="SubmitBiografy_Click"
+                Visible="false" />
         </asp:Panel>
     </asp:Panel>
     <asp:Panel ID="NewCharacterPanel" runat="server" Visible="False">

@@ -11,10 +11,8 @@ namespace BellatorTabernae
             routes.MapPageRoute("BattleResult", "stridsrapport", "~/Pages/BattleResult.aspx");
             routes.MapPageRoute("Battle", "strid", "~/Pages/Battle.aspx");
             routes.MapPageRoute("Market", "torget", "~/Pages/Market.aspx");
-            routes.MapPageRoute("Character", "karaktär/{ID}", "~/Pages/Character.aspx", true, 
-                new RouteValueDictionary { 
-                    {"ID", "[0-9]+" }
-                });
+            routes.MapPageRoute("Character", "karaktär", "~/Pages/Character.aspx");
+            routes.MapPageRoute("OtherCharacter", "karaktär/{*charID}", "~/Pages/Character.aspx");
             routes.MapPageRoute("Chat", "chat", "~/Pages/Chat.aspx");
             routes.MapPageRoute("Error", "serverfel", "~/Pages/Shared/Error.aspx");
             routes.MapPageRoute("Default", "", "~/Pages/Default.aspx");

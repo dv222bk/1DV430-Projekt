@@ -37,7 +37,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterName;
+        protected global::System.Web.UI.WebControls.Literal CharacterName;
         
         /// <summary>
         /// CharacterInfo control.
@@ -55,7 +55,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterRace;
+        protected global::System.Web.UI.WebControls.Literal CharacterRace;
         
         /// <summary>
         /// CharacterLevel control.
@@ -64,7 +64,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterLevel;
+        protected global::System.Web.UI.WebControls.Literal CharacterLevel;
         
         /// <summary>
         /// CharacterExperience control.
@@ -73,7 +73,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterExperience;
+        protected global::System.Web.UI.WebControls.Literal CharacterExperience;
         
         /// <summary>
         /// CharacterHealth control.
@@ -82,7 +82,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterHealth;
+        protected global::System.Web.UI.WebControls.Literal CharacterHealth;
         
         /// <summary>
         /// CharacterStanima control.
@@ -91,7 +91,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterStanima;
+        protected global::System.Web.UI.WebControls.Literal CharacterStanima;
         
         /// <summary>
         /// CharacterStats control.
@@ -109,7 +109,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterStrength;
+        protected global::System.Web.UI.WebControls.Literal CharacterStrength;
         
         /// <summary>
         /// CharacterSpeed control.
@@ -118,7 +118,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterSpeed;
+        protected global::System.Web.UI.WebControls.Literal CharacterSpeed;
         
         /// <summary>
         /// CharacterAgility control.
@@ -127,7 +127,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterAgility;
+        protected global::System.Web.UI.WebControls.Literal CharacterAgility;
         
         /// <summary>
         /// CharacterDexterity control.
@@ -136,7 +136,7 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterDexterity;
+        protected global::System.Web.UI.WebControls.Literal CharacterDexterity;
         
         /// <summary>
         /// RemoveCharacter control.
@@ -157,13 +157,22 @@ namespace BellatorTabernae.Pages {
         protected global::System.Web.UI.WebControls.Panel CharacterBiografyPanel;
         
         /// <summary>
-        /// CharacterBiografy control.
+        /// CharacterBiografyLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharacterBiografy;
+        protected global::System.Web.UI.WebControls.Literal CharacterBiografyLiteral;
+        
+        /// <summary>
+        /// EditCharacterBiografyButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EditCharacterBiografyButton;
         
         /// <summary>
         /// EditCharacterBiografy control.
@@ -172,7 +181,16 @@ namespace BellatorTabernae.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditCharacterBiografy;
+        protected global::System.Web.UI.WebControls.TextBox EditCharacterBiografy;
+        
+        /// <summary>
+        /// SubmitBiografy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SubmitBiografy;
         
         /// <summary>
         /// NewCharacterPanel control.
