@@ -11,5 +11,32 @@ namespace BellatorTabernae.Pages {
     
     
     public partial class Leaderboard {
+        
+        /// <summary>
+        /// LeaderboardTypeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LeaderboardTypeLabel;
+        
+        /// <summary>
+        /// LeaderboardType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList LeaderboardType;
+        
+        /// <summary>
+        /// LeaderboardListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView LeaderboardListView;
     }
 }

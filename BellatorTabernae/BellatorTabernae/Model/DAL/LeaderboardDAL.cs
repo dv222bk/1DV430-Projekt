@@ -22,8 +22,7 @@ namespace BellatorTabernae.Model.DAL
                     cmd.Parameters.Add("@StartPosition", SqlDbType.Int, 4).Value = startIndexRow + 1;
                     cmd.Parameters.Add("@PageSize", SqlDbType.Int, 4).Value = maximumRows;
                     cmd.Parameters.Add("@TotalEntries", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-
-                    cmd.Parameters.AddWithValue("@Type", type);
+                    cmd.Parameters.Add("@Type", SqlDbType.Int, 4).Value = type;
 
                     conn.Open();
 
@@ -37,41 +36,26 @@ namespace BellatorTabernae.Model.DAL
                             var raceIndex = reader.GetOrdinal("RaceName");
                             var nameIndex = reader.GetOrdinal("Name");
                             var levelIndex = reader.GetOrdinal("Level");
-                            var maxHealthIndex = reader.GetOrdinal("MaxHealth");
-                            var maxStanimaIndex = reader.GetOrdinal("MaxStanima");
-                            var strengthIndex = reader.GetOrdinal("Strength");
-                            var speedIndex = reader.GetOrdinal("Speed");
-                            var dexterityIndex = reader.GetOrdinal("Dexterity");
-                            var agilityIndex = reader.GetOrdinal("Agility");
 
                             while (reader.Read())
                             {
                                 leaderboard.Add(new Leaderboard
                                 {
-                                    RowNumber = reader.GetInt32(rowNumberIndex),
-                                    Rank = reader.GetInt32(rankIndex),
+                                    RowNumber = reader.GetInt64(rowNumberIndex),
+                                    Rank = reader.GetInt64(rankIndex),
                                     CharID = reader.GetInt32(charIDIndex),
                                     Race = reader.GetString(raceIndex),
                                     Name = reader.GetString(nameIndex),
-                                    Level = reader.GetByte(levelIndex),
-                                    MaxHealth = reader.GetInt16(maxHealthIndex),
-                                    MaxStanima = reader.GetInt16(maxStanimaIndex),
-                                    Strength = reader.GetByte(strengthIndex),
-                                    Speed = reader.GetByte(speedIndex),
-                                    Dexterity = reader.GetByte(dexterityIndex),
-                                    Agility = reader.GetByte(agilityIndex)
+                                    Level = reader.GetByte(levelIndex)
                                 });
                             }
-                            totalRowCount = (int)cmd.Parameters["@TotalEntries"].Value;
-
-                            leaderboard.TrimExcess();
-
-                            return leaderboard;
                         }
-                        totalRowCount = 0;
-
-                        return null;
                     }
+                    totalRowCount = (int)cmd.Parameters["@TotalEntries"].Value;
+
+                    leaderboard.TrimExcess();
+
+                    return leaderboard;
                 }
                 catch (SqlException ex)
                 {
