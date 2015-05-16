@@ -342,6 +342,19 @@ namespace BellatorTabernae.Model
                 List<Combatant> finalResults = new List<Combatant>();
                 finalResults.AddRange(combatants);
                 finalResults.AddRange(combatantsGiveUp);
+
+                // Add a message to the combatlog for each character that died in the battle.
+                List<Combatant> deadChars = finalResults.FindAll(x => x.Health <= 0);
+                if (deadChars.Count() >= 1)
+                {
+                    foreach (Combatant deadChar in deadChars)
+                    {
+                        combatLog.Add(new CombatLog(combatLogID, String.Format(strings.GetString("DeadString"), String.Format("<span class=\"deadChar\">{0}</span>", deadChar.Name)),
+                            null, null, null, null));
+                        combatLogID++;
+                    }
+                }
+
                 if (combatants.Count > 0)
                 {
                     // Give XP and gold to all team members of the winning team
@@ -366,7 +379,7 @@ namespace BellatorTabernae.Model
                             {
                                 gainedXP += (int)(((20 + loser.Level * loser.Level * loser.Level) / 2) * ((double)loser.Level / winner.Level));
 
-                                if (gainedXP > xpToNextLevel)
+                                if (gainedXP > xpToNextLevel && winner.Level < 255)
                                 {
                                     gainedXP = xpToNextLevel;
                                     winner.Level++;
@@ -382,19 +395,6 @@ namespace BellatorTabernae.Model
                 {
                     combatLogEntry = String.Format(strings.GetString("DrawString"));
                 }
-
-                // Add a message to the combatlog for each character that died in the battle.
-                List<Combatant> deadChars = finalResults.FindAll(x => x.Health <= 0);
-                if (deadChars.Count() >= 1)
-                {
-                    string chars = "";
-                    foreach (Combatant deadChar in deadChars) 
-                    {
-                        chars = String.Concat(chars, String.Format("<span class=\"deadChar\">{0}</span>", deadChar.Name));
-                    }
-                    combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString("DeadString"), chars));
-                }
-                
 
                 // Update each character that participated in the battle
                 foreach (Combatant combatant in finalResults)

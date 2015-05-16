@@ -1,10 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Default.aspx.cs" Inherits="BellatorTabernae.Pages.Default" EnableViewState="False" %>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
-    <asp:Panel ID="MsgPanel" runat="server" 
-        Visible="False">
-        <asp:Label ID="SiteMsg" runat="server" />
-    </asp:Panel>
     <asp:Panel ID="FrontPageMainPanel" runat="server" DefaultButton="NewUser">
         <asp:Panel ID="NewUserPanel" runat="server">
             <asp:Label ID="NewUserLabel" runat="server" 

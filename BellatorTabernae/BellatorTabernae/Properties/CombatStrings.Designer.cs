@@ -178,6 +178,15 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;div class=&quot;deadString&quot;&gt;Tyvärr så avled {0} av sina skador.&lt;/span&gt;.
+        /// </summary>
+        internal static string DeadString {
+            get {
+                return ResourceManager.GetString("DeadString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;span class=&quot;defender&quot;&gt;{1}&lt;/span&gt; tar tillfället i akt och riktar en motattack mot &lt;span class=&quot;attacker&quot;&gt;{0}&lt;/span&gt; och träffar! &lt;span class=&quot;attacker&quot;&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;.
         /// </summary>
         internal static string DefenderCounter1 {

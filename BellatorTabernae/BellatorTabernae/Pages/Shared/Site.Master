@@ -29,6 +29,10 @@
                     </nav>
                 </header>
                 <main>
+                    <asp:Panel ID="MsgPanel" runat="server" 
+                        Visible="False">
+                        <asp:Label ID="SiteMsg" runat="server" />
+                    </asp:Panel>
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                     <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server" />
                 </main>

@@ -18,6 +18,10 @@
             <asp:Literal ID="CharacterSpeed" runat="server" />
             <asp:Literal ID="CharacterAgility" runat="server" />
             <asp:Literal ID="CharacterDexterity" runat="server" />
+            <asp:Button ID="LevelUp" runat="server"
+                Text="Level Upp!"
+                Visible="false"
+                OnClick="LevelUp_Click" />
         </asp:Panel>
         <asp:Button ID="RemoveCharacter" runat="server"
             Text="Ta bort karaktär" 
@@ -36,9 +40,10 @@
                 Visible="false" />
         </asp:Panel>
     </asp:Panel>
-    <asp:Panel ID="NewCharacterPanel" runat="server" Visible="False">
-        <asp:ScriptManager EnablePartialRendering="true"
-            ID="NewCharacterScriptManager" runat="server"></asp:ScriptManager>
+    <asp:Panel ID="NewCharacterPanel" runat="server" 
+        Visible="False">
+        <asp:ScriptManager ID="NewCharacterScriptManager" runat="server"
+            EnablePartialRendering="true" />
         <h2>Ny karaktär</h2>
         <p>Eftersom du inte har en karaktär är det högtid att skapa en! Fyll i formuläret nedan!</p>
         <asp:RequiredFieldValidator ID="NameRequired" runat="server"
@@ -169,5 +174,12 @@
         <asp:Button ID="CreateCharacter" runat="server" 
             Text="Skapa karaktär"
             OnClick="CreateCharacter_Click" />
+    </asp:Panel>
+    <asp:Panel ID="CharacterDeadPanel" runat="server"
+        Visible="false">
+        <p>Tyvärr så har din karaktär dött i strid! Karaktären kommer alltid minnas som den hjälte den var!</p>
+        <asp:Button ID="RemoveDeadCharacter" runat="server"
+            Text="Skapa ny karaktär" 
+            OnClick="RemoveCharacter_Click" />
     </asp:Panel>
 </asp:Content>

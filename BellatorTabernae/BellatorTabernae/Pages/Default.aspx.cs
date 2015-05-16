@@ -22,27 +22,6 @@ namespace BellatorTabernae.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Registrated"] != null)
-            {
-                MsgPanel.Visible = true;
-                SiteMsg.Text = String.Concat("Du är nu registrerad som ", Session["Registrated"], " och kan nu logga in!");
-                Session["Registrated"] = null;
-            }
-
-            if (Session["LogOut"] != null)
-            {
-                MsgPanel.Visible = true;
-                SiteMsg.Text = String.Concat("Du är inte längre inloggad som ", Session["LogOut"], "!");
-                Session["LogOut"] = null;
-            }
-
-            if (Session["SiteMsg"] != null)
-            {
-                MsgPanel.Visible = true;
-                SiteMsg.Text = Session["SiteMsg"].ToString();
-                Session["SiteMsg"] = null;
-            }
-
             if (Context.User.Identity.IsAuthenticated)
             {
                 NewUserPanel.Visible = false;

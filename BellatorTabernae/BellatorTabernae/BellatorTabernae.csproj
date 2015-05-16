@@ -79,6 +79,7 @@
     <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Leaderboard.aspx" />
+    <Content Include="Pages\Levelup.aspx" />
     <Content Include="Pages\Market.aspx" />
     <Content Include="Pages\Shared\Error.aspx" />
     <Content Include="Pages\Shared\Site.Master" />
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="Pages\Leaderboard.aspx.designer.cs">
       <DependentUpon>Leaderboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Levelup.aspx.cs">
+      <DependentUpon>Levelup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Levelup.aspx.designer.cs">
+      <DependentUpon>Levelup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Market.aspx.cs">
       <DependentUpon>Market.aspx</DependentUpon>

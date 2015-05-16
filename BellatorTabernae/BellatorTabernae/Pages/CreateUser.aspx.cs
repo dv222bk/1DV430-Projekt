@@ -30,7 +30,7 @@ namespace BellatorTabernae.Pages
                 try
                 {
                     Service.CreateUser(Username.Text, Password.Text, Email.Text);
-                    Session["Registrated"] = Username.Text;
+                    Session["SiteMsg"] = String.Format("Du är nu registrerad som {0} och kan nu logga in!", Username.Text);
                     Response.RedirectToRoute("Default");
                 }
                 catch (SqlException ex)

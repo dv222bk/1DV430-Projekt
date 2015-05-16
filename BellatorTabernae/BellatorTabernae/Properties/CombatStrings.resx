@@ -156,6 +156,9 @@
   <data name="BlockAttack4" xml:space="preserve">
     <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; hade tur och lyckas precis blockera attacken! </value>
   </data>
+  <data name="DeadString" xml:space="preserve">
+    <value>&lt;div class="deadString"&gt;Tyvärr så avled {0} av sina skador.&lt;/span&gt;</value>
+  </data>
   <data name="DefenderCounter1" xml:space="preserve">
     <value>&lt;span class="defender"&gt;{1}&lt;/span&gt; tar tillfället i akt och riktar en motattack mot &lt;span class="attacker"&gt;{0}&lt;/span&gt; och träffar! &lt;span class="attacker"&gt;{0}&lt;/span&gt; skadas {2}!&lt;/div&gt;</value>
   </data>

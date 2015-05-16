@@ -19,6 +19,13 @@ namespace BellatorTabernae.Pages.Shared
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["SiteMsg"] != null)
+            {
+                MsgPanel.Visible = true;
+                SiteMsg.Text = Session["SiteMsg"].ToString();
+                Session["SiteMsg"] = null;
+            }
+
             if (Context.User.Identity.IsAuthenticated)
             {
                 LoggedIn.Visible = true;
@@ -28,7 +35,7 @@ namespace BellatorTabernae.Pages.Shared
 
         protected void LogOut_Click(object sender, EventArgs e)
         {
-            Session["LogOut"] = GetUsername();
+            Session["SiteMsg"] = String.Format("Du är inte längre inloggad som {0}!", GetUsername());
             FormsAuthentication.SignOut();
             Response.RedirectToRoute("Default");
         }

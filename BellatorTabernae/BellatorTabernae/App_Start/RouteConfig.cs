@@ -14,6 +14,7 @@ namespace BellatorTabernae
             routes.MapPageRoute("Character", "karaktär", "~/Pages/Character.aspx");
             routes.MapPageRoute("OtherCharacter", "karaktär/{*charID}", "~/Pages/Character.aspx");
             routes.MapPageRoute("Chat", "chat", "~/Pages/Chat.aspx");
+            routes.MapPageRoute("LevelUp", "level upp!", "~/Pages/Levelup.aspx");
             routes.MapPageRoute("Error", "serverfel", "~/Pages/Shared/Error.aspx");
             routes.MapPageRoute("Default", "", "~/Pages/Default.aspx");
         }

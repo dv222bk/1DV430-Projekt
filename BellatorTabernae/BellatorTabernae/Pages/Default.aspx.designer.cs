@@ -13,24 +13,6 @@ namespace BellatorTabernae.Pages {
     public partial class Default {
         
         /// <summary>
-        /// MsgPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel MsgPanel;
-        
-        /// <summary>
-        /// SiteMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SiteMsg;
-        
-        /// <summary>
         /// FrontPageMainPanel control.
         /// </summary>
         /// <remarks>

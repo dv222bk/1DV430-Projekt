@@ -145,6 +145,19 @@ namespace BellatorTabernae.Model
             CharacterDAL.UpdateCharacterStats(character.UserID, character.CharID, level, experience, health, maxHealth, stanima, maxStanima, strength, speed, dexterity, agility);
         }
 
+        public void UpdateCharacterStats(Character character)
+        {
+            Validate(character);
+            CharacterDAL.UpdateCharacterStats(character.UserID, character.CharID, character.Level, character.Experience, character.Health, character.MaxHealth, character.Stanima,
+                character.MaxStanima, character.Strength, character.Speed, character.Dexterity, character.Agility);
+        }
+
+        public void LevelUpCharacter(int? userID, int? charID, int maxHealth, int maxStanima, int strength,
+                                    int speed, int dexterity, int agility)
+        {
+            CharacterDAL.UpdateCharacterStats(userID, charID, null, null, maxHealth, maxHealth, maxStanima, maxStanima, strength, speed, dexterity, agility);
+        }
+
         public void UpdateCharacterAfterCombat(int charID, int level, int experience, int health, int stanima) {
             CharacterDAL.UpdateCharacterStats(null, charID, level, experience, health, null, stanima);
         }

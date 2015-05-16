@@ -55,6 +55,8 @@ namespace BellatorTabernae.Pages
             }
         }
 
+        // Get character
+
         protected void GetCharacter(bool ownCharacter)
         {
             try
@@ -75,25 +77,33 @@ namespace BellatorTabernae.Pages
                 else 
                 {
                     character = Service.GetCharacter(null, int.Parse(Context.User.Identity.Name));
+                    CheckIfLevelUp(character);
                 }
-                CharacterPanel.Visible = true;
-                CharacterName.Text = character.Name;
-                CharacterRace.Text = String.Format("Ras: {0}", character.Race);
-                CharacterLevel.Text = String.Format("Level: {0}", character.Level);
-                CharacterExperience.Text = String.Format("XP: {0}", character.Experience);
-                CharacterHealth.Text = String.Format("Livspoäng: {0}/{1}", character.Health, character.MaxHealth);
-                CharacterStanima.Text = String.Format("Uthållighetspoäng: {0}/{1}", character.Stanima, character.MaxStanima);
-                CharacterStrength.Text = String.Format("Styrka: {0}", character.Strength);
-                CharacterSpeed.Text = String.Format("Snabbhet: {0}", character.Speed);
-                CharacterAgility.Text = String.Format("Undvika: {0}", character.Agility);
-                CharacterDexterity.Text = String.Format("Träffsäkerhet: {0}", character.Dexterity);
-                if (character.Biografy != null)
+                if (character.Health > 0)
                 {
-                    CharacterBiografyLiteral.Text = character.Biografy;
+                    CharacterPanel.Visible = true;
+                    CharacterName.Text = character.Name;
+                    CharacterRace.Text = String.Format("Ras: {0}", character.Race);
+                    CharacterLevel.Text = String.Format("Level: {0}", character.Level);
+                    CharacterExperience.Text = String.Format("XP: {0}", character.Experience);
+                    CharacterHealth.Text = String.Format("Livspoäng: {0}/{1}", character.Health, character.MaxHealth);
+                    CharacterStanima.Text = String.Format("Uthållighetspoäng: {0}/{1}", character.Stanima, character.MaxStanima);
+                    CharacterStrength.Text = String.Format("Styrka: {0}", character.Strength);
+                    CharacterSpeed.Text = String.Format("Snabbhet: {0}", character.Speed);
+                    CharacterAgility.Text = String.Format("Undvika: {0}", character.Agility);
+                    CharacterDexterity.Text = String.Format("Träffsäkerhet: {0}", character.Dexterity);
+                    if (character.Biografy != null)
+                    {
+                        CharacterBiografyLiteral.Text = character.Biografy;
+                    }
+                    else
+                    {
+                        CharacterBiografyLiteral.Text = "Du har inte skrivt någon biografi till din karaktär ännu!";
+                    }
                 }
                 else
                 {
-                    CharacterBiografyLiteral.Text = "Du har inte skrivt någon biografi till din karaktär ännu!";
+                    CharacterDeadPanel.Visible = true;
                 }
             }
             catch (SqlException ex)
@@ -117,6 +127,8 @@ namespace BellatorTabernae.Pages
                 Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
             }
         }
+
+        // Create new character
 
         protected void CreateNewCharacter()
         {
@@ -210,6 +222,7 @@ namespace BellatorTabernae.Pages
                             Session["RaceAgility"] = Session["RaceDexterity"] = Session["Races"] =
                             Session["NewRace"] = Session["PointsLeft"] = null;
 
+                        Session["SiteMsg"] = String.Format("Grattis! Du skapade karaktären {0}!", Name.Text);
                         Response.RedirectToRoute("Character");
                     }
                     catch (SqlException ex)
@@ -461,11 +474,20 @@ namespace BellatorTabernae.Pages
             }
         }
 
+        protected void ChangeRace(object sender, EventArgs e)
+        {
+            Session["NewRace"] = true;
+        }
+
+        // Remove character
+
         protected void RemoveCharacter_Click(object sender, EventArgs e)
         {
             try
             {
                 Service.DeleteCharacter(null, int.Parse(Context.User.Identity.Name));
+
+                Session["SiteMsg"] = "Din karaktär är nu borttagen! Du kan nu skapa en ny!";
                 Response.RedirectToRoute("Character");
             }
             catch (SqlException ex)
@@ -490,10 +512,7 @@ namespace BellatorTabernae.Pages
             }
         }
 
-        protected void ChangeRace(object sender, EventArgs e)
-        {
-            Session["NewRace"] = true;
-        }
+        // Change biografy
 
         protected void EditCharacterBiografyButton_Click(object sender, EventArgs e)
         {
@@ -530,6 +549,25 @@ namespace BellatorTabernae.Pages
             catch
             {
                 Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
+            }
+        }
+
+        // Level up
+
+        protected void LevelUp_Click(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("LevelUp");
+        }
+
+        protected void CheckIfLevelUp(Model.Character character)
+        {
+            // If the character's stats (counted in "points") is less than
+            // the characters level times 10 + 50
+            if ((character.MaxHealth / 5) + (character.MaxStanima / 5) + character.Strength +
+                character.Speed + character.Agility + character.Dexterity <
+                (character.Level * 10) + 50)
+            {
+                LevelUp.Visible = true;
             }
         }
     }
