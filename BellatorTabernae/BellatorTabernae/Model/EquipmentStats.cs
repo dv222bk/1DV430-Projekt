@@ -31,5 +31,46 @@ namespace BellatorTabernae.Model
 
         [Required(ErrorMessage = "Utrustningen måste ha ett värde i skydd!")]
         public int Defense { get; set; }
+
+        public string EffectString
+        {
+            get
+            {
+                string returnString = "";
+                if (Health != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Hälsa: ", Health, "</span>");
+                }
+                if (Stanima != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Uthållighet: ", Stanima, "</span>");
+                }
+                if (Strength != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Styrka: ", Strength, "</span>");
+                }
+                if (Speed != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Snabbhet: ", Speed, "</span>");
+                }
+                if (Dexterity != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Undvika: ", Dexterity, "</span>");
+                }
+                if (Agility != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Träffsäkerhet: ", Agility, "</span>");
+                }
+                if (Damage != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Skada: ", Damage, "</span>");
+                }
+                if (Defense != 0)
+                {
+                    returnString = String.Concat(returnString, "<span class=\"EquipmentStats\">Skydd: ", Defense, "</span>");
+                }
+                return returnString;
+            }
+        }
     }
 }

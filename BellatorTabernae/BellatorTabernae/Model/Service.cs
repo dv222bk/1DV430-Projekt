@@ -222,6 +222,22 @@ namespace BellatorTabernae.Model
             return EquipmentDAL.GetEquipments();
         }
 
+        public IEnumerable<Equipment> GetMarketInventory(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            return EquipmentDAL.GetMarketInventory(maximumRows, startRowIndex, out totalRowCount);
+        }
+
+        public int GetCharacterGold(int? charID, int? userID)
+        {
+            return EquipmentDAL.GetCharacterGold(charID, userID);
+        }
+
+        public int GetCharacterGold(Character character)
+        {
+            Validate(character);
+            return EquipmentDAL.GetCharacterGold(character.CharID, null);
+        }
+
         public EquipmentStats GetEquipmentStats(int? equipStatsID, int? equipID, int? inventoryID)
         {
             return EquipmentDAL.GetEquipmentStats(equipStatsID, equipID, inventoryID);
@@ -261,28 +277,33 @@ namespace BellatorTabernae.Model
             InventoryDAL.AddGoldToInventory(charID, number);
         }
 
+        public void RemoveGoldFromInventory(int? charID, int? userID, int? inventoryID, int? number)
+        {
+            InventoryDAL.RemoveGoldFromInventory(charID, userID, inventoryID, number);
+        }
+
         public void AddEquipmentToInventory(Character character, Equipment equipment, int? number = null)
         {
             Validate(character);
             Validate(equipment);
-            InventoryDAL.AddEquipmentToInventory(character.CharID, equipment.EquipID, number);
+            InventoryDAL.AddEquipmentToInventory(character.CharID, null, equipment.EquipID, number);
         }
 
         public void AddEquipmentToInventory(int charID, Equipment equipment, int? number = null)
         {
             Validate(equipment);
-            InventoryDAL.AddEquipmentToInventory(charID, equipment.EquipID, number);
+            InventoryDAL.AddEquipmentToInventory(charID, null, equipment.EquipID, number);
         }
 
         public void AddEquipmentToInventory(Character character, int equipID, int? number = null)
         {
             Validate(character);
-            InventoryDAL.AddEquipmentToInventory(character.CharID, equipID, number);
+            InventoryDAL.AddEquipmentToInventory(character.CharID, null, equipID, number);
         }
 
-        public void AddEquipmentToInventory(int charID, int equipID, int? number = null)
+        public void AddEquipmentToInventory(int? charID, int? userID, int equipID, int? number = null)
         {
-            InventoryDAL.AddEquipmentToInventory(charID, equipID, number);
+            InventoryDAL.AddEquipmentToInventory(charID, userID, equipID, number);
         }
 
         public void AddEquipmentToInventory(Inventory inventory, int? number = null)

@@ -36,7 +36,7 @@ namespace BellatorTabernae.Model.DAL
                                 EquipStatsID = reader.GetInt16(equipStatsIDIndex),
                                 EquipType = reader.GetString(equipTypeIndex),
                                 Name = reader.GetString(nameIndex),
-                                Value = reader.GetByte(valueIndex)
+                                Value = reader.GetInt32(valueIndex)
                             };
                         }
                     }
@@ -80,11 +80,11 @@ namespace BellatorTabernae.Model.DAL
                             {
                                 equipment.Add(new Equipment
                                 {
-                                    EquipID = reader.GetInt32(equipIDIndex),
+                                    EquipID = reader.GetInt16(equipIDIndex),
                                     EquipStatsID = reader.GetInt16(equipStatsIDIndex),
                                     EquipType = reader.GetString(equipTypeIndex),
                                     Name = reader.GetString(nameIndex),
-                                    Value = reader.GetByte(valueIndex)
+                                    Value = reader.GetInt32(valueIndex)
                                 });
                             }
                             equipment.TrimExcess();
@@ -102,6 +102,112 @@ namespace BellatorTabernae.Model.DAL
                 {
                     throw new ApplicationException("Ett fel inträffade när utrustningar skulle hämtas från databasen.");
                 }
+            }
+        }
+
+        public IEnumerable<Equipment> GetMarketInventory(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    var equipment = new List<Equipment>(30);
+
+                    SqlCommand cmd = new SqlCommand("dbo.usp_GetMarketInventory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@StartPosition", SqlDbType.Int, 4).Value = startRowIndex + 1;
+                    cmd.Parameters.Add("@PageSize", SqlDbType.Int, 4).Value = maximumRows;
+                    cmd.Parameters.Add("@TotalEntries", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            var equipIDIndex = reader.GetOrdinal("EquipID");
+                            var equipStatsIDIndex = reader.GetOrdinal("EquipStatsID");
+                            var equipTypeIndex = reader.GetOrdinal("EquipTypeName");
+                            var nameIndex = reader.GetOrdinal("Name");
+                            var valueIndex = reader.GetOrdinal("Value");
+
+                            while (reader.Read())
+                            {
+                                equipment.Add(new Equipment
+                                {
+                                    EquipID = reader.GetInt16(equipIDIndex),
+                                    EquipStatsID = reader.GetInt16(equipStatsIDIndex),
+                                    EquipType = reader.GetString(equipTypeIndex),
+                                    Name = reader.GetString(nameIndex),
+                                    Value = reader.GetInt32(valueIndex)
+                                });
+                            }
+                        }
+                    }
+                    totalRowCount = (int)cmd.Parameters["@TotalEntries"].Value;
+
+                    equipment.TrimExcess();
+
+                    return equipment;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när utrustningar skulle hämtas från databasen.");
+                }
+            }
+        }
+
+        public int GetCharacterGold(int? charID, int? userID)
+        {
+            if (charID != null || userID != null)
+            {
+                using (SqlConnection conn = CreateConnection())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("dbo.usp_GetCharacterGold", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        if (charID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@CharID", charID);
+                        }
+                        if (userID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@UserID", userID);
+                        }
+
+                        conn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var goldIndex = reader.GetOrdinal("Number");
+
+                                return reader.GetInt32(goldIndex);
+                            }
+                        }
+                        return 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch
+                    {
+                        throw new ApplicationException("Ett fel inträffade när utrustnings egenskaper skulle hämtas från databasen.");
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Ett argument fel inträffade när karaktärens guld skulle hämtas från databasen.");
             }
         }
 
