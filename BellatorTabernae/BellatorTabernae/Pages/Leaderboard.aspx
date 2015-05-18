@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Leaderboard.aspx.cs" Inherits="BellatorTabernae.Pages.Leaderboard" EnableViewState="false" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Topplistan - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Topplista</h2>
     <asp:Label ID="LeaderboardTypeLabel" runat="server" 
@@ -20,13 +24,13 @@
         SelectMethod="LeaderboardListView_GetLeaderboard"
         DataKeyNames="RowNumber">
         <LayoutTemplate>
+            <h3>
+                <span class="LeaderboardRank">Rank</span>
+                <span class="LeaderboardName">Namn</span>
+                <span class="LeaderboardRace">Ras</span>
+                <span class="LeaderboardLevel">Level</span>
+            </h3>
             <ol id="Leaderboard">
-                <h3>
-                    <span class="LeaderboardRank">Rank</span>
-                    <span class="LeaderboardName">Namn</span>
-                    <span class="LeaderboardRace">Ras</span>
-                    <span class="LeaderboardLevel">Level</span>
-                </h3>
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
             </ol>
             <div class="Pagination">

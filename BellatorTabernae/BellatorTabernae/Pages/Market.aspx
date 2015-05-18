@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Market.aspx.cs" Inherits="BellatorTabernae.Pages.Market" EnableViewState="false" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Torget - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Torget</h2>
     <p>Välkommen till torget! Det är här karaktärerna i Bellator Tabernae byter till sig ny utrustning för sina välförtjänta guldmynt!</p>
@@ -11,13 +15,13 @@
             UpdateMethod="MarketListView_BuyEquipment"
             DataKeyNames="EquipID">
             <LayoutTemplate>
-                <ol id="Leaderboard">
-                    <h3>
-                        <span class="EquipmentName">Namn</span>
-                        <span class="EquipmentType">Typ</span>
-                        <span class="EquipmentEffect">Effekt</span>
-                        <span class="EquipmentCost">Kostnad</span>
-                    </h3>
+                <h3>
+                    <span class="EquipmentName">Namn</span>
+                    <span class="EquipmentType">Typ</span>
+                    <span class="EquipmentEffect">Effekt</span>
+                    <span class="EquipmentCost">Kostnad</span>
+                </h3>
+                <ol id="Market">
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
                 </ol>
                 <div class="Pagination">

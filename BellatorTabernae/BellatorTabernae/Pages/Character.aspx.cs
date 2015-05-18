@@ -30,6 +30,7 @@ namespace BellatorTabernae.Pages
                     {
                         EditCharacterBiografyButton.Visible = false;
                         RemoveCharacter.Visible = false;
+                        CharacterInventory.Visible = false;
                         GetCharacter(false);
                         return; // If this path is choosen, nothing else should happen in this method.
                     }
@@ -39,10 +40,12 @@ namespace BellatorTabernae.Pages
             {
                 EditCharacterBiografyButton.Visible = true;
                 RemoveCharacter.Visible = true;
+                CharacterInventory.Visible = true;
             }
             if (Context.User.Identity.IsAuthenticated && Service.UserHasCharacter(int.Parse(Context.User.Identity.Name)))
             {
                 GetCharacter(true);
+                CharacterGoldLiteral.Text = String.Format("Ditt guld: {0}", Service.GetCharacterGold(null, int.Parse(Context.User.Identity.Name.ToString())));
             }
             else if (Context.User.Identity.IsAuthenticated)
             {
@@ -569,6 +572,132 @@ namespace BellatorTabernae.Pages
             {
                 LevelUp.Visible = true;
             }
+        }
+
+        // Character inventory
+
+        protected string GetEquipEffects(int equipStatsID)
+        {
+            try
+            {
+                EquipmentStats equipStats = Service.GetEquipmentStats(equipStatsID, null, null);
+                return equipStats.EffectString;
+            }
+            catch (SqlException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ApplicationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch
+            {
+                Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
+            }
+            return null;
+        }
+
+        public IEnumerable<Inventory> CharacterInventoryListView_GetEquipments()
+        {
+            try
+            {
+                Model.Character character = Service.GetCharacter(null, int.Parse(Context.User.Identity.Name.ToString()));
+                return Service.GetInventory(null, int.Parse(Context.User.Identity.Name.ToString())).ToList();
+            }
+            catch (SqlException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ApplicationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch
+            {
+                Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
+            }
+            return null;
+        }
+
+        public void CharacterInventoryListView_EquipItem(int inventoryID)
+        {
+            try
+            {
+                Inventory inventoryItem = Service.GetInventory(inventoryID);
+                Model.Character character = Service.GetCharacter(null, int.Parse(Context.User.Identity.Name.ToString()));
+                if (inventoryItem.EquipType == "Vapen")
+                {
+                    if (character.WeaponID == inventoryID)
+                    {
+                        Service.EquipWeapon(null, character);
+                    }
+                    else
+                    {
+                        Service.EquipWeapon(inventoryID, character);
+                    }
+                }
+                else if (inventoryItem.EquipType == "Rustning")
+                {
+                    if (character.ArmorID == inventoryID)
+                    {
+                        Service.EquipArmor(null, character);
+                    }
+                    else
+                    {
+                        Service.EquipArmor(inventoryID, character);
+                    }
+                }
+                else if (inventoryItem.EquipType == "Sköld")
+                {
+                    if (character.ShieldID == inventoryID)
+                    {
+                        Service.EquipShield(null, character);
+                    }
+                    else
+                    {
+                        Service.EquipShield(inventoryID, character);
+                    }
+                }
+                else
+                {
+                    Page.ModelState.AddModelError(String.Empty, "Den här kan saken kan man inte använda!");
+                }
+            }
+            catch (SqlException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch (ApplicationException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
+            catch
+            {
+                Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
+            }
+        }
+
+        protected bool IsEquipped(int inventoryID)
+        {
+            Model.Character character = Service.GetCharacter(null, int.Parse(Context.User.Identity.Name.ToString()));
+            if (character.ArmorID == inventoryID || character.WeaponID == inventoryID || character.ShieldID == inventoryID)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

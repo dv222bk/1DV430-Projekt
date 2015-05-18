@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="BattleResult.aspx.cs" Inherits="BellatorTabernae.Pages.BattleResult" EnableViewState="false"%>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Stridsrapport - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <asp:Panel ID="CombatLogPanel" runat="server"
         Visible="False">

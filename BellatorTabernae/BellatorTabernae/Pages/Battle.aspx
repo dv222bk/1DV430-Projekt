@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Battle.aspx.cs" Inherits="BellatorTabernae.Pages.Battle" EnableViewState="false" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Strid - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <asp:Panel ID="MonsterPanel" runat="server"
         Visible="False">

@@ -157,6 +157,33 @@ namespace BellatorTabernae.Pages {
         protected global::System.Web.UI.WebControls.Button RemoveCharacter;
         
         /// <summary>
+        /// CharacterInventory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CharacterInventory;
+        
+        /// <summary>
+        /// CharacterGoldLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal CharacterGoldLiteral;
+        
+        /// <summary>
+        /// CharacterInventoryListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView CharacterInventoryListView;
+        
+        /// <summary>
         /// CharacterBiografyPanel control.
         /// </summary>
         /// <remarks>

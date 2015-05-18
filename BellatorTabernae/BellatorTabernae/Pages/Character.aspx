@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Character.aspx.cs" Inherits="BellatorTabernae.Pages.Character" EnableViewState="true" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Karaktärssida - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Karaktärssida</h2>
     <asp:Panel ID="CharacterPanel" runat="server" 
@@ -26,7 +30,48 @@
         <asp:Button ID="RemoveCharacter" runat="server"
             Text="Ta bort karaktär" 
             OnClick="RemoveCharacter_Click" />
-        <!-- TO DO: Add Character Inventory -->
+        <asp:Panel ID="CharacterInventory" runat="server">
+            <h3>Ägodelar</h3>
+            <asp:Literal ID="CharacterGoldLiteral" runat="server" />
+            <asp:ListView ID="CharacterInventoryListView" runat="server"
+                ItemType="BellatorTabernae.Model.Inventory"
+                SelectMethod="CharacterInventoryListView_GetEquipments"
+                UpdateMethod="CharacterInventoryListView_EquipItem"
+                DataKeyNames="InventoryID">
+                <LayoutTemplate>
+                    <h4>
+                        <span class="EquipmentName">Namn</span>
+                        <span class="EquipmentType">Typ</span>
+                        <span class="EquipmentEffect">Effekt</span>
+                        <span class="EquipmentNumber">Antal</span>
+                    </h4>
+                    <ul id="Inventory">
+                        <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                    </ul>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <li>
+                        <span class="EquipmentName"><%# Item.Name %></span>
+                        <span class="EquipmentType"><%# Item.EquipType %></span>
+                        <span class="EquipmentEffect"><%# GetEquipEffects(Item.EquipStatsID) %></span>
+                        <span class="EquipmentNumber"><%# Item.Number %></span>
+                        <span class="EquipmentUse">
+                            <asp:Button ID="EquipItem" runat="server" 
+                                CommandName="Update"
+                                Text="Ta på"
+                                Visible="<%# !IsEquipped(Item.InventoryID) %>" />
+                            <asp:Button ID="UnEquipItem" runat="server" 
+                                CommandName="Update"
+                                Text="Ta av"
+                                Visible="<%# IsEquipped(Item.InventoryID) %>" />
+                        </span>
+                    </li>
+                </ItemTemplate>
+                <EmptyDataTemplate>
+                    <p>Du har inga ägodelar!</p>
+                </EmptyDataTemplate>
+            </asp:ListView>
+        </asp:Panel>
         <asp:Panel ID="CharacterBiografyPanel" runat="server">
             <h3>Biografi</h3>
             <asp:Literal ID="CharacterBiografyLiteral" runat="server" />

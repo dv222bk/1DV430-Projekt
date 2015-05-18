@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Default.aspx.cs" Inherits="BellatorTabernae.Pages.Default" EnableViewState="False" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <asp:Panel ID="FrontPageMainPanel" runat="server" DefaultButton="NewUser">
         <asp:Panel ID="NewUserPanel" runat="server">

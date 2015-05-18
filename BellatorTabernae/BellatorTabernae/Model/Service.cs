@@ -253,12 +253,17 @@ namespace BellatorTabernae.Model
         public IEnumerable<Inventory> GetInventory(Character character)
         {
             Validate(character);
-            return InventoryDAL.GetInventory(character.CharID);
+            return InventoryDAL.GetInventory(character.CharID, null);
         }
 
-        public IEnumerable<Inventory> GetInventory(int charID)
+        public IEnumerable<Inventory> GetInventory(int? charID, int? userID)
         {
-            return InventoryDAL.GetInventory(charID);
+            return InventoryDAL.GetInventory(charID, userID);
+        }
+
+        public Inventory GetInventory(int inventoryID)
+        {
+            return InventoryDAL.GetInventory(inventoryID);
         }
 
         public IEnumerable<Inventory> GetInventoryH(Character character)
@@ -363,17 +368,10 @@ namespace BellatorTabernae.Model
             InventoryDAL.EquipWeapon(inventory.InventoryID, inventory.CharID, userID);
         }
 
-        public void EquipWeapon(int inventoryID, Character character)
+        public void EquipWeapon(int? inventoryID, Character character)
         {
             Validate(character);
             InventoryDAL.EquipWeapon(inventoryID, character.CharID, character.UserID);
-        }
-
-        public void EquipWeapon(Inventory inventory, Character character)
-        {
-            Validate(inventory);
-            Validate(character);
-            InventoryDAL.EquipWeapon(inventory.InventoryID, character.CharID, character.UserID);
         }
 
         public void EquipShield(int inventoryID, int? charID = null, int? userID = null)
@@ -387,17 +385,10 @@ namespace BellatorTabernae.Model
             InventoryDAL.EquipShield(inventory.InventoryID, inventory.CharID, userID);
         }
 
-        public void EquipShield(int inventoryID, Character character)
+        public void EquipShield(int? inventoryID, Character character)
         {
             Validate(character);
             InventoryDAL.EquipShield(inventoryID, character.CharID, character.UserID);
-        }
-
-        public void EquipArmor(Inventory inventory, Character character)
-        {
-            Validate(inventory);
-            Validate(character);
-            InventoryDAL.EquipArmor(inventory.InventoryID, character.CharID, character.UserID);
         }
 
         public void EquipArmor(int inventoryID, int? charID = null, int? userID = null)
@@ -411,7 +402,7 @@ namespace BellatorTabernae.Model
             InventoryDAL.EquipArmor(inventory.InventoryID, inventory.CharID, userID);
         }
 
-        public void EquipArmor(int inventoryID, Character character)
+        public void EquipArmor(int? inventoryID, Character character)
         {
             Validate(character);
             InventoryDAL.EquipArmor(inventoryID, character.CharID, character.UserID);

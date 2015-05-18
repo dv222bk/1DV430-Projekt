@@ -12,7 +12,7 @@
             </asp:ContentPlaceHolder>
         </title>
         <link type="text/css" rel="stylesheet" href="../../Content/site.css" />
-        <asp:ContentPlaceHolder ID="head" runat="server" />
+        <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server" />
     </head>
     <body>
         <form id="form1" runat="server">

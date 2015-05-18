@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Levelup.aspx.cs" Inherits="BellatorTabernae.Pages.Levelup" EnableViewState="false" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Level upp! - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Level upp!</h2>
     <p>Grattis! Genom digert stridande har din karaktär blivit bättre!</p>

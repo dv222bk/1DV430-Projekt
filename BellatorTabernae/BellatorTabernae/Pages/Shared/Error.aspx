@@ -1,16 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="BellatorTabernae.Pages.Shared.Error" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Error.aspx.cs" Inherits="BellatorTabernae.Pages.Shared.Error" EnableViewState="false" %>
 
-<!DOCTYPE html>
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Hoppsan! - Bellator Tabernae
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>
+<asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
+    <h2>Hoppsan!</h2>
+    <p>Där hände visst någonting som absolut inte skall hända!</p>
+    <p>Klicka på ett alternativ i menyn för att komma vidare.</p>
+</asp:Content>

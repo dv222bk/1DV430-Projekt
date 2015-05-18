@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="CreateUser.aspx.cs" Inherits="BellatorTabernae.Pages.CreateUser" %>
 
+<asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
+    Ny användare - Bellator Tabernae
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Ny användare</h2>
     <asp:RequiredFieldValidator ID="UsernameRequired" runat="server" 

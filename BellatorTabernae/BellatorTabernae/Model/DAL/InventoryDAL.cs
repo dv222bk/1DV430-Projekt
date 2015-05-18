@@ -8,42 +8,118 @@ namespace BellatorTabernae.Model.DAL
 {
     public class InventoryDAL : DALBase
     {
-        public IEnumerable<Inventory> GetInventory(int charID)
+        public IEnumerable<Inventory> GetInventory(int? charID, int? userID)
+        {
+            if(charID != null || userID != null)
+            {
+                using (SqlConnection conn = CreateConnection())
+                {
+                    try
+                    {
+                        var inventory = new List<Inventory>(100);
+
+                        SqlCommand cmd = new SqlCommand("dbo.usp_GetInventory", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        if (charID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@CharID", charID);
+                        }
+
+                        if (userID != null)
+                        {
+                            cmd.Parameters.AddWithValue("@UserID", userID);
+                        }
+
+                        conn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                var inventoryIDIndex = reader.GetOrdinal("InventoryID");
+                                var equipIDIndex = reader.GetOrdinal("EquipID");
+                                var equipStatsIDIndex = reader.GetOrdinal("EquipStatsID");
+                                var charIDIndex = reader.GetOrdinal("CharID");
+                                var equipTypeIndex = reader.GetOrdinal("EquipTypeName");
+                                var nameIndex = reader.GetOrdinal("Name");
+                                var valueIndex = reader.GetOrdinal("Value");
+                                var numberIndex = reader.GetOrdinal("Number");
+
+                                while (reader.Read())
+                                {
+                                    inventory.Add(new Inventory
+                                    {
+                                        InventoryID = reader.GetInt32(inventoryIDIndex),
+                                        EquipID = reader.GetInt16(equipIDIndex),
+                                        EquipStatsID = reader.GetInt16(equipStatsIDIndex),
+                                        CharID = reader.GetInt32(charIDIndex),
+                                        EquipType = reader.GetString(equipTypeIndex),
+                                        Name = reader.GetString(nameIndex),
+                                        Value = reader.GetInt32(valueIndex),
+                                        Number = reader.GetInt32(numberIndex)
+                                    });
+                                }
+                                inventory.TrimExcess();
+
+                                return inventory;
+                            }
+                        }
+                        return null;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch
+                    {
+                        throw new ApplicationException("Ett fel inträffade när ägodelsplatser skulle hämtas från databasen.");
+                    }
+                }
+            }
+            else 
+            {
+                throw new ArgumentException("Ett argumentfel inträffade när ägodelsplatser skulle hämtas från databasen.");
+            }
+        }
+
+        public Inventory GetInventory(int inventoryID)
         {
             using (SqlConnection conn = CreateConnection())
             {
                 try
                 {
-                    var inventory = new List<Inventory>(100);
-
                     SqlCommand cmd = new SqlCommand("dbo.usp_GetInventory", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@CharID", charID);
+                    cmd.Parameters.AddWithValue("@InventoryID", inventoryID);
 
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows)
+                        if (reader.Read())
                         {
                             var inventoryIDIndex = reader.GetOrdinal("InventoryID");
                             var equipIDIndex = reader.GetOrdinal("EquipID");
+                            var equipStatsIDIndex = reader.GetOrdinal("EquipStatsID");
+                            var charIDIndex = reader.GetOrdinal("CharID");
+                            var equipTypeIndex = reader.GetOrdinal("EquipTypeName");
+                            var nameIndex = reader.GetOrdinal("Name");
+                            var valueIndex = reader.GetOrdinal("Value");
                             var numberIndex = reader.GetOrdinal("Number");
 
-                            while (reader.Read())
+                            return new Inventory
                             {
-                                inventory.Add(new Inventory
-                                {
-                                    InventoryID = reader.GetInt32(inventoryIDIndex),
-                                    EquipID = reader.GetInt16(equipIDIndex),
-                                    CharID = charID,
-                                    Number = reader.GetInt32(numberIndex)
-                                });
-                            }
-                            inventory.TrimExcess();
-
-                            return inventory;
+                                InventoryID = reader.GetInt32(inventoryIDIndex),
+                                EquipID = reader.GetInt16(equipIDIndex),
+                                EquipStatsID = reader.GetInt16(equipStatsIDIndex),
+                                CharID = reader.GetInt32(charIDIndex),
+                                EquipType = reader.GetString(equipTypeIndex),
+                                Name = reader.GetString(nameIndex),
+                                Value = reader.GetInt32(valueIndex),
+                                Number = reader.GetInt32(numberIndex)
+                            };
                         }
                     }
                     return null;
@@ -80,6 +156,11 @@ namespace BellatorTabernae.Model.DAL
                         {
                             var inventoryIDIndex = reader.GetOrdinal("InventoryID");
                             var equipIDIndex = reader.GetOrdinal("EquipID");
+                            var equipStatsIDIndex = reader.GetOrdinal("EquipStatsID");
+                            var charIDIndex = reader.GetOrdinal("CharID");
+                            var equipTypeIndex = reader.GetOrdinal("EquipTypeName");
+                            var nameIndex = reader.GetOrdinal("Name");
+                            var valueIndex = reader.GetOrdinal("Value");
                             var numberIndex = reader.GetOrdinal("Number");
 
                             while (reader.Read())
@@ -88,7 +169,11 @@ namespace BellatorTabernae.Model.DAL
                                 {
                                     InventoryID = reader.GetInt32(inventoryIDIndex),
                                     EquipID = reader.GetInt16(equipIDIndex),
-                                    CharID = charID,
+                                    EquipStatsID = reader.GetInt16(equipStatsIDIndex),
+                                    CharID = reader.GetInt32(charIDIndex),
+                                    EquipType = reader.GetString(equipTypeIndex),
+                                    Name = reader.GetString(nameIndex),
+                                    Value = reader.GetInt32(valueIndex),
                                     Number = reader.GetInt32(numberIndex)
                                 });
                             }
@@ -324,7 +409,7 @@ namespace BellatorTabernae.Model.DAL
             }
         }
 
-        public void EquipWeapon(int inventoryID, int? charID = null, int? userID = null)
+        public void EquipWeapon(int? inventoryID, int? charID = null, int? userID = null)
         {
             if (charID != null || userID != null)
             {
@@ -335,7 +420,10 @@ namespace BellatorTabernae.Model.DAL
                         SqlCommand cmd = new SqlCommand("dbo.usp_EquipWeapon", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.Add("@WeaponID", SqlDbType.Int, 4).Value = inventoryID;
+                        if (inventoryID != null)
+                        {
+                            cmd.Parameters.Add("@WeaponID", SqlDbType.Int, 4).Value = inventoryID;
+                        }
                         if (charID != null)
                         {
                             cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
@@ -376,7 +464,10 @@ namespace BellatorTabernae.Model.DAL
                         SqlCommand cmd = new SqlCommand("dbo.usp_EquipShield", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.Add("@ShieldID", SqlDbType.Int, 4).Value = inventoryID;
+                        if (inventoryID != null)
+                        {
+                            cmd.Parameters.Add("@ShieldID", SqlDbType.Int, 4).Value = inventoryID;
+                        }
                         if (charID != null)
                         {
                             cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
@@ -417,7 +508,10 @@ namespace BellatorTabernae.Model.DAL
                         SqlCommand cmd = new SqlCommand("dbo.usp_EquipArmor", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.Add("@ArmorID", SqlDbType.Int, 4).Value = inventoryID;
+                        if (inventoryID != null)
+                        {
+                            cmd.Parameters.Add("@ArmorID", SqlDbType.Int, 4).Value = inventoryID;
+                        }
                         if (charID != null)
                         {
                             cmd.Parameters.Add("@CharID", SqlDbType.Int, 4).Value = charID;
