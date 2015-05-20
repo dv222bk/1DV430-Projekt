@@ -7,7 +7,7 @@
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Torget</h2>
     <p>Välkommen till torget! Det är här karaktärerna i Bellator Tabernae byter till sig ny utrustning för sina välförtjänta guldmynt!</p>
-    <asp:Literal ID="CharacterGoldLiteral" runat="server" />
+    <span class="CharacterGold"><asp:Literal ID="CharacterGoldLiteral" runat="server" /></span>
     <asp:Panel ID="MarketPanel" runat="server">
         <asp:ListView ID="MarketListView" runat="server"
             ItemType="BellatorTabernae.Model.Equipment"
@@ -15,15 +15,9 @@
             UpdateMethod="MarketListView_BuyEquipment"
             DataKeyNames="EquipID">
             <LayoutTemplate>
-                <h3>
-                    <span class="EquipmentName">Namn</span>
-                    <span class="EquipmentType">Typ</span>
-                    <span class="EquipmentEffect">Effekt</span>
-                    <span class="EquipmentCost">Kostnad</span>
-                </h3>
-                <ol id="Market">
+                <ul id="Inventory">
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
-                </ol>
+                </ul>
                 <div class="Pagination">
                     <asp:DataPager runat="server" ID="DataPager" 
                         PageSize="30">
@@ -42,14 +36,18 @@
                 </div>
             </LayoutTemplate>
             <ItemTemplate>
-                <li>
+                <li class="InventoryItem">
                     <span class="EquipmentName"><%# Item.Name %></span>
-                    <span class="EquipmentType"><%# Item.EquipType %></span>
-                    <span class="EquipmentEffect"><%# GetEquipEffects(Item.EquipStatsID) %></span>
-                    <span class="EquipmentCost"><%# Item.Value %></span>
                     <asp:Button ID="BuyEquipment" runat="server" 
                         CommandName="Update"
                         Text="Köp" />
+                    <ul>
+                        <li>
+                            <span class="EquipmentValue">Typ: </span><span class="EquipmentType"><%# Item.EquipType %></span>
+                            <span class="EquipmentValue">Effekt: </span><span class="EquipmentEffect"><%# GetEquipEffects(Item.EquipStatsID) %></span>
+                            <span class="EquipmentValue">Kostand: </span><span class="EquipmentCost"><%# Item.Value %> Guld</span>
+                        </li>
+                    </ul>
                 </li>
             </ItemTemplate>
             <EmptyDataTemplate>

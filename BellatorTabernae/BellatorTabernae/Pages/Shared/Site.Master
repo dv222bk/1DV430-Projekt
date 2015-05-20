@@ -15,7 +15,9 @@
         </title>
         <link type="text/css" rel="stylesheet" href="../../Content/CSS/site.css" />
         <link type="text/css" rel="stylesheet" href="../../Content/CSS/responsive-nav.css" />
-        <script src="../../Scripts/responsive-nav.min.js"></script>
+        <script type="text/javascript" src="../../Scripts/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="../../Scripts/responsive-nav.min.js"></script>
+        <script type="text/javascript" src="../../Scripts/sitescript.js"></script>
         <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server" />
     </head>
     <body>
@@ -42,10 +44,5 @@
                 </main>
             </div>
         </form>
-        <script>
-            var nav = responsiveNav(".nav-collapse", { // Selector
-                label: "Meny", // String: Label for the navigation toggle
-            });
-        </script>
     </body>
 </html>

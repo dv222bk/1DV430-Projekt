@@ -5,66 +5,68 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
-    <h2>Karaktärssida</h2>
+    <h2>Karaktärssidan</h2>
     <asp:Panel ID="CharacterPanel" runat="server" 
         Visible="False">
-        <asp:Image ID="CharacterImage" runat="server" />
-        <asp:Literal ID="CharacterName" runat="server" />
-        <asp:Panel ID="CharacterInfo" runat="server">
-            <asp:Literal ID="CharacterRace" runat="server" />
-            <asp:Literal ID="CharacterLevel" runat="server" />
-            <asp:Literal ID="CharacterExperience" runat="server" />
-            <asp:Literal ID="CharacterHealth" runat="server" />
-            <asp:Literal ID="CharacterStanima" runat="server" />
-        </asp:Panel>
-        <asp:Panel ID="CharacterStats" runat="server">
-            <asp:Literal ID="CharacterStrength" runat="server" />
-            <asp:Literal ID="CharacterSpeed" runat="server" />
-            <asp:Literal ID="CharacterAgility" runat="server" />
-            <asp:Literal ID="CharacterDexterity" runat="server" />
-            <asp:Button ID="LevelUp" runat="server"
-                Text="Level Upp!"
-                Visible="false"
-                OnClick="LevelUp_Click" />
-        </asp:Panel>
-        <asp:Button ID="RemoveCharacter" runat="server"
-            Text="Ta bort karaktär" 
-            OnClick="RemoveCharacter_Click" />
+        <div id="Character">
+            <asp:Image ID="CharacterImage" runat="server" />
+            <span class="CharacterName"><asp:Literal ID="CharacterName" runat="server" /></span>
+            <asp:Panel ID="CharacterInfo" runat="server">
+                <span class="CharacterRace"><asp:Literal ID="CharacterRace" runat="server" /></span>
+                <span class="CharacterLevel"><asp:Literal ID="CharacterLevel" runat="server" /></span>
+                <span class="CharacterExperience"><asp:Literal ID="CharacterExperience" runat="server" /></span>
+            </asp:Panel>
+            <asp:Panel ID="CharacterVitals" runat="server">
+                <span class="CharacterHealth"><asp:Literal ID="CharacterHealth" runat="server" /></span>
+                <span class="CharacterStanima"><asp:Literal ID="CharacterStanima" runat="server" /></span>
+            </asp:Panel>
+            <asp:Panel ID="CharacterStats" runat="server">
+                <span class="CharacterStrength"><asp:Literal ID="CharacterStrength" runat="server" /></span>
+                <span class="CharacterSpeed"><asp:Literal ID="CharacterSpeed" runat="server" /></span>
+                <span class="CharacterAgility"><asp:Literal ID="CharacterAgility" runat="server" /></span>
+                <span class="CharacterDexterity"><asp:Literal ID="CharacterDexterity" runat="server" /></span>
+                <asp:Button ID="LevelUp" runat="server"
+                    Text="Level Upp!"
+                    Visible="false"
+                    OnClick="LevelUp_Click" />
+            </asp:Panel>
+            <asp:Button ID="RemoveCharacter" runat="server"
+                Text="Ta bort karaktär" 
+                OnClick="RemoveCharacter_Click" />
+        </div>
         <asp:Panel ID="CharacterInventory" runat="server">
             <h3>Ägodelar</h3>
-            <asp:Literal ID="CharacterGoldLiteral" runat="server" />
+            <span class="CharacterGold"><asp:Literal ID="CharacterGoldLiteral" runat="server" /></span>
             <asp:ListView ID="CharacterInventoryListView" runat="server"
                 ItemType="BellatorTabernae.Model.Inventory"
                 SelectMethod="CharacterInventoryListView_GetEquipments"
                 UpdateMethod="CharacterInventoryListView_EquipItem"
                 DataKeyNames="InventoryID">
                 <LayoutTemplate>
-                    <h4>
-                        <span class="EquipmentName">Namn</span>
-                        <span class="EquipmentType">Typ</span>
-                        <span class="EquipmentEffect">Effekt</span>
-                        <span class="EquipmentNumber">Antal</span>
-                    </h4>
                     <ul id="Inventory">
                         <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
                     </ul>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <li>
+                    <li class="InventoryItem">
                         <span class="EquipmentName"><%# Item.Name %></span>
-                        <span class="EquipmentType"><%# Item.EquipType %></span>
-                        <span class="EquipmentEffect"><%# GetEquipEffects(Item.EquipStatsID) %></span>
-                        <span class="EquipmentNumber"><%# Item.Number %></span>
                         <span class="EquipmentUse">
-                            <asp:Button ID="EquipItem" runat="server" 
+                            <asp:Button ID="Button1" runat="server" 
                                 CommandName="Update"
                                 Text="Ta på"
                                 Visible="<%# !IsEquipped(Item.InventoryID) %>" />
-                            <asp:Button ID="UnEquipItem" runat="server" 
+                            <asp:Button ID="Button2" runat="server" 
                                 CommandName="Update"
                                 Text="Ta av"
                                 Visible="<%# IsEquipped(Item.InventoryID) %>" />
                         </span>
+                        <ul>
+                            <li>
+                                <span class="EquipmentValue">Typ: </span><span class="EquipmentType"><%# Item.EquipType %></span>
+                                <span class="EquipmentValue">Effekt: </span><span class="EquipmentEffect"><%# GetEquipEffects(Item.EquipStatsID) %></span>
+                                <span class="EquipmentValue">Antal: </span><span class="EquipmentNumber"><%# Item.Number %></span>
+                            </li>
+                        </ul>
                     </li>
                 </ItemTemplate>
                 <EmptyDataTemplate>

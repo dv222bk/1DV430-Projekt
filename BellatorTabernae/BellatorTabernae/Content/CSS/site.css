@@ -116,7 +116,7 @@ table {
 }
 
 body {
-    background-image: url(Images/woodbackground.jpg);
+    background-image: url(Images/paperbackground.jpg);
     background-repeat: repeat;
     font-size: 16px;
 }
@@ -127,31 +127,30 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size: 2.5em;
+    word-spacing: 0.2em;
+    font-size: 3em;
     text-align: center;
     line-height: 1em;
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 1.6em;
+    margin-bottom: 0.5em;
 }
 
 h3 {
-    font-size: 1.6em;
+    font-size: 1.4em;
+    margin: 0.75em 0 0.5em 0;
 }
 
 h4 {
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
 
 input[type="submit"] {
     font-family: AlegreyaSC;
     font-weight: 400;
     font-size: 1.2em;
-}
-
-header {
-    padding-top: 1em;
 }
 
 nav, .nav-toggle, .nav-toggle-active {
@@ -198,12 +197,7 @@ nav a, .nav-toggle, .nav-toggle-active {
 }
 
 .nav-toggle, .nav-toggle-active {
-    margin-top: 1em;
-}
-
-nav div {
-    color: white;
-    font-family: Alegreya;
+    margin-top: 0.5em;
 }
 
 nav input, nav label {
@@ -221,7 +215,27 @@ nav input {
 }
 
 main {
-    margin-top: 1em;
+    margin: 1em 0;
+    font-size: 1.4em;
+}
+
+textarea {
+    width: 100%;
+    height: 10em;
+}
+
+p {
+    margin-bottom: 0.5em;
+}
+
+#LoggedIn, #LoggedIn Input {
+    margin-top: 0.2em;
+    display: inline-block;
+    text-align: right;
+}
+
+#LoggedIn {
+    width: 100%;
 }
 
 #SiteContainer {
@@ -230,12 +244,125 @@ main {
     font-weight: 400;
     font-size: 1.2em;
     line-height: 1.6em;
-    background-image: url(Images/paperbackground.jpg);
-    background-repeat: repeat;
+}
+
+#MainPlaceHolder_CharacterPanel {
+    width: 100%;
+}
+
+#MainPlaceHolder_CharacterInfo, #MainPlaceHolder_CharacterVitals, #MainPlaceHolder_CharacterStats {
+    width: 100%;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+#MainPlaceHolder_CharacterInfo span, #MainPlaceHolder_CharacterVitals span, #MainPlaceHolder_CharacterStats span {
+    display: block;
+}
+
+#Character .CharacterName {
+    font-family: AlegreyaSC;
+    font-weight: 700;
+    font-size: 1.4em;
+    margin-top: 0.5em;
+    display: block;
+}
+
+#Character {
+    text-align: center;
+}
+
+#Character input {
+    font-size: 1em;
+}
+
+#MainPlaceHolder_CharacterInventory{
+    text-align: left;
+}
+
+#MainPlaceHolder_CharacterInventory h3 {
+    text-align: center;
+    margin-top: 0.75em;
+    margin-bottom: 0;
+}
+
+#Inventory, #Inventory li, #Inventory span {
+    display: block;
+}
+
+#Inventory input {
+    position: absolute;
+    right: 0;
+    margin-top: -1.73em;
+}
+
+#Inventory > li {
+    border-bottom: 0.1em solid #000000;
+}
+
+#Inventory ul {
+    display: none;
+}
+
+#Inventory > li:first-child {
+    border-top: 0.1em solid #000000;
+}
+
+#Inventory .EquipmentStats {
+    display: inline-block;
+    margin-right: 0.25em;
+}
+
+#MainPlaceHolder_EditCharacterBiografyButton {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+#MainPlaceHolder_LevelUp {
+    margin: 0.75em 0 0.5em 0;
+}
+
+.EquipmentName, .CharacterGold, .EquipmentValue {
+    font-weight: 700;
+}
+
+.EquipmentValue:not(:first-child) {
+    margin-top: 0.5em;
+}
+
+.EquipmentName {
+    padding: 0.5em 0;
+}
+
+.EquipmentName:hover {
+    background-color: #BBBBBB;
+}
+
+.EquipmentUse {
+    display: block;
+    width: 100%;
+}
+
+.EquipmentStats:after {
+    content: ", ";
+}
+
+.EquipmentStats:last-child:after {
+    content: none;
+}
+
+.Pagination {
+    width: 100%;
+    text-align: center;
 }
 
 @media all and (min-width: 40em) {
     nav {
-        margin-top: 1em;
-    }  
+        margin-top: 0.5em;
+    }
+
+    #SiteContainer {
+        background-image: url(Images/paperbackground.jpg);
+    }
 }
