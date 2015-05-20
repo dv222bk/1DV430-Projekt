@@ -97,7 +97,7 @@ namespace BellatorTabernae.Pages
                     CharacterName.Text = character.Name;
                     CharacterRace.Text = String.Format("Ras: {0}", character.Race);
                     CharacterLevel.Text = String.Format("Level: {0}", character.Level);
-                    CharacterExperience.Text = String.Format("XP: {0}", character.Experience);
+                    CharacterExperience.Text = String.Format("Erfarenhetspoäng: {0}/{1}", character.Experience, GetNextLevelXP(character));
                     CharacterHealth.Text = String.Format("Livspoäng: {0}/{1}", character.Health, character.MaxHealth);
                     CharacterStanima.Text = String.Format("Uthållighetspoäng: {0}/{1}", character.Stanima, character.MaxStanima);
                     CharacterStrength.Text = String.Format("Styrka: {0}", character.Strength);
@@ -138,6 +138,11 @@ namespace BellatorTabernae.Pages
             {
                 Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
             }
+        }
+
+        protected int GetNextLevelXP(Model.Character character)
+        {
+            return (int)((character.Level * 25) + (character.Level * 25) * 1.1);
         }
 
         // Create new character

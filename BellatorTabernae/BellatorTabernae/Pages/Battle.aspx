@@ -5,6 +5,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
+    <h2>Strid</h2>
     <asp:Panel ID="MonsterPanel" runat="server"
         Visible="False">
         <asp:ListView ID="MonstersListView" runat="server"
@@ -13,18 +14,18 @@
             UpdateMethod="MonstersListView_ChallangeMonster"
             DataKeyNames="CharID">
             <LayoutTemplate>
-                <div class="monster">
-                    <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
-                </div>
+                <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
             </LayoutTemplate>
             <ItemTemplate>
-                <span class="MonsterName"><%#: Item.Name %></span>
-                <span class="MonsterLevel">Level: <%#: Item.Level %></span>
-                <span class="MonsterScenarioTitle">Scenario</span>
-                <span class="MonsterScenario"><%# Item.Biografy %></span>
-                <asp:Button ID="ChallangeMonster" runat="server" 
-                    CommandName="Update"
-                    Text="Utmana!" />
+                <div class="Monster">
+                    <span class="MonsterName"><%#: Item.Name %></span>
+                    <span class="MonsterLevel">Level: <%#: Item.Level %></span>
+                    <span class="MonsterScenarioTitle">Scenario:</span>
+                    <span class="MonsterScenario"><%# Item.Biografy %></span>
+                    <asp:Button ID="ChallangeMonster" runat="server" 
+                        CommandName="Update"
+                        Text="Utmana!" />
+                </div>
             </ItemTemplate>
             <EmptyDataTemplate>
                 <p>Det finns inga monster att slåss mot just nu!</p>

@@ -69,6 +69,10 @@ namespace BellatorTabernae.Pages
 
                 Response.RedirectToRoute("BattleResult");
             }
+            catch (SqlException ex)
+            {
+                Page.ModelState.AddModelError(String.Empty, ex.Message);
+            }
             catch (ApplicationException ex)
             {
                 Page.ModelState.AddModelError(String.Empty, ex.Message);

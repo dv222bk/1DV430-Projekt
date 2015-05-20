@@ -29,7 +29,7 @@ namespace BellatorTabernae.Model
         private List<CombatLog> combatLog = new List<CombatLog>();
 
         // List containing the original combatants before the battle
-        private List<Combatant> originalCombatants;
+        private List<Combatant> originalCombatants = new List<Combatant>();
 
         // List containging all combatants which have given up the battle
         private List<Combatant> combatantsGiveUp = new List<Combatant>();
@@ -39,8 +39,8 @@ namespace BellatorTabernae.Model
             if (ValidateCombatants(combatants))
             {
                 AssignCombatantIDs(ref combatants);
+                FillOriginalCombatants(combatants);
                 GetCombatantsTotalStats(ref combatants);
-                originalCombatants = combatants;
 
                 // Turn holder
                 int turn = 0;
@@ -58,6 +58,36 @@ namespace BellatorTabernae.Model
             else
             {
                 throw new ArgumentException("Kombatanterna i striden är ogiltliga");
+            }
+        }
+
+        public void FillOriginalCombatants(List<Combatant> combatants)
+        {
+            foreach (Combatant combatant in combatants)
+            {
+                originalCombatants.Add(new Combatant
+                {
+                    CharID = combatant.CharID,
+                    UserID = combatant.UserID,
+                    Race = combatant.Race,
+                    Name = combatant.Name,
+                    Level = combatant.Level,
+                    Experience = combatant.Experience,
+                    Health = combatant.Health,
+                    MaxHealth = combatant.MaxHealth,
+                    Stanima = combatant.Stanima,
+                    MaxStanima = combatant.MaxStanima,
+                    Strength = combatant.Strength,
+                    Speed = combatant.Speed,
+                    Agility = combatant.Agility,
+                    Dexterity = combatant.Dexterity,
+                    WeaponID = combatant.WeaponID,
+                    ShieldID = combatant.ShieldID,
+                    ArmorID = combatant.ArmorID,
+                    GiveUpPercent = combatant.GiveUpPercent,
+                    TeamNumber = combatant.TeamNumber,
+                    CombatantID = combatant.CombatantID
+                });
             }
         }
 
@@ -402,6 +432,19 @@ namespace BellatorTabernae.Model
                     // Don't update non-user characters
                     if(combatant.UserID != null)
                     {
+                        // Because we added the equipment stats to the character stats at the start of combat, we need to remove them now if they still apply.
+                        Combatant originalCombatant = originalCombatants.Find(x => x.CombatantID == combatant.CombatantID);
+
+                        if (combatant.Health > originalCombatant.MaxHealth)
+                        {
+                            combatant.Health = originalCombatant.MaxHealth;
+                        }
+
+                        if (combatant.Stanima > originalCombatant.MaxStanima)
+                        {
+                            combatant.Stanima = originalCombatant.MaxStanima;
+                        }
+
                         Service.UpdateCharacterAfterCombat(combatant.CharID, combatant.Level, combatant.Experience, combatant.Health, combatant.Stanima);
                     }
                 }

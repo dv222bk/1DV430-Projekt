@@ -151,6 +151,7 @@ input[type="submit"] {
     font-family: AlegreyaSC;
     font-weight: 400;
     font-size: 1.2em;
+    cursor: pointer;
 }
 
 nav, .nav-toggle, .nav-toggle-active {
@@ -313,7 +314,7 @@ p {
     margin-right: 0.25em;
 }
 
-#MainPlaceHolder_EditCharacterBiografyButton {
+#MainPlaceHolder_EditCharacterBiografyButton, #MainPlaceHolder_SubmitBiografy {
     display: block;
     margin-left: auto;
     margin-right: 0;
@@ -323,7 +324,11 @@ p {
     margin: 0.75em 0 0.5em 0;
 }
 
-.EquipmentName, .CharacterGold, .EquipmentValue {
+#MainPlaceHolder_CharacterBiografyPanel p {
+    font-style: italic;
+}
+
+.EquipmentName, .CharacterGold, .EquipmentValue, .MonsterName {
     font-weight: 700;
 }
 
@@ -337,6 +342,7 @@ p {
 
 .EquipmentName:hover {
     background-color: #BBBBBB;
+    cursor: pointer;
 }
 
 .EquipmentUse {
@@ -357,6 +363,30 @@ p {
     text-align: center;
 }
 
+.Monster {
+    border-bottom: 0.1em solid #000000;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.Monster:last-child {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.MonsterName, .MonsterLevel, .MonsterScenario {
+    display: block;
+}
+
+.MonsterScenario {
+    font-style: italic;
+}
+
+.Monster input {
+    display: block;
+    margin: 0.5em 0 0 auto;
+}
 @media all and (min-width: 40em) {
     nav {
         margin-top: 0.5em;

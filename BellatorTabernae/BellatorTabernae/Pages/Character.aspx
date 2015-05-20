@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/Shared/Site.Master" CodeBehind="Character.aspx.cs" Inherits="BellatorTabernae.Pages.Character" EnableViewState="true" %>
 
 <asp:Content ContentPlaceHolderID="TitlePlaceHolder" runat="server">
-    Karaktärssida - Bellator Tabernae
+    Karaktärssidan - Bellator Tabernae
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
@@ -51,11 +51,11 @@
                     <li class="InventoryItem">
                         <span class="EquipmentName"><%# Item.Name %></span>
                         <span class="EquipmentUse">
-                            <asp:Button ID="Button1" runat="server" 
+                            <asp:Button ID="Equip" runat="server" 
                                 CommandName="Update"
                                 Text="Ta på"
                                 Visible="<%# !IsEquipped(Item.InventoryID) %>" />
-                            <asp:Button ID="Button2" runat="server" 
+                            <asp:Button ID="Unequip" runat="server" 
                                 CommandName="Update"
                                 Text="Ta av"
                                 Visible="<%# IsEquipped(Item.InventoryID) %>" />
@@ -76,7 +76,7 @@
         </asp:Panel>
         <asp:Panel ID="CharacterBiografyPanel" runat="server">
             <h3>Biografi</h3>
-            <asp:Literal ID="CharacterBiografyLiteral" runat="server" />
+            <p><asp:Literal ID="CharacterBiografyLiteral" runat="server" /></p>
             <asp:Button ID="EditCharacterBiografyButton" runat="server"
                  Text="Ändra" OnClick="EditCharacterBiografyButton_Click" />
             <asp:TextBox ID="EditCharacterBiografy" runat="server"
