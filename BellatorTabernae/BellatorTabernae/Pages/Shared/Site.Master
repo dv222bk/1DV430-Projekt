@@ -6,12 +6,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
         <title>
             <asp:ContentPlaceHolder ID="TitlePlaceHolder" runat="server">
                 Bellator Tabernae
             </asp:ContentPlaceHolder>
         </title>
-        <link type="text/css" rel="stylesheet" href="../../Content/site.css" />
+        <link type="text/css" rel="stylesheet" href="../../Content/CSS/site.css" />
+        <link type="text/css" rel="stylesheet" href="../../Content/CSS/responsive-nav.css" />
+        <script src="../../Scripts/responsive-nav.min.js"></script>
         <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server" />
     </head>
     <body>
@@ -19,24 +23,29 @@
             <div id="SiteContainer">
                 <header>
                     <asp:Panel ID="LoggedIn" runat="server" Visible="False">
-                        <asp:Label ID="LoggedInAs" runat="server" />
+                        <asp:Literal ID="LoggedInAs" runat="server" />
                         <asp:Button ID="LogOut" runat="server" 
                             Text="Logga ut" OnClick="LogOut_Click" />
                     </asp:Panel>
                     <h1>Bellator Tabernae</h1>
-                    <nav>
+                    <nav class="nav-collapse">
                         <uc1:_MainNavigation runat="server" />
                     </nav>
                 </header>
                 <main>
                     <asp:Panel ID="MsgPanel" runat="server" 
                         Visible="False">
-                        <asp:Label ID="SiteMsg" runat="server" />
+                        <asp:Literal ID="SiteMsg" runat="server" />
                     </asp:Panel>
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                     <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server" />
                 </main>
             </div>
         </form>
+        <script>
+            var nav = responsiveNav(".nav-collapse", { // Selector
+                label: "Meny", // String: Label for the navigation toggle
+            });
+        </script>
     </body>
 </html>

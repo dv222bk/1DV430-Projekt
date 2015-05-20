@@ -55,7 +55,7 @@ namespace BellatorTabernae.Pages.Shared {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LoggedInAs;
+        protected global::System.Web.UI.WebControls.Literal LoggedInAs;
         
         /// <summary>
         /// LogOut control.
@@ -82,7 +82,7 @@ namespace BellatorTabernae.Pages.Shared {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SiteMsg;
+        protected global::System.Web.UI.WebControls.Literal SiteMsg;
         
         /// <summary>
         /// ValidationSummary1 control.

@@ -19,13 +19,6 @@ namespace BellatorTabernae.Pages.Shared
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["SiteMsg"] != null)
-            {
-                MsgPanel.Visible = true;
-                SiteMsg.Text = Session["SiteMsg"].ToString();
-                Session["SiteMsg"] = null;
-            }
-
             if (Context.User.Identity.IsAuthenticated)
             {
                 LoggedIn.Visible = true;

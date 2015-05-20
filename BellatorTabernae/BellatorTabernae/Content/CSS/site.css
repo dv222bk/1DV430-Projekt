@@ -1,2 +1,241 @@
-﻿body {
+﻿/*
+    Font face
+*/
+
+@font-face {
+  font-family: Alegreya;
+  src: url('Fonts/Alegreya-Regular.otf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Alegreya;
+  src: url('Fonts/Alegreya-Bold.otf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Alegreya;
+  src: url('Fonts/Alegreya-Italic.otf');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Alegreya;
+  src: url('Fonts/Alegreya-BoldItalic.otf');
+  font-style: italic;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: AlegreyaSC;
+  src: url('Fonts/AlegreyaSC-Regular.otf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: AlegreyaSC;
+  src: url('Fonts/AlegreyaSC-Bold.otf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: AlegreyaSC;
+  src: url('Fonts/AlegreyaSC-Italic.otf');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: AlegreyaSC;
+  src: url('Fonts/AlegreyaSC-BoldItalic.otf');
+  font-style: italic;
+  font-weight: 700;
+}
+
+/*
+* Reset all original styles
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, Header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, main {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, Header, hgroup, main, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*     START OF CSS CHANGES     */
+
+* {
+    vertical-align: baseline;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+}
+
+body {
+    background-image: url(Images/woodbackground.jpg);
+    background-repeat: repeat;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: AlegreyaSC;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    line-height: 1em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+input[type="submit"] {
+    font-family: AlegreyaSC;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+header {
+    padding-top: 1em;
+}
+
+nav, .nav-toggle, .nav-toggle-active {
+    width: 100%;
+    font-family: AlegreyaSC;
+    font-weight: 700;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+}
+
+.nav-toggle, .nav-toggle-active {
+    font-size: 1.6em;
+}
+
+nav ul {
+    list-style-type: none;
+    border-top: 0.1em solid #000000;
+}
+
+nav li, nav ul, .nav-toggle, .nav-toggle-active {
+    width: 100%;
+    text-align: center;
+    display: block;
+    background-color: #666666;
+}
+
+nav li, nav ul {
+    border-bottom: 0.1em solid #000000;
+}
+
+nav li:last-child {
+    border: none;
+}
+
+nav li:hover, .nav-toggle:hover, .nav-toggle-active {
+    background-color: #888888;
+}
+
+nav a, .nav-toggle, .nav-toggle-active {
+    color: #FFFFFF;
+    display: block;
+    padding: 0.5em 0;
+    text-decoration: none;
+}
+
+.nav-toggle, .nav-toggle-active {
+    margin-top: 1em;
+}
+
+nav div {
+    color: white;
+    font-family: Alegreya;
+}
+
+nav input, nav label {
+    display: block;
+}
+
+nav input[type="text"], nav input[type="password"] {
+    font-family: Alegreya;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+nav input {
+    margin: 0 auto;
+}
+
+main {
+    margin-top: 1em;
+}
+
+#SiteContainer {
+    width: 100%;
+    font-family: Alegreya;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 1.6em;
+    background-image: url(Images/paperbackground.jpg);
+    background-repeat: repeat;
+}
+
+@media all and (min-width: 40em) {
+    nav {
+        margin-top: 1em;
+    }  
 }

@@ -19,7 +19,14 @@ namespace BellatorTabernae.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["SiteMsg"] != null)
+            {
+                Panel MsgPanel = (Panel)Master.FindControl("MsgPanel");
+                MsgPanel.Visible = true;
+                Literal SiteMsg = (Literal)Master.FindControl("SiteMsg");
+                SiteMsg.Text = Session["SiteMsg"].ToString();
+                Session["SiteMsg"] = null;
+            }
         }
 
         public IEnumerable<Model.Leaderboard> LeaderboardListView_GetLeaderBoard(int maximumRows, int startRowIndex, out int totalRowCount)

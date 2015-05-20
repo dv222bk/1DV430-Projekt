@@ -4,6 +4,11 @@
     Bellator Tabernae
 </asp:Content>
 
+<asp:Content ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+    <script type="text/javascript" src="../../Scripts/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/frontpage.js"></script>
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <asp:Panel ID="FrontPageMainPanel" runat="server" DefaultButton="NewUser">
         <asp:Panel ID="NewUserPanel" runat="server">

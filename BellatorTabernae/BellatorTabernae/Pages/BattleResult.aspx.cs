@@ -18,6 +18,15 @@ namespace BellatorTabernae.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["SiteMsg"] != null)
+            {
+                Panel MsgPanel = (Panel)Master.FindControl("MsgPanel");
+                MsgPanel.Visible = true;
+                Literal SiteMsg = (Literal)Master.FindControl("SiteMsg");
+                SiteMsg.Text = Session["SiteMsg"].ToString();
+                Session["SiteMsg"] = null;
+            }
+
             if (Context.User.Identity.IsAuthenticated && Session["CombatLog"] != null)
             {
                 CombatLogPanel.Visible = true;
