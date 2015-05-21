@@ -268,7 +268,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;{0} faller ihop till marken av trötthet!&lt;/div&gt;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;&lt;span class=&quot;char&quot;&gt;{0}&lt;/span&gt; faller ihop till marken av trötthet!&lt;/div&gt;.
         /// </summary>
         internal static string GiveUpStanimaString {
             get {
@@ -277,7 +277,7 @@ namespace BellatorTabernae.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;{0} väljer att ge upp striden!&lt;/div&gt;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;giveup&quot;&gt;&lt;span class=&quot;char&quot;&gt;{0}&lt;/span&gt; väljer att ge upp striden!&lt;/div&gt;.
         /// </summary>
         internal static string GiveUpString {
             get {

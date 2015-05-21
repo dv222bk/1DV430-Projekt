@@ -187,10 +187,10 @@
     <value>men &lt;span class="defender"&gt;{0}&lt;/span&gt; lyckas precis på håret undvika attacken! </value>
   </data>
   <data name="GiveUpStanimaString" xml:space="preserve">
-    <value>&lt;div class="giveup"&gt;{0} faller ihop till marken av trötthet!&lt;/div&gt;</value>
+    <value>&lt;div class="giveup"&gt;&lt;span class="char"&gt;{0}&lt;/span&gt; faller ihop till marken av trötthet!&lt;/div&gt;</value>
   </data>
   <data name="GiveUpString" xml:space="preserve">
-    <value>&lt;div class="giveup"&gt;{0} väljer att ge upp striden!&lt;/div&gt;</value>
+    <value>&lt;div class="giveup"&gt;&lt;span class="char"&gt;{0}&lt;/span&gt; väljer att ge upp striden!&lt;/div&gt;</value>
   </data>
   <data name="HeavyAttack1" xml:space="preserve">
     <value>&lt;div class="attack"&gt;&lt;span class="attacker"&gt;{0}&lt;/span&gt; riktar ett hårt slag i &lt;span class="defender"&gt;{1}&lt;/span&gt;s riktning, </value>

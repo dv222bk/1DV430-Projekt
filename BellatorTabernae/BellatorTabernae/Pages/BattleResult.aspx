@@ -5,6 +5,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
+    <h2>Stridsrapport</h2>
     <asp:Panel ID="CombatLogPanel" runat="server"
         Visible="False">
         <asp:ListView ID="CombatLogListView" runat="server"
@@ -19,10 +20,16 @@
                     <%# Item.Text %>
                 </div>
                 <asp:Panel ID="combatLogEntryInfoPanel" runat="server" Visible="<%# Item.Attacker != null ? true : false %>">
-                    <span class="attacker"><%# Item.Attacker %></span>
-                    <span class="damageTaken">Skada tagen: <%# Item.AttackerDamage %></span>
-                    <span class="defender"><%# Item.Defender %></span>
-                    <span class="damageTaken">Skada tagen: <%# Item.DefenderDamage %></span>
+                    <div class="infoPanel">
+                        <div class="infoPanelDamage">
+                            <span class="attacker"><%# Item.Attacker %></span>
+                            <span class="damageTaken">Skada tagen: <%# Item.AttackerDamage %></span>
+                        </div>
+                        <div class="infoPanelDamage">
+                            <span class="defender"><%# Item.Defender %></span>
+                            <span class="damageTaken">Skada tagen: <%# Item.DefenderDamage %></span>
+                        </div>
+                    </div>
                 </asp:Panel>
             </ItemTemplate>
         </asp:ListView>

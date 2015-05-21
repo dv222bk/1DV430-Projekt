@@ -6,6 +6,7 @@
 
 <asp:Content ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <h2>Strid</h2>
+    <p>Här kan du välja ett stridsscenario och strida med din karaktär. Välj en fiende i listan nedan!</p>
     <asp:Panel ID="MonsterPanel" runat="server"
         Visible="False">
         <asp:ListView ID="MonstersListView" runat="server"

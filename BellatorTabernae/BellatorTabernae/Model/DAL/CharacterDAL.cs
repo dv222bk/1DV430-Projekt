@@ -117,7 +117,7 @@ namespace BellatorTabernae.Model.DAL
                                 };
                             }
                         }
-                        return null;
+                        return new Character();
                     }
                     catch (SqlException ex)
                     {
@@ -237,7 +237,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new Character();
                 }
                 catch (SqlException ex)
                 {
@@ -370,7 +370,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new Character();
                 }
                 catch (SqlException ex)
                 {
@@ -490,7 +490,7 @@ namespace BellatorTabernae.Model.DAL
 
                             return characters;
                         }
-                        return null;
+                        return new List<Character>();
                     }
                 }
                 catch (SqlException ex)
@@ -614,7 +614,7 @@ namespace BellatorTabernae.Model.DAL
 
                             return characters;
                         }
-                        return null;
+                        return new List<Character>();
                     }
                 }
                 catch (SqlException ex)
@@ -846,7 +846,7 @@ namespace BellatorTabernae.Model.DAL
                             return races;
                         }
                     }
-                    return null;
+                    return new List<Race>();
                 }
                 catch (SqlException ex)
                 {
@@ -900,7 +900,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new Race();
                 }
                 catch (SqlException ex)
                 {

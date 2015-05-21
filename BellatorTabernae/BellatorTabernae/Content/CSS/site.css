@@ -178,6 +178,10 @@ nav li, nav ul, .nav-toggle, .nav-toggle-active {
     background-color: #666666;
 }
 
+nav div {
+    color: #FFFFFF;
+}
+
 nav li, nav ul {
     border-bottom: 0.1em solid #000000;
 }
@@ -218,6 +222,7 @@ nav input {
 main {
     margin: 1em 0;
     font-size: 1.4em;
+    padding: 0 0.5em;
 }
 
 textarea {
@@ -265,7 +270,7 @@ p {
     font-family: AlegreyaSC;
     font-weight: 700;
     font-size: 1.4em;
-    margin-top: 0.5em;
+    margin: 0.5em 0 0.1em 0;
     display: block;
 }
 
@@ -295,6 +300,7 @@ p {
     position: absolute;
     right: 0;
     margin-top: -1.73em;
+    margin-right: 0.5em;
 }
 
 #Inventory > li {
@@ -314,18 +320,89 @@ p {
     margin-right: 0.25em;
 }
 
-#MainPlaceHolder_EditCharacterBiografyButton, #MainPlaceHolder_SubmitBiografy {
+#MainPlaceHolder_EditCharacterBiografyButton, #MainPlaceHolder_SubmitBiografy,
+#MainPlaceHolder_SpendPoints, #MainPlaceHolder_Create_User,
+#MainPlaceHolder_CreateCharacter {
     display: block;
-    margin-left: auto;
-    margin-right: 0;
+    margin: 0 0 0 auto;
 }
 
 #MainPlaceHolder_LevelUp {
     margin: 0.75em 0 0.5em 0;
 }
 
+#MainPlaceHolder_Create_User {
+    margin-top: 1em;
+}
+
+#MainPlaceHolder_SpendPoints, #MainPlaceHolder_CreateCharacter,
+#MainPlaceHolder_RaceLabel {
+    margin-top: 0.5em;
+}
+
 #MainPlaceHolder_CharacterBiografyPanel p {
     font-style: italic;
+}
+
+#MainPlaceHolder_PointsLeft {
+    display: block;
+    font-weight: 700;
+    margin-top: 1em;
+}
+
+#MainPlaceHolder_CharacterLevelUpUpdatePanel label, #MainPlaceHolder_RaceAndStatsUpdate label {
+    display: inline-block;
+    width: 50%;
+}
+
+#MainPlaceHolder_NameLabel, #MainPlaceHolder_RaceLabel {
+    font-weight: 700;
+    display: block;
+}
+
+#MsgPanel, #ValidationSummary {
+    width: 100%;
+    border: 0.2em solid #000000;
+    border-radius: 0.5em;
+    text-align: center;
+    margin: 1em 0;
+    padding: 1em;
+    background-color: #CCCCCC;
+}
+
+#ValidationSummary {
+    background-color: #FF4038;
+    border-radius: 0.5em;
+}
+
+#MainPlaceHolder_UsernameLabel, #MainPlaceHolder_PasswordLabel,
+#MainPlaceHolder_EmailLabel {
+    display: block;
+    font-weight: 700;
+}
+
+#MainPlaceHolder_Username, #MainPlaceHolder_Password,
+#MainPlaceHolder_Email {
+    margin-bottom: 0.5em;
+}
+
+#MainPlaceHolder_Username, #MainPlaceHolder_Password,
+#MainPlaceHolder_Email, #MainPlaceHolder_Name,
+#MainPlaceHolder_RaceList {
+    font-size: 1em;
+}
+
+.statControls {
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.statControls input[type="text"] {
+    width: 4em;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: #CCCCCC;
+    color: #444444;
 }
 
 .EquipmentName, .CharacterGold, .EquipmentValue, .MonsterName {
@@ -387,6 +464,69 @@ p {
     display: block;
     margin: 0.5em 0 0 auto;
 }
+
+.turn {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.attack {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.infoPanel {
+    display: block;
+    margin: 1em 0;
+    border-top: 0.1em dashed #000000;
+    border-bottom: 0.1em dashed #000000;
+}
+
+.infoPanelDamage {
+    display: inline-block;
+    width: 49%;
+    padding: 0.5em 1em;
+}
+
+.infoPanelDamage span {
+    display: inline-block;
+    width: 100%;
+}
+
+.infoPanelDamage:last-child span {
+    text-align: right;
+}
+
+.attacker {
+    color: #FF3E0D;
+    font-style: italic;
+}
+
+.defender {
+    color: #4D71FF;
+    font-style: italic;
+}
+
+.giveup, .deadString {
+    margin-bottom: 0.5em;
+}
+
+.deadString {
+    color: #FF3E0D;
+}
+
+.deadChar, .char {
+    font-style: italic;
+}
+
+.giveup:before, .deadString:before {
+    content: ">> ";
+}
+
+.endresult {
+    font-weight: 700;
+}
+
 @media all and (min-width: 40em) {
     nav {
         margin-top: 0.5em;

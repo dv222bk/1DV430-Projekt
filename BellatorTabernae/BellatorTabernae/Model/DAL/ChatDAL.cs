@@ -45,7 +45,7 @@ namespace BellatorTabernae.Model.DAL
                             return chat;
                         }
                     }
-                    return null;
+                    return new List<Chat>();
                 }
                 catch (SqlException ex)
                 {
@@ -88,7 +88,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new Chat();
                 }
                 catch (SqlException ex)
                 {

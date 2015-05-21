@@ -45,7 +45,7 @@
                         <li>
                             <span class="EquipmentValue">Typ: </span><span class="EquipmentType"><%# Item.EquipType %></span>
                             <span class="EquipmentValue">Effekt: </span><span class="EquipmentEffect"><%# GetEquipEffects(Item.EquipStatsID) %></span>
-                            <span class="EquipmentValue">Kostand: </span><span class="EquipmentCost"><%# Item.Value %> Guld</span>
+                            <span class="EquipmentValue">Kostnad: </span><span class="EquipmentCost"><%# Item.Value %> Guld</span>
                         </li>
                     </ul>
                 </li>

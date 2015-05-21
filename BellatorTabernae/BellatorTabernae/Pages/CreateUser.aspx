@@ -11,7 +11,7 @@
         ControlToValidate="Username"
         Display="None" />
     <asp:Label ID="UsernameLabel" runat="server" 
-        Text="Användarnamn" 
+        Text="Användarnamn:" 
         AssociatedControlID="Username" />
     <asp:TextBox ID="Username" runat="server" 
         MaxLength="50" />
@@ -20,7 +20,7 @@
         ControlToValidate="Password" 
         Display="None" />
     <asp:Label ID="PasswordLabel" runat="server" 
-        Text="Lösenord" 
+        Text="Lösenord:" 
         AssociatedControlID="Password" />
     <asp:TextBox ID="Password" runat="server" 
         TextMode="Password" />
@@ -34,7 +34,7 @@
         ValidationExpression=".+@.+.\..+"
         Display="None" />
     <asp:Label ID="EmailLabel" runat="server" 
-        Text="Epost" 
+        Text="Epost:" 
         AssociatedControlID="Email" />
     <asp:TextBox ID="Email" runat="server"
         MaxLength="254" />

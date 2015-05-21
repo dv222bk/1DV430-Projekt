@@ -65,7 +65,7 @@ namespace BellatorTabernae.Model.DAL
                                 return inventory;
                             }
                         }
-                        return null;
+                        return new List<Inventory>();
                     }
                     catch (SqlException ex)
                     {
@@ -122,7 +122,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new Inventory();
                 }
                 catch (SqlException ex)
                 {
@@ -182,7 +182,7 @@ namespace BellatorTabernae.Model.DAL
                             return inventory;
                         }
                     }
-                    return null;
+                    return new List<Inventory>();
                 }
                 catch (SqlException ex)
                 {

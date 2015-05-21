@@ -40,7 +40,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new Equipment();
                 }
                 catch (SqlException ex)
                 {
@@ -92,7 +92,7 @@ namespace BellatorTabernae.Model.DAL
                             return equipment;
                         }
                     }
-                    return null;
+                    return new List<Equipment>();
                 }
                 catch (SqlException ex)
                 {
@@ -265,7 +265,7 @@ namespace BellatorTabernae.Model.DAL
                                 };
                             }
                         }
-                        return null;
+                        return new EquipmentStats();
                     }
                     catch (SqlException ex)
                     {
@@ -330,7 +330,7 @@ namespace BellatorTabernae.Model.DAL
                             return equipmentStats;
                         }
                     }
-                    return null;
+                    return new List<EquipmentStats>();
                 }
                 catch (SqlException ex)
                 {

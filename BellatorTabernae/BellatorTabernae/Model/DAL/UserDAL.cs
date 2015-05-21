@@ -34,7 +34,7 @@ namespace BellatorTabernae.Model.DAL
                             };
                         }
                     }
-                    return null;
+                    return new User();
                 }
                 catch (SqlException ex)
                 {
