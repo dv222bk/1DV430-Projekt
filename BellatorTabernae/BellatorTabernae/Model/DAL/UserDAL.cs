@@ -102,12 +102,15 @@ namespace BellatorTabernae.Model.DAL
                             {
                                 return reader.GetInt32(userID);
                             }
-                            throw new ArgumentException("Det finns ingen användare med det lösenordet i databasen!");
                         }
                     }
                     throw new ArgumentException("Det finns ingen användare med det lösenordet i databasen!");
                 }
                 catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (ArgumentException ex)
                 {
                     throw ex;
                 }

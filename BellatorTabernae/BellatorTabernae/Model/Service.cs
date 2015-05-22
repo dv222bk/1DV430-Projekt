@@ -449,6 +449,14 @@ namespace BellatorTabernae.Model
                 combatants.Add(Battle.CreateCombatantFromCharacter(GetCharacter(null, userID), 1));
                 combatants.Add(Battle.CreateCombatantFromCharacter(GetMonster(monsterID), 2));
 
+                if(combatants[0].Stanima <= 0) {
+                    throw new ArgumentException("Karaktären är för trött för att slåss!");
+                } 
+                else if ((double)(combatants[0].Health / combatants[0].MaxHealth) <= combatants[0].GiveUpPercent)
+                {
+                    throw new ArgumentException("Karaktären mår inte tillräckligt bra för att slåss!");
+                }
+
                 Battle.AssignCombatantIDs(ref combatants);
 
                 // If we sent the original combatant list to the InitBattle method, the out result would be wrong

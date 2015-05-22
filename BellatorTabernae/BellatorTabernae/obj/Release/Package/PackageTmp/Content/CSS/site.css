@@ -160,7 +160,12 @@ nav input[type="text"], nav input[type="password"] {
 }
 
 nav input {
+    display: block;
     margin: 0 auto;
+}
+
+nav input[type="submit"] {
+    margin-bottom: 0.5em;
 }
 
 main {
@@ -214,12 +219,13 @@ p {
     font-family: 'Alegreya SC';
     font-weight: 700;
     font-size: 1.4em;
-    margin: 0.5em 0 0.1em 0;
+    margin: 0 0 0.1em 0;
     display: block;
 }
 
 #Character {
     text-align: center;
+
 }
 
 #Character input {
@@ -243,8 +249,8 @@ p {
 #Inventory input {
     position: absolute;
     right: 0;
-    margin-top: -1.73em;
     margin-right: 0.5em;
+    margin-top: -1.73em;
 }
 
 #Inventory > li {
@@ -268,7 +274,7 @@ p {
 #MainPlaceHolder_SpendPoints, #MainPlaceHolder_Create_User,
 #MainPlaceHolder_CreateCharacter {
     display: block;
-    margin: 0 0 0 auto;
+    margin-left: auto;
 }
 
 #MainPlaceHolder_LevelUp {
@@ -374,6 +380,11 @@ p {
     color: #444444;
 }
 
+.CharacterGold {
+    display: block;
+    margin-top: 0.5em;
+}
+
 .EquipmentName, .CharacterGold, .EquipmentValue, .MonsterName {
     font-weight: 700;
 }
@@ -431,7 +442,8 @@ p {
 
 .Monster input {
     display: block;
-    margin: 0.5em 0 0 auto;
+    margin-left: auto;
+    margin-top: 0.5em;
 }
 
 .turn {

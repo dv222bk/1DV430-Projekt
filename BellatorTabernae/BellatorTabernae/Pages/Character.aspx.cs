@@ -110,7 +110,14 @@ namespace BellatorTabernae.Pages
                     }
                     else
                     {
-                        CharacterBiografyLiteral.Text = "Du har inte skrivt någon biografi till din karaktär ännu!";
+                        if (ownCharacter)
+                        {
+                            CharacterBiografyLiteral.Text = "Du har inte skrivt någon biografi till din karaktär ännu!";
+                        }
+                        else
+                        {
+                            CharacterBiografyLiteral.Text = "Karaktären har ingen biografi ännu!";
+                        }
                     }
                 }
                 else

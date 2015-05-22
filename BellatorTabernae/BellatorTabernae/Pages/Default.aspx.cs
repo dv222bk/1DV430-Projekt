@@ -60,6 +60,10 @@ namespace BellatorTabernae.Pages
                 {
                     Page.ModelState.AddModelError(String.Empty, ex.Message);
                 }
+                catch (ApplicationException ex)
+                {
+                    Page.ModelState.AddModelError(String.Empty, ex.Message);
+                }
                 catch
                 {
                     Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");

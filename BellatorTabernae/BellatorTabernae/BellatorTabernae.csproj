@@ -60,14 +60,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\CSS\Fonts\Alegreya-Bold.otf" />
-    <Content Include="Content\CSS\Fonts\Alegreya-BoldItalic.otf" />
-    <Content Include="Content\CSS\Fonts\Alegreya-Italic.otf" />
-    <Content Include="Content\CSS\Fonts\Alegreya-Regular.otf" />
-    <Content Include="Content\CSS\Fonts\AlegreyaSC-Bold.otf" />
-    <Content Include="Content\CSS\Fonts\AlegreyaSC-BoldItalic.otf" />
-    <Content Include="Content\CSS\Fonts\AlegreyaSC-Italic.otf" />
-    <Content Include="Content\CSS\Fonts\AlegreyaSC-Regular.otf" />
     <None Include="Properties\PublishProfiles\BellatorTabernaeSchool.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
