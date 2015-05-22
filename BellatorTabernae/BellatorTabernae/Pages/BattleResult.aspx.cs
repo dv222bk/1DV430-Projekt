@@ -27,7 +27,7 @@ namespace BellatorTabernae.Pages
                 Session["SiteMsg"] = null;
             }
 
-            if (Context.User.Identity.IsAuthenticated && Session["CombatLog"] != null)
+            if (Context.User.Identity.IsAuthenticated && Session["CombatLog"] != null && Session["Combatants"] != null)
             {
                 CombatLogPanel.Visible = true;
             }
@@ -45,6 +45,11 @@ namespace BellatorTabernae.Pages
         public IEnumerable<CombatLog> CombatLogListView_ShowCombatLog()
         {
             return (IEnumerable<CombatLog>)Session["CombatLog"]; 
+        }
+
+        public IEnumerable<Combatant> CombatantsListView_ShowCombatants()
+        {
+            return (IEnumerable<Combatant>)Session["Combatants"];
         }
     }
 }

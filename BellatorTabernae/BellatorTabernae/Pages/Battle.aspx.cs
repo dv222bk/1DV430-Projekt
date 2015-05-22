@@ -65,7 +65,10 @@ namespace BellatorTabernae.Pages
         {
             try
             {
-                Session["CombatLog"] = Service.InitiateMonsterBattle(int.Parse(Context.User.Identity.Name), charID);
+                List<Combatant> combatants = new List<Combatant>();
+
+                Session["CombatLog"] = Service.InitiateMonsterBattle(int.Parse(Context.User.Identity.Name), charID, out combatants);
+                Session["Combatants"] = combatants;
 
                 Response.RedirectToRoute("BattleResult");
             }

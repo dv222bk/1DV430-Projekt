@@ -8,6 +8,25 @@
     <h2>Stridsrapport</h2>
     <asp:Panel ID="CombatLogPanel" runat="server"
         Visible="False">
+        <asp:ListView ID="CombatantsListView" runat="server"
+            ItemType="BellatorTabernae.Model.Combatant"
+            SelectMethod="CombatantsListView_ShowCombatants"
+            DataKeyNames="CombatantID">
+            <LayoutTemplate>
+                <div class="CombatantTeams">
+                    <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                </div>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <div class="Team">
+                    <span class="TeamNumber">Lag <%# Item.TeamNumber %>:</span>
+                    <span class="TeamMember">
+                        <%# Item.Name %>
+                        <span class="CombatantLevel">(<%# Item.Level %>)</span>
+                    </span>
+                </div>
+            </ItemTemplate>
+        </asp:ListView>
         <asp:ListView ID="CombatLogListView" runat="server"
             ItemType="BellatorTabernae.Model.CombatLog"
             SelectMethod="CombatLogListView_ShowCombatLog"

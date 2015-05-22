@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web;
 
 namespace BellatorTabernae.Model
@@ -440,15 +441,22 @@ namespace BellatorTabernae.Model
 
         /* Battle */
 
-        public List<CombatLog> InitiateMonsterBattle(int userID, int monsterID)
+        public List<CombatLog> InitiateMonsterBattle(int userID, int monsterID, out List<Combatant> combatants)
         {
             if (UserHasCharacter(userID))
             {
-                List<Combatant> combatants = new List<Combatant>();
-                combatants.Add(CreateCombatantFromCharacter(GetCharacter(null, userID), 1));
-                combatants.Add(CreateCombatantFromCharacter(GetMonster(monsterID), 2));
+                combatants = new List<Combatant>();
+                combatants.Add(Battle.CreateCombatantFromCharacter(GetCharacter(null, userID), 1));
+                combatants.Add(Battle.CreateCombatantFromCharacter(GetMonster(monsterID), 2));
 
-                return Battle.InitBattle(combatants);
+                Battle.AssignCombatantIDs(ref combatants);
+
+                // If we sent the original combatant list to the InitBattle method, the out result would be wrong
+                List<Combatant> combatantsCopy = CloneCombatantList(combatants);
+
+                Battle.InitBattle(combatantsCopy);
+
+                return Battle.GetCombatLog();
             }
             else
             {
@@ -456,30 +464,20 @@ namespace BellatorTabernae.Model
             }
         }
 
-        public Combatant CreateCombatantFromCharacter(Character character, int teamNumber)
+        public List<Combatant> CloneCombatantList(List<Combatant> combatantList)
         {
-            return new Combatant
-            {
-                CharID = character.CharID,
-                UserID = character.UserID,
-                Race = character.Race,
-                Name = character.Name,
-                Level = character.Level,
-                Experience = character.Experience,
-                Health = character.Health,
-                MaxHealth = character.MaxHealth,
-                Stanima = character.Stanima,
-                MaxStanima = character.MaxStanima,
-                Strength = character.Strength,
-                Speed = character.Speed,
-                Agility = character.Agility,
-                Dexterity = character.Dexterity,
-                WeaponID = character.WeaponID,
-                ShieldID = character.ShieldID,
-                ArmorID = character.ArmorID,
-                GiveUpPercent = 0.2,
-                TeamNumber = teamNumber
-            };
+            List<Combatant> combatantListCopy = new List<Combatant>();
+
+            // This might seem silly, but this actually clones the combatant list
+            combatantListCopy = combatantList.ConvertAll(new Converter<Combatant, Combatant>(ReturnCombatant));
+
+            return combatantListCopy;
+        }
+
+        // Only used by CloneCombatantList
+        public static Combatant ReturnCombatant(Combatant combatant)
+        {
+            return combatant;
         }
     }
 }

@@ -24,13 +24,13 @@
         SelectMethod="LeaderboardListView_GetLeaderboard"
         DataKeyNames="RowNumber">
         <LayoutTemplate>
-            <h3>
-                <span class="LeaderboardRank">Rank</span>
-                <span class="LeaderboardName">Namn</span>
-                <span class="LeaderboardRace">Ras</span>
-                <span class="LeaderboardLevel">Level</span>
-            </h3>
             <ol id="Leaderboard">
+                <li>
+                    <span class="LeaderboardRank">Rank</span>
+                    <span class="LeaderboardName">Namn</span>
+                    <span class="LeaderboardRace">Ras</span>
+                    <span class="LeaderboardLevel">Level</span>
+                </li>
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
             </ol>
             <div class="Pagination">

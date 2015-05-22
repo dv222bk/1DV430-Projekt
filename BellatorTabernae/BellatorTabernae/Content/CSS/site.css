@@ -376,7 +376,7 @@ p {
 }
 
 #MainPlaceHolder_UsernameLabel, #MainPlaceHolder_PasswordLabel,
-#MainPlaceHolder_EmailLabel {
+#MainPlaceHolder_EmailLabel, #MainPlaceHolder_LeaderboardTypeLabel {
     display: block;
     font-weight: 700;
 }
@@ -388,8 +388,33 @@ p {
 
 #MainPlaceHolder_Username, #MainPlaceHolder_Password,
 #MainPlaceHolder_Email, #MainPlaceHolder_Name,
-#MainPlaceHolder_RaceList {
+#MainPlaceHolder_RaceList, #MainPlaceHolder_LeaderboardType {
     font-size: 1em;
+}
+
+#Leaderboard {
+    display: table;
+    width: 100%;
+    margin-top: 1em;
+    font-size: 0.7em;
+}
+
+#Leaderboard li {
+    display: table-row;
+    width: 100%;
+}
+
+#Leaderboard li:first-child {
+    display: table-header-group;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+#Leaderboard li > span, #Leaderboard a{
+    display: table-cell;
+    padding-bottom: 0.5em;
+    vertical-align: central;
+    text-align: center;
 }
 
 .statControls {
@@ -523,8 +548,37 @@ p {
     content: ">> ";
 }
 
-.endresult {
+.endresult, .TeamNumber {
     font-weight: 700;
+}
+
+.CombatantTeams {
+    width: 100%;
+    padding: 1em;
+    border: 0.2em solid #000000;
+    border-radius: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.Team {
+    display: inline-block;
+    width: 49%;
+}
+
+.Team > span {
+    display: block;
+}
+
+@media all and (min-width: 25em) {
+    #Leaderboard {
+        font-size: 1em;
+    }
+}
+
+@media all and (min-width: 30em) {
+    #Leaderboard {
+        font-size: 1.2em;
+    }
 }
 
 @media all and (min-width: 40em) {

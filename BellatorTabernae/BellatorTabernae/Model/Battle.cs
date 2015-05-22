@@ -34,11 +34,10 @@ namespace BellatorTabernae.Model
         // List containging all combatants which have given up the battle
         private List<Combatant> combatantsGiveUp = new List<Combatant>();
 
-        public List<CombatLog> InitBattle(List<Combatant> combatants)
+        public void InitBattle(List<Combatant> combatants)
         {
             if (ValidateCombatants(combatants))
             {
-                AssignCombatantIDs(ref combatants);
                 FillOriginalCombatants(combatants);
                 GetCombatantsTotalStats(ref combatants);
 
@@ -53,12 +52,37 @@ namespace BellatorTabernae.Model
                     Turn(ref combatants);
                 }
                 CombatCleanUp(combatants);
-                return combatLog;
             }
             else
             {
                 throw new ArgumentException("Kombatanterna i striden är ogiltliga");
             }
+        }
+
+        public Combatant CreateCombatantFromCharacter(Character character, int teamNumber)
+        {
+            return new Combatant
+            {
+                CharID = character.CharID,
+                UserID = character.UserID,
+                Race = character.Race,
+                Name = character.Name,
+                Level = character.Level,
+                Experience = character.Experience,
+                Health = character.Health,
+                MaxHealth = character.MaxHealth,
+                Stanima = character.Stanima,
+                MaxStanima = character.MaxStanima,
+                Strength = character.Strength,
+                Speed = character.Speed,
+                Agility = character.Agility,
+                Dexterity = character.Dexterity,
+                WeaponID = character.WeaponID,
+                ShieldID = character.ShieldID,
+                ArmorID = character.ArmorID,
+                GiveUpPercent = 0.2,
+                TeamNumber = teamNumber
+            };
         }
 
         public void FillOriginalCombatants(List<Combatant> combatants)
