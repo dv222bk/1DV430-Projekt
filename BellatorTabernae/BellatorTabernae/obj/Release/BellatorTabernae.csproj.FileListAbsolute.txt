@@ -1,0 +1,11 @@
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\bin\BellatorTabernae.dll.config
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\bin\BellatorTabernae.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\bin\BellatorTabernae.pdb
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\bin\BCrypt.Net.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\bin\BCrypt.Net.pdb
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\bin\BCrypt.Net.xml
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\obj\Release\BellatorTabernae.csprojResolveAssemblyReference.cache
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\obj\Release\BellatorTabernae.Properties.CombatStrings.resources
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\obj\Release\BellatorTabernae.csproj.GenerateResource.Cache
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\obj\Release\BellatorTabernae.dll
+I:\Documents\GitHub\dv222bk-project\BellatorTabernae\BellatorTabernae\obj\Release\BellatorTabernae.pdb

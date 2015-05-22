@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>Z:\</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/BCrypt.Net.dll">
+      <publishTime>04/25/2015 20:29:41</publishTime>
+    </File>
+    <File Include="bin/BellatorTabernae.dll">
+      <publishTime>05/22/2015 17:06:01</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/Alegreya-Bold.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/Alegreya-BoldItalic.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/Alegreya-Italic.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/Alegreya-Regular.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/AlegreyaSC-Bold.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/AlegreyaSC-BoldItalic.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/AlegreyaSC-Italic.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Fonts/AlegreyaSC-Regular.otf">
+      <publishTime>05/19/2015 15:16:35</publishTime>
+    </File>
+    <File Include="Content/CSS/Images/paperbackground.jpg">
+      <publishTime>05/19/2015 17:09:08</publishTime>
+    </File>
+    <File Include="Content/CSS/Images/woodbackground.jpg">
+      <publishTime>05/19/2015 17:19:50</publishTime>
+    </File>
+    <File Include="Content/CSS/responsive-nav.css">
+      <publishTime>05/19/2015 18:59:18</publishTime>
+    </File>
+    <File Include="Content/CSS/site.css">
+      <publishTime>05/22/2015 17:56:00</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>04/19/2015 16:42:57</publishTime>
+    </File>
+    <File Include="LICENSE.txt">
+      <publishTime>04/25/2015 20:29:41</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>04/25/2015 20:29:43</publishTime>
+    </File>
+    <File Include="Pages/Battle.aspx">
+      <publishTime>05/22/2015 00:29:38</publishTime>
+    </File>
+    <File Include="Pages/BattleResult.aspx">
+      <publishTime>05/22/2015 16:42:37</publishTime>
+    </File>
+    <File Include="Pages/Character.aspx">
+      <publishTime>05/22/2015 00:11:58</publishTime>
+    </File>
+    <File Include="Pages/Chat.aspx">
+      <publishTime>05/18/2015 19:41:47</publishTime>
+    </File>
+    <File Include="Pages/CreateUser.aspx">
+      <publishTime>05/22/2015 00:25:02</publishTime>
+    </File>
+    <File Include="Pages/Default.aspx">
+      <publishTime>05/22/2015 17:29:06</publishTime>
+    </File>
+    <File Include="Pages/Leaderboard.aspx">
+      <publishTime>05/22/2015 15:43:20</publishTime>
+    </File>
+    <File Include="Pages/Levelup.aspx">
+      <publishTime>05/21/2015 23:32:18</publishTime>
+    </File>
+    <File Include="Pages/Market.aspx">
+      <publishTime>05/21/2015 20:51:42</publishTime>
+    </File>
+    <File Include="Pages/Shared/Error.aspx">
+      <publishTime>05/18/2015 19:43:06</publishTime>
+    </File>
+    <File Include="Pages/Shared/Site.Master">
+      <publishTime>05/22/2015 17:55:57</publishTime>
+    </File>
+    <File Include="Pages/Shared/_MainNavigation.ascx">
+      <publishTime>05/15/2015 20:17:19</publishTime>
+    </File>
+    <File Include="Scripts/frontpage.js">
+      <publishTime>05/20/2015 13:02:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.js">
+      <publishTime>04/19/2015 17:40:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.js">
+      <publishTime>04/19/2015 17:40:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.map">
+      <publishTime>04/19/2015 17:40:24</publishTime>
+    </File>
+    <File Include="Scripts/responsive-nav.min.js">
+      <publishTime>05/19/2015 18:59:34</publishTime>
+    </File>
+    <File Include="Scripts/sitescript.js">
+      <publishTime>05/20/2015 20:46:21</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/22/2015 17:06:02</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
