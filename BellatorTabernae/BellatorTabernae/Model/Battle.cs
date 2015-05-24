@@ -474,6 +474,7 @@ namespace BellatorTabernae.Model
                 }
 
                 combatLog.Add(new CombatLog(combatLogID, combatLogEntry, null, null, null, null));
+                combatLogID++;
             }
             else
             {

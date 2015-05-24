@@ -49,6 +49,7 @@ namespace BellatorTabernae.Pages
 
         public IEnumerable<Combatant> CombatantsListView_ShowCombatants()
         {
+            Console.WriteLine("what");
             return (IEnumerable<Combatant>)Session["Combatants"];
         }
     }
