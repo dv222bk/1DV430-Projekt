@@ -36,7 +36,7 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div class="logEntry">
-                    <asp:Panel ID="Panel1" runat="server" Visible="<%# Item.Attacker != null ? false : true %>">
+                    <asp:Panel ID="otherLogEntryPanel" runat="server" Visible="<%# Item.Attacker != null ? false : true %>">
                         <%# Item.Text %>
                     </asp:Panel>
                     <asp:Panel ID="combatLogEntryPanel" runat="server" Visible="<%# Item.Attacker != null ? true : false %>">

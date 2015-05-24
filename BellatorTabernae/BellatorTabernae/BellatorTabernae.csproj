@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\CSS\Images\CharacterImage.png" />
-    <Content Include="Content\CSS\Images\p2kija14.bmp" />
+    <Content Include="Content\CSS\Images\startImage.bmp" />
     <Content Include="Content\CSS\Images\woodbackground.jpg" />
     <Content Include="Content\CSS\Images\paperbackground.jpg" />
     <Content Include="Content\CSS\responsive-nav.css" />

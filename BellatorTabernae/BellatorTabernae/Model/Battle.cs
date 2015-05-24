@@ -306,6 +306,10 @@ namespace BellatorTabernae.Model
                         combatString = String.Concat("DefenderCounter", randomGenerator.Next(1, 5));
                         combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, getHitSeverityString(damage, attacker.MaxHealth)));
                     }
+                    else
+                    {
+                        combatLogEntry = String.Concat(combatLogEntry, "</div>");
+                    }
 
                     // Save combatLog
                     combatLog.Add(new CombatLog(combatLogID, combatLogEntry, attacker.Name, defender.Name, damage, 0));
@@ -354,6 +358,10 @@ namespace BellatorTabernae.Model
 
                         combatString = String.Concat("AttackCounter", randomGenerator.Next(1, 5));
                         combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name, defender.Name, getHitSeverityString(damage, defender.MaxHealth)));
+                    }
+                    else
+                    {
+                        combatLogEntry = String.Concat(combatLogEntry, "</div>");
                     }
 
                     // Save combatLog
