@@ -769,7 +769,7 @@ p {
         clear: left;
     }
 
-    .statControls {
+    #MainPlaceHolder_RaceAndStatsUpdate .statControls {
         width: auto;
         display: inline-block;
         float: left;
