@@ -62,7 +62,7 @@ table {
 body {
     background-image: url(Images/paperbackground.jpg);
     background-repeat: repeat;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -78,7 +78,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.6em;
+    font-size: 1.5em;
     margin-bottom: 0.5em;
 }
 
@@ -199,6 +199,7 @@ p {
     font-weight: 400;
     font-size: 1.2em;
     line-height: 1.6em;
+    padding-bottom: 2em;
 }
 
 #MainPlaceHolder_CharacterPanel {
@@ -342,6 +343,10 @@ p {
     font-size: 1em;
 }
 
+#MainPlaceHolder_MonsterPanel {
+    margin-top: 1.5em;
+}
+
 #Leaderboard {
     display: table;
     width: 100%;
@@ -418,12 +423,17 @@ p {
 .Pagination {
     width: 100%;
     text-align: center;
+    font-size: 1.4em;
 }
 
 .Monster {
     border-bottom: 0.1em solid #000000;
     padding-bottom: 0.5em;
     margin-bottom: 0.5em;
+}
+
+.MonsterName {
+    font-size: 1.2em;
 }
 
 .Monster:last-child {
@@ -538,11 +548,285 @@ p {
 }
 
 @media all and (min-width: 40em) {
+    body {
+        background-image: url(Images/woodbackground.jpg);
+    }
+
     nav {
-        margin-top: 0.5em;
+        margin-top: 0.75em;
+        width: 100%;
+        font-size: 1.2em;
+    }
+
+    nav ul {
+        border-top: none;
+        width: 100%;
+    }
+
+    .nav-collapse li {
+        width: auto;
+        display: inline-block;
+    }
+
+    nav li, nav ul, .nav-toggle, .nav-toggle-active {
+        background-color: transparent;
+    }
+
+    nav li, nav ul {
+        border-bottom: none;
+    }
+
+    nav li:hover {
+        background-color: transparent;
+    }
+
+    nav a {
+        color: #000000;
+        display: inline-block;
+        -webkit-transition: all .05s ease;
+        transition: all .05s ease;
+        padding: 0;
+    }
+
+    nav a:hover {
+        text-shadow: 0px 0px 8px #fff, 0px 0px 10px #fff, 0px 0px 12px #fff, 0px 0px 15px #fff, 0px 0px 17px #fff, 0px 0px 20px #fff;
+        color: #777777;
+    }
+
+    nav li:after {
+        content: " | ";
+    }
+
+    nav li:last-child:after {
+        content: "";
     }
 
     #SiteContainer {
+        /* Background src http://angelfire7508.deviantart.com/art/Sword-and-Shield-original-47378670 */
         background-image: url(Images/paperbackground.jpg);
+        width: 37em;
+        border: 0.2em solid #000000;
+        border-top: 0;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        margin: 0 auto;
+    }
+
+    #Character {
+        width: 25em;
+        text-align: right;
+        margin: 0 auto;
+    }
+
+    #Character img {
+        display: block;
+        width: 246px;
+        height: 354px;
+        background-image: url(Images/CharacterImage.jpg);
+        background-position: top left;
+        background-repeat: no-repeat;
+        float: left;
+        border: 0.1em solid #000000;
+    }
+
+    #LoggedIn {
+        padding-right: 0.5em;
+    }
+
+    #MainPlaceHolder_RemoveCharacter {
+        display: block;
+        margin-left: 1em;
+    }
+
+    #MainPlaceHolder_CharacterInventory h3 {
+        text-align: left;
+    }
+
+    #MainPlaceHolder_FrontPageMainPanel {
+        float: left;
+        width: 100%;
+        height: 16em;
+        background-color: #FFFFFF;
+        background-image: url(Images/startImage.bmp);
+        background-position: top left;
+        background-repeat: no-repeat;
+        border: 0.1em solid #000000;
+        padding: 0.5em;
+        margin-bottom: 1em;
+    }
+
+    #MainPlaceHolder_NewUserPanel, #MainPlaceHolder_LoginPanel {
+        float: right;
+        clear: both;
+        width: 10em;
+        display: inline-block;
+        padding: 0.5em;
+        border: 0.2em solid #000000;
+        border-radius: 1em;
+        background-color: rgba(180,180,180,0.6);
+        margin-left: auto;
+    }
+
+    #MainPlaceHolder_NewUserPanel {
+        margin-bottom: 0.5em;
+        text-align: center;
+    }
+
+    #MainPlaceHolder_LoginPanel input, #MainPlaceHolder_LoginPanel label, 
+    #MainPlaceHolder_NewUserPanel input {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #MainPlaceHolder_LoginPanel input:not([type="submit"]) {
+        margin-bottom: 0.5em;
+    }
+
+    #Inventory input {
+        position: static;
+        float: right;
+        margin-right: 0;
+    }
+
+    .turn {
+        margin-bottom: 0.25em;
+    }
+}
+
+@media all and (min-width: 50em) {
+    nav {
+        font-size: 1.4em;
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+
+    #SiteContainer {
+        width: 45em;
+    }
+
+    #MainPlaceHolder_FrontPageMainPanel {
+        background-position: 2em 0;
+    }
+}
+
+@media all and (min-width: 60em) {
+    h1 {
+        font-size: 4em;
+    }
+
+    nav {
+        font-size: 1.6em;
+    }
+    
+    #SiteContainer {
+        width: 55em;
+    }
+
+    #MainPlaceHolder_FrontPageMainPanel {
+        background-position: 6em 0;
+    }
+
+    #MainPlaceHolder_CombatLogPanel .combatLogEntry .attack {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #MainPlaceHolder_CombatLogPanel .infoPanel {
+        display: inline-block;
+        width: 100%;
+        margin: 0;
+    }
+
+    #MainPlaceHolder_NewUserLabel {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.5em;
+    }
+
+    #MainPlaceHolder_CharacterLevelUpUpdatePanel {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #MainPlaceHolder_RaceAndStatsUpdate {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        float: left;
+    }
+
+    #MainPlaceHolder_CharacterLevelUpUpdatePanel label{
+        width: 50%;
+    }
+
+    #MainPlaceHolder_RaceAndStatsUpdate label {
+        width: 10em;
+        float: left;
+        clear: left;
+    }
+
+    .statControls {
+        width: auto;
+        display: inline-block;
+        float: left;
+        clear: right;
+    }
+
+    div:after {
+        content: '\A';
+        white-space: pre;
+    }
+
+    div[id*="otherLogEntryPanel"] {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+
+    div[id*="combatLogEntryPanel"] {
+        display: inline-block;
+        width: 60%;
+        height: auto;
+        vertical-align: top;
+        margin-bottom: 1em;
+    }
+
+    div[id*="combatLogEntryInfoPanel"] {
+        display: inline-block;
+        width: 35%;
+        height: auto;
+        vertical-align: top;
+        margin-bottom: 1em;
+    }
+
+    .infoPanelDamage, .infoPanelDamage:last-child span {
+        text-align: center;
+    }
+
+    .logEntry {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 70em) {
+    h1 {
+        font-size: 4.5em;
+    }
+
+    nav {
+        font-size: 1.8em;
+    }
+
+    #SiteContainer {
+        width: 65em;
+    }
+
+    #MainPlaceHolder_FrontPageMainPanel {
+        background-position: 10em 0;
     }
 }

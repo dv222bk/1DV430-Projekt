@@ -35,21 +35,28 @@
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
             </LayoutTemplate>
             <ItemTemplate>
-                <div class="combatLogEntry">
-                    <%# Item.Text %>
+                <div class="logEntry">
+                    <asp:Panel ID="otherLogEntryPanel" runat="server" Visible="<%# Item.Attacker != null ? false : true %>">
+                        <%# Item.Text %>
+                    </asp:Panel>
+                    <asp:Panel ID="combatLogEntryPanel" runat="server" Visible="<%# Item.Attacker != null ? true : false %>">
+                        <div class="combatLogEntry">
+                            <%# Item.Text %>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="combatLogEntryInfoPanel" runat="server" Visible="<%# Item.Attacker != null ? true : false %>">
+                        <div class="infoPanel">
+                            <div class="infoPanelDamage">
+                                <span class="attacker"><%# Item.Attacker %></span>
+                                <span class="damageTaken">Skada tagen: <%# Item.AttackerDamage %></span>
+                            </div>
+                            <div class="infoPanelDamage">
+                                <span class="defender"><%# Item.Defender %></span>
+                                <span class="damageTaken">Skada tagen: <%# Item.DefenderDamage %></span>
+                            </div>
+                        </div>
+                    </asp:Panel>
                 </div>
-                <asp:Panel ID="combatLogEntryInfoPanel" runat="server" Visible="<%# Item.Attacker != null ? true : false %>">
-                    <div class="infoPanel">
-                        <div class="infoPanelDamage">
-                            <span class="attacker"><%# Item.Attacker %></span>
-                            <span class="damageTaken">Skada tagen: <%# Item.AttackerDamage %></span>
-                        </div>
-                        <div class="infoPanelDamage">
-                            <span class="defender"><%# Item.Defender %></span>
-                            <span class="damageTaken">Skada tagen: <%# Item.DefenderDamage %></span>
-                        </div>
-                    </div>
-                </asp:Panel>
             </ItemTemplate>
         </asp:ListView>
     </asp:Panel>

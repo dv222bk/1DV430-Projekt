@@ -16,7 +16,7 @@
         <link type="text/css" rel="stylesheet" href="~/Content/CSS/site.css" />
         <link type="text/css" rel="stylesheet" href="~/Content/CSS/responsive-nav.css" />
         <!-- Custom fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Alegreya+SC:700,700italic,400,400italic|Alegreya:700,700italic,400,400italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Alegreya+SC:700,700italic,400,400italic|Alegreya:700,700italic,400,400italic' rel='stylesheet' type='text/css' />
         <script type="text/javascript" src='<%= ResolveUrl("~/Scripts/jquery-2.1.3.min.js") %>'></script>
         <script type="text/javascript" src='<%= ResolveUrl("~/Scripts/responsive-nav.min.js") %>'></script>
         <script type="text/javascript" src='<%= ResolveUrl("~/Scripts/sitescript.js") %>'></script>

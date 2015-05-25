@@ -683,12 +683,6 @@ p {
         margin-bottom: 0.5em;
     }
 
-    #MainPlaceHolder_NewUserLabel {
-        display: block;
-        font-weight: 700;
-        margin-bottom: 0.5em;
-    }
-
     #Inventory input {
         position: static;
         float: right;
@@ -744,6 +738,42 @@ p {
         display: inline-block;
         width: 100%;
         margin: 0;
+    }
+
+    #MainPlaceHolder_NewUserLabel {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.5em;
+    }
+
+    #MainPlaceHolder_CharacterLevelUpUpdatePanel {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #MainPlaceHolder_RaceAndStatsUpdate {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        float: left;
+    }
+
+    #MainPlaceHolder_CharacterLevelUpUpdatePanel label{
+        width: 50%;
+    }
+
+    #MainPlaceHolder_RaceAndStatsUpdate label {
+        width: 10em;
+        float: left;
+        clear: left;
+    }
+
+    .statControls {
+        width: auto;
+        display: inline-block;
+        float: left;
+        clear: right;
     }
 
     div[id*="otherLogEntryPanel"] {

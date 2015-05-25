@@ -21,13 +21,15 @@
             <div class="statControls">
                 <asp:Button ID="HealthMinus" runat="server" 
                     Text="-" 
-                    OnClick="HealthMinus_Click" />
+                    OnClick="HealthMinus_Click" 
+                    CausesValidation="False" />
                 <asp:TextBox ID="Health" runat="server" 
                     ReadOnly="True" 
                     MaxLength="5" />
                 <asp:Button ID="HealthPlus" runat="server" 
                     Text="+" 
-                    OnClick="HealthPlus_Click" />
+                    OnClick="HealthPlus_Click"
+                    CausesValidation="False" />
             </div>
             <asp:RequiredFieldValidator ID="StanimaRequired" runat="server"
                     ErrorMessage="Karaktären måste ha uthållighet!"
@@ -37,12 +39,15 @@
             <div class="statControls">
                 <asp:Button ID="StanimaMinus" runat="server" 
                     Text="-" 
-                    OnClick="StanimaMinus_Click" />
+                    OnClick="StanimaMinus_Click"
+                    CausesValidation="False" />
                 <asp:TextBox ID="Stanima" runat="server" 
                     ReadOnly="True" 
                     MaxLength="5" />
                 <asp:Button ID="StanimaPlus" runat="server" 
-                    Text="+" OnClick="StanimaPlus_Click" />
+                    Text="+" 
+                    OnClick="StanimaPlus_Click"
+                    CausesValidation="False" />
             </div>
             <asp:RequiredFieldValidator ID="StrengthRequired" runat="server"
                     ErrorMessage="Karaktären måste ha styrka!"
@@ -52,13 +57,15 @@
             <div class="statControls">
                 <asp:Button ID="StrengthMinus" runat="server" 
                     Text="-" 
-                    OnClick="StrengthMinus_Click" />
+                    OnClick="StrengthMinus_Click"
+                    CausesValidation="False" />
                 <asp:TextBox ID="Strength" runat="server" 
                     ReadOnly="True" 
                     MaxLength="3" />
                 <asp:Button ID="StrengthPlus" runat="server" 
                     Text="+" 
-                    OnClick="StrengthPlus_Click" />
+                    OnClick="StrengthPlus_Click"
+                    CausesValidation="False" />
             </div>
             <asp:RequiredFieldValidator ID="SpeedRequired" runat="server"
                     ErrorMessage="Karaktären måste ha snabbhet!"
@@ -68,13 +75,15 @@
             <div class="statControls">
                 <asp:Button ID="SpeedMinus" runat="server" 
                     Text="-" 
-                    OnClick="SpeedMinus_Click" />
+                    OnClick="SpeedMinus_Click"
+                    CausesValidation="False" />
                 <asp:TextBox ID="Speed" runat="server" 
                     ReadOnly="True"
                     MaxLength="3" />
                 <asp:Button ID="SpeedPlus" runat="server" 
                     Text="+" 
-                    OnClick="SpeedPlus_Click" />
+                    OnClick="SpeedPlus_Click"
+                    CausesValidation="False" />
             </div>
             <asp:RequiredFieldValidator ID="AgilityRequired" runat="server"
                     ErrorMessage="Karaktären måste ha träffsäkerhet!"
@@ -84,12 +93,15 @@
             <div class="statControls">
                 <asp:Button ID="AgilityMinus" runat="server" 
                     Text="-" 
-                    OnClick="AgilityMinus_Click" />
+                    OnClick="AgilityMinus_Click"
+                    CausesValidation="False" />
                 <asp:TextBox ID="Agility" runat="server" 
                     ReadOnly="True"
                     MaxLength="3" />
                 <asp:Button ID="AgilityPlus" runat="server" 
-                    Text="+" OnClick="AgilityPlus_Click" />
+                    Text="+" 
+                    OnClick="AgilityPlus_Click"
+                    CausesValidation="False" />
             </div>
             <asp:RequiredFieldValidator ID="DexterityRequired" runat="server"
                     ErrorMessage="Karaktären måste ha undvika!"
@@ -99,13 +111,15 @@
             <div class="statControls">
                 <asp:Button ID="DexterityMinus" runat="server" 
                     Text="-" 
-                    OnClick="DexterityMinus_Click" />
+                    OnClick="DexterityMinus_Click"
+                    CausesValidation="False" />
                 <asp:TextBox ID="Dexterity" runat="server" 
                     ReadOnly="True"
                     MaxLength="3" />
                 <asp:Button ID="DexterityPlus" runat="server" 
                     Text="+" 
-                    OnClick="DexterityPlus_Click" />
+                    OnClick="DexterityPlus_Click"
+                    CausesValidation="False" />
             </div>
         </ContentTemplate>
         <Triggers>
