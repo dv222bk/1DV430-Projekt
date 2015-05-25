@@ -614,6 +614,7 @@ p {
 
     #Character {
         width: 25em;
+        min-height: 354px;
         text-align: right;
         margin: 0 auto;
     }
@@ -634,11 +635,14 @@ p {
     }
 
     #MainPlaceHolder_RemoveCharacter {
-        display: block;
-        margin-left: 1em;
+        display: table;
+        margin: 0.5em 0 0 1em;
+        float: left;
+        clear: both;
     }
 
     #MainPlaceHolder_CharacterInventory h3 {
+        margin-top: 2em;
         text-align: left;
     }
 
