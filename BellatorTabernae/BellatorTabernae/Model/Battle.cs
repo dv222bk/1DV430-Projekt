@@ -250,14 +250,14 @@ namespace BellatorTabernae.Model
                 bool heavyAttack = (randomGenerator.NextDouble() >= 0.5) ? true : false;
 
                 // If heavy attack, the defender will evade. If light, the defender will block (but only if a shield/weapon is equipped or the attacker isn't using a weapon)
-                int attackChance = AttackChance(attacker);
+                int attackChance = CountChance(attacker.Agility, attacker.Speed);
                 int defenseChance = 0;
 
                 if (heavyAttack)
                 {
                     // Evade
                     combatString = String.Concat("HeavyAttack", randomGenerator.Next(1, 5));
-                    defenseChance = EvadeChance(defender);
+                    defenseChance = CountChance(defender.Speed, defender.Dexterity);
                 }
                 else
                 {
@@ -265,12 +265,12 @@ namespace BellatorTabernae.Model
                     if (defender.WeaponID != null || defender.ShieldID != null || attacker.WeaponID == null)
                     {
                         // Block
-                        defenseChance = BlockAndCounterAttackChance(defender);
+                        defenseChance = CountChance(defender.Agility, defender.Dexterity);
                     }
                     else
                     {
                         // Evade
-                        defenseChance = EvadeChance(defender);
+                        defenseChance = CountChance(defender.Speed, defender.Dexterity);
                     }
                 }
 
@@ -284,8 +284,8 @@ namespace BellatorTabernae.Model
                     combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), attacker.Name));
 
                     // Counterattack chance for the defender
-                    attackChance = BlockAndCounterAttackChance(defender);
-                    defenseChance = BlockAndCounterAttackChance(attacker);
+                    attackChance = CountChance(defender.Agility, defender.Dexterity);
+                    defenseChance = CountChance(attacker.Agility, attacker.Dexterity);
                     int damage = 0;
 
                     if (attackChance > defenseChance)
@@ -337,8 +337,8 @@ namespace BellatorTabernae.Model
                     combatLogEntry = String.Concat(combatLogEntry, String.Format(strings.GetString(combatString), defender.Name));
 
                     // Counterattack chance for the attacker
-                    attackChance = BlockAndCounterAttackChance(attacker);
-                    defenseChance = EvadeChance(defender);
+                    attackChance = CountChance(attacker.Agility, attacker.Dexterity);
+                    defenseChance = CountChance(defender.Speed, defender.Dexterity);
                     int damage = 0;
 
                     if (attackChance > defenseChance)
@@ -541,6 +541,31 @@ namespace BellatorTabernae.Model
             }
         }
 
+        public int CountChance(int firstAttribute, int secondAttribute)
+        {
+            if (firstAttribute < secondAttribute)
+            {
+                if (firstAttribute * 1.5 < secondAttribute)
+                {
+                    secondAttribute = (int)(firstAttribute * 1.5);
+                }
+
+                return randomGenerator.Next(firstAttribute / 2, firstAttribute + secondAttribute + 1);
+            }
+            else
+            {
+                if (secondAttribute * 1.5 < firstAttribute)
+                {
+                    firstAttribute = (int)(secondAttribute * 1.5);
+                }
+
+                return randomGenerator.Next(secondAttribute / 2, secondAttribute + firstAttribute + 1);
+            }
+        }
+
+        /*
+         * Old methods, no longer in use. Replaced by "CountChance"
+         * 
         public int AttackChance(Combatant combatant)
         {
             int agility = combatant.Agility;
@@ -615,7 +640,7 @@ namespace BellatorTabernae.Model
                 return randomGenerator.Next(dexterity / 2, agility + dexterity + 1);
             }
         }
-
+        */ 
         public void GetCombatantsTotalStats(ref List<Combatant> combatants)
         {
             foreach (Combatant combatant in combatants)

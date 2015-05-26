@@ -569,6 +569,124 @@ namespace BattleUnitTest
         }
 
         [TestMethod]
+        public void CountChance_CheckNumberSameValue()
+        {
+            // arrange
+            Battle battleClass = new Battle();
+
+            // act
+            // loop through the method 10000 times to get a good span
+            int randomNumber;
+            for (int i = 0; i < 10000; i++)
+            {
+                randomNumber = battleClass.CountChance(10,10);
+
+                // assert
+                if (randomNumber < 5 || randomNumber > 20)
+                {
+                    Assert.Fail("CountChance has a chance of giving the wrong number if the values sent to it match");
+                    return;
+                }
+            }
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void CountChance_CheckNumberFirstHigh()
+        {
+            // arrange
+            Battle battleClass = new Battle();
+
+            // act
+            // loop through the method 10000 times to get a good span
+            int randomNumber;
+            for (int i = 0; i < 10000; i++)
+            {
+                randomNumber = battleClass.CountChance(40,10);
+
+                // assert
+                if (randomNumber < 5 || randomNumber > 25)
+                {
+                    Assert.Fail("CountChance has a chance of giving the wrong number if the first value sent to it is at least 1.5 times higher than the second");
+                    return;
+                }
+            }
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void CountChance_CheckNumberSecondHigh()
+        {
+            // arrange
+            Battle battleClass = new Battle();
+
+            // act
+            // loop through the method 10000 times to get a good span
+            int randomNumber;
+            for (int i = 0; i < 10000; i++)
+            {
+                randomNumber = battleClass.CountChance(10, 40);
+
+                // assert
+                if (randomNumber < 5 || randomNumber > 25)
+                {
+                    Assert.Fail("CountChance has a chance of giving the wrong number if the second value sent to it is at least 1.5 times higher than the second");
+                    return;
+                }
+            }
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void CountChance_CheckNumberFirstSlightyHigh()
+        {
+            // arrange
+            Battle battleClass = new Battle();
+
+            // act
+            // loop through the method 10000 times to get a good span
+            int randomNumber;
+            for (int i = 0; i < 10000; i++)
+            {
+                randomNumber = battleClass.CountChance(12, 10);
+
+                // assert
+                if (randomNumber < 5 || randomNumber > 22)
+                {
+                    Assert.Fail("CountChance has a chance of giving the wrong number if the first value sent to it is slightly higher than second");
+                    return;
+                }
+            }
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void CountChance_CheckNumberSecondSlightyHigh()
+        {
+            // arrange
+            Battle battleClass = new Battle();
+
+            // act
+            // loop through the method 10000 times to get a good span
+            int randomNumber;
+            for (int i = 0; i < 10000; i++)
+            {
+                randomNumber = battleClass.CountChance(10, 12);
+
+                // assert
+                if (randomNumber < 5 || randomNumber > 22)
+                {
+                    Assert.Fail("CountChance has a chance of giving the wrong number if the second value sent to it is slightly higher than first");
+                    return;
+                }
+            }
+            Assert.IsTrue(true);
+        }
+
+        /*
+         * Old tests no longer needed. Replaced by CountChance
+         * 
+        [TestMethod]
         public void AttackChance_CheckNumberSameValue()
         {
             // arrange
@@ -870,6 +988,7 @@ namespace BattleUnitTest
             }
             Assert.IsTrue(true);
         }
+        */
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -885,7 +1004,7 @@ namespace BattleUnitTest
             Battle battleClass = new Battle();
 
             // act
-            List<CombatLog> combatLog = battleClass.InitBattle(combatants);
+            battleClass.InitBattle(combatants);
         }
 
         [TestMethod]
@@ -913,7 +1032,8 @@ namespace BattleUnitTest
             // act
             try
             {
-                List<CombatLog> combatLog = battleClass.InitBattle(combatants);
+                battleClass.InitBattle(combatants);
+                List<CombatLog> combatLog = battleClass.GetCombatLog();
 
                 // print the combatlog to test output
                 for (int i = 0; i < combatLog.Count; i++)

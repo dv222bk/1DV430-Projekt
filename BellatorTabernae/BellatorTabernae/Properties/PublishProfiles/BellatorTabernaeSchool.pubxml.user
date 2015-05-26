@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 20:29:41</publishTime>
     </File>
     <File Include="bin/BellatorTabernae.dll">
-      <publishTime>05/24/2015 23:44:44</publishTime>
+      <publishTime>05/26/2015 13:23:03</publishTime>
     </File>
     <File Include="Content/CSS/Fonts/Alegreya-Bold.otf">
       <publishTime>05/19/2015 15:16:35</publishTime>
@@ -58,7 +58,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2015 15:25:28</publishTime>
     </File>
     <File Include="Content/CSS/site.css">
-      <publishTime>05/25/2015 18:16:09</publishTime>
+      <publishTime>05/25/2015 18:38:13</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/19/2015 16:42:57</publishTime>
@@ -76,7 +76,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2015 21:58:22</publishTime>
     </File>
     <File Include="Pages/Character.aspx">
-      <publishTime>05/25/2015 17:39:16</publishTime>
+      <publishTime>05/25/2015 18:25:08</publishTime>
     </File>
     <File Include="Pages/Chat.aspx">
       <publishTime>05/18/2015 19:41:47</publishTime>
