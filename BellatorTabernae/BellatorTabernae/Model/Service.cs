@@ -451,8 +451,8 @@ namespace BellatorTabernae.Model
 
                 if(combatants[0].Stanima <= 0) {
                     throw new ArgumentException("Karaktären är för trött för att slåss!");
-                } 
-                else if ((double)(combatants[0].Health / combatants[0].MaxHealth) <= combatants[0].GiveUpPercent)
+                }
+                else if (((double)combatants[0].Health / combatants[0].MaxHealth) <= combatants[0].GiveUpPercent)
                 {
                     throw new ArgumentException("Karaktären mår inte tillräckligt bra för att slåss!");
                 }

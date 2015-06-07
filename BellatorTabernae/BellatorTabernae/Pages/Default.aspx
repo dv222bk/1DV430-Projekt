@@ -43,8 +43,19 @@
                 OnClick="Login_Click" />
         </asp:Panel>
     </asp:Panel>
-    <h2>Lorem ipsum</h2>
-    <p>Sit amet, consectetuer adipiscing ehit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat</p>
-    <h3>Ut wisi enim ad</h3>
-    <p>Minim venium quis nostrud exerci tation ullamcorper suscipit lobortis.</p>
+    <h2>Välkommen till tavernan!</h2>
+    <p>
+        Kom in och sätt dig vet ja, här finns plats för alla! Vem är du, vad är din historia? 
+        Till Bellator Tabernae, strids tavernornas stad, kommer alla möjliga varelser. Vissa
+        försöker bli ämnet på allas läppar medan andra letar stora rikedommar. Det finns till
+        och med de som bara strider för egen underhållning. Varför är just du här? Oavsett 
+        varför du är här, så är du ju här nu!
+    </p>
+    <h3>Ditt äventyr börjar här</h3>
+    <p>
+        Bellator Tabernae är ett textbaserat webbläsarspel som fungerar lika bra på din
+        desktop som på din mobil. Skapa en karaktär och strid din väg till toppen av
+        topplistan. På vägen möter du många fiender och vinner guld som du kan köpa ny
+        och bättre utrustning för. Vad väntar du på? Ditt äventyr börjar här och nu!
+    </p>
 </asp:Content>

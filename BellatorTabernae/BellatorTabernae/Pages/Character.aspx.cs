@@ -507,6 +507,12 @@ namespace BellatorTabernae.Pages
 
         protected void RemoveCharacter_Click(object sender, EventArgs e)
         {
+            RemoveCharacter.Visible = false;
+            RemoveCharacterPanel.Visible = true;
+        }
+
+        protected void ConfirmRemoval_Click(object sender, EventArgs e)
+        {
             try
             {
                 Service.DeleteCharacter(null, int.Parse(Context.User.Identity.Name));
@@ -534,6 +540,12 @@ namespace BellatorTabernae.Pages
             {
                 Page.ModelState.AddModelError(String.Empty, "Ett oväntat fel inträffade.");
             }
+        }
+
+        protected void CancelRemoval_Click(object sender, EventArgs e)
+        {
+            RemoveCharacter.Visible = true;
+            RemoveCharacterPanel.Visible = false;
         }
 
         // Change biografy
@@ -720,5 +732,5 @@ namespace BellatorTabernae.Pages
             }
             return false;
         }
-    }
+    }   
 }

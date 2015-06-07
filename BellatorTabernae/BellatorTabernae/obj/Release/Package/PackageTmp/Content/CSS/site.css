@@ -183,6 +183,10 @@ p {
     margin-bottom: 0.5em;
 }
 
+strong {
+    font-weight: 700;
+}
+
 #LoggedIn, #LoggedIn Input {
     margin-top: 0.2em;
     display: inline-block;
@@ -214,6 +218,14 @@ p {
 
 #MainPlaceHolder_CharacterInfo span, #MainPlaceHolder_CharacterVitals span, #MainPlaceHolder_CharacterStats span {
     display: block;
+}
+
+#MainPlaceHolder_RemoveCharacterPanel strong, #MainPlaceHolder_RemoveCharacterPanel input {
+    display: inline-block;
+}
+
+#MainPlaceHolder_RemoveCharacterPanel input:first-of-type {
+    margin-top: 1em;
 }
 
 #Character .CharacterName {
@@ -639,6 +651,21 @@ p {
         margin: 0.5em 0 0 1em;
         float: left;
         clear: both;
+    }
+
+    #MainPlaceHolder_RemoveCharacterPanel {
+        display: block;
+        margin-top: 3em;
+        margin-bottom: -2em;
+    }
+
+    #MainPlaceHolder_RemoveCharacterPanel input {
+        display: block;
+        margin: 0 auto;
+    }
+
+    #MainPlaceHolder_RemoveCharacterPanel input:first-of-type {
+        margin-bottom: 0.5em;
     }
 
     #MainPlaceHolder_CharacterInventory h3 {

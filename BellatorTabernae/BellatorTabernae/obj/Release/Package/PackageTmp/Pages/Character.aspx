@@ -33,6 +33,16 @@
             <asp:Button ID="RemoveCharacter" runat="server"
                 Text="Ta bort karaktär" 
                 OnClick="RemoveCharacter_Click" />
+            <asp:Panel ID="RemoveCharacterPanel" runat="server"
+                Visible="false">
+                <strong>Är du verkligen säker på att du vill ta bort din karaktär?</strong>
+                <asp:Button ID="ConfirmRemoval" runat="server"
+                    Text="Ta bort karaktär"
+                    OnClick="ConfirmRemoval_Click" />
+                <asp:Button ID="CancelRemoval" runat="server"
+                    Text="Avbryt"
+                    OnClick="CancelRemoval_Click" />
+            </asp:Panel>
         </div>
         <asp:Panel ID="CharacterInventory" runat="server">
             <h3>Ägodelar</h3>
